@@ -1,1 +1,1330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GO Automatizaciones IA – Agentes IA 24/7 para tu Negocio</title>
+  <meta name="description" content="Automatiza ventas, atención al cliente y marketing con agentes de IA que trabajan 24/7. 90% más barato que contratar personal. Servicio de GOClientes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+  <style>
+    :root {
+      --navy: #1a1a2e;
+      --navy-mid: #16213e;
+      --navy-light: #0f3460;
+      --electric: #00d4ff;
+      --electric-dark: #00a8cc;
+      --electric-glow: rgba(0,212,255,0.15);
+      --electric-light: rgba(0,212,255,0.08);
+      --purple: #7c3aed;
+      --purple-light: rgba(124,58,237,0.12);
+      --green: #00c65e;
+      --green-light: rgba(0,198,94,0.1);
+      --red: #ef4444;
+      --amber: #f59e0b;
+      --white: #ffffff;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --lighter: #64748b;
+      --surface: rgba(255,255,255,0.04);
+      --surface-hover: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
+      --border-electric: rgba(0,212,255,0.3);
+      --radius: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --ease: cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Inter',sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:var(--navy); }
+    ::-webkit-scrollbar-thumb { background:var(--navy-light); border-radius:3px; }
+
+    /* NAV */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:200;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1rem 2.5rem;
+      background:rgba(26,26,46,0.9);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      transition:box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow:0 4px 24px rgba(0,0,0,0.4); }
+    .logo {
+      font-family:'Sora',sans-serif; font-weight:800; font-size:1.3rem;
+      color:var(--white); text-decoration:none;
+      display:flex; align-items:center; gap:0.5rem;
+    }
+    .logo span { color:var(--electric); }
+    .logo .badge-new {
+      font-size:0.6rem; font-weight:800; letter-spacing:0.08em;
+      background:var(--electric); color:var(--navy);
+      padding:0.2rem 0.5rem; border-radius:100px;
+      text-transform:uppercase; margin-left:0.3rem;
+    }
+    .nav-links { display:flex; gap:2rem; align-items:center; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-weight:500; font-size:0.88rem; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--electric); }
+    .btn-nav {
+      background:var(--electric); color:var(--navy);
+      font-weight:700; padding:0.55rem 1.4rem;
+      border-radius:100px; text-decoration:none; font-size:0.88rem;
+      transition:all 0.2s;
+    }
+    .btn-nav:hover { background:var(--electric-dark); transform:translateY(-1px); }
+    .btn-nav-outline {
+      border:1px solid var(--border-electric); color:var(--electric);
+      font-weight:600; padding:0.5rem 1.2rem;
+      border-radius:100px; text-decoration:none; font-size:0.85rem;
+      transition:all 0.2s;
+    }
+    .btn-nav-outline:hover { background:var(--electric-light); }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
+    .hamburger span { width:24px; height:2px; background:var(--white); border-radius:2px; transition:all 0.3s; display:block; }
+
+    /* HERO */
+    .hero {
+      padding:9rem 1.5rem 6rem;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+      background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,255,0.08) 0%, transparent 60%),
+                 radial-gradient(ellipse 60% 40% at 80% 50%, rgba(124,58,237,0.06) 0%, transparent 50%),
+                 var(--navy);
+    }
+    .hero::before {
+      content:''; position:absolute; top:0; left:0; right:0; bottom:0;
+      background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300d4ff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+      pointer-events:none; opacity:0.5;
+    }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      border:1px solid var(--border-electric);
+      background:var(--electric-light);
+      padding:0.4rem 1.2rem; border-radius:100px;
+      font-size:0.75rem; font-weight:700; color:var(--electric);
+      margin-bottom:1.5rem; letter-spacing:0.05em; text-transform:uppercase;
+      position:relative;
+    }
+    .blink { width:7px; height:7px; background:var(--electric); border-radius:50%; animation:blink 1.2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    h1 {
+      font-family:'Sora',sans-serif; font-weight:800;
+      font-size:clamp(2.2rem,5.5vw,3.8rem);
+      line-height:1.1; color:var(--white);
+      max-width:860px; margin:0 auto 1.2rem;
+      letter-spacing:-0.02em;
+    }
+    h1 .electric { color:var(--electric); }
+    h1 .dim { color:var(--muted); font-weight:600; }
+    .hero-sub {
+      color:var(--muted); font-size:1.05rem;
+      max-width:580px; margin:0 auto 2.5rem; line-height:1.75;
+    }
+    .hero-sub strong { color:var(--electric); font-weight:600; }
+
+    .hero-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:3.5rem; }
+    .btn-primary {
+      display:inline-flex; align-items:center; gap:0.6rem;
+      background:var(--electric); color:var(--navy);
+      font-weight:700; padding:0.95rem 2rem;
+      border-radius:100px; text-decoration:none; font-size:1rem;
+      transition:all 0.25s var(--ease);
+      box-shadow:0 0 30px rgba(0,212,255,0.3);
+      border:none; cursor:pointer; font-family:'Inter',sans-serif;
+    }
+    .btn-primary:hover { background:var(--electric-dark); transform:translateY(-3px); box-shadow:0 0 50px rgba(0,212,255,0.5); }
+    .btn-secondary {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      background:transparent; color:var(--electric);
+      font-weight:600; padding:0.95rem 2rem;
+      border-radius:100px; text-decoration:none; font-size:1rem;
+      border:1.5px solid var(--border-electric);
+      transition:all 0.25s var(--ease);
+    }
+    .btn-secondary:hover { background:var(--electric-light); transform:translateY(-2px); }
+    .btn-purple {
+      display:inline-flex; align-items:center; gap:0.6rem;
+      background:var(--purple); color:var(--white);
+      font-weight:700; padding:0.95rem 2rem;
+      border-radius:100px; text-decoration:none; font-size:1rem;
+      transition:all 0.25s var(--ease); border:none; cursor:pointer;
+      box-shadow:0 0 30px rgba(124,58,237,0.3); font-family:'Inter',sans-serif;
+    }
+    .btn-purple:hover { background:#6d28d9; transform:translateY(-3px); box-shadow:0 0 50px rgba(124,58,237,0.5); }
+
+    .hero-stats {
+      display:inline-flex; gap:0;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius-lg);
+      padding:1.2rem 2rem;
+      position:relative; z-index:1;
+    }
+    .stat-item { flex:1; text-align:center; padding:0 1.5rem; }
+    .stat-item:not(:last-child) { border-right:1px solid var(--border); }
+    .stat-item strong {
+      font-family:'Sora',sans-serif; font-size:1.8rem; font-weight:800;
+      color:var(--electric); display:block; line-height:1; margin-bottom:0.2rem;
+    }
+    .stat-item span { color:var(--muted); font-size:0.75rem; font-weight:500; }
+
+    /* TRUST */
+    .trust-bar { background:var(--navy-mid); padding:0.75rem 1.5rem; overflow:hidden; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .trust-scroll { display:flex; gap:3rem; animation:scroll 22s linear infinite; width:max-content; }
+    @keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .trust-item { display:flex; align-items:center; gap:0.5rem; white-space:nowrap; color:var(--muted); font-size:0.8rem; font-weight:500; }
+    .trust-item .tick { color:var(--electric); }
+
+    /* SECTIONS */
+    section { padding:5rem 1.5rem; }
+    .container { max-width:1140px; margin:0 auto; }
+    .section-tag {
+      display:inline-flex; align-items:center; gap:0.4rem;
+      font-size:0.7rem; font-weight:700; letter-spacing:0.12em;
+      text-transform:uppercase; color:var(--electric);
+      background:var(--electric-light); border:1px solid var(--border-electric);
+      padding:0.3rem 1rem; border-radius:100px; margin-bottom:1rem;
+    }
+    .section-title {
+      font-family:'Sora',sans-serif; font-size:clamp(1.8rem,4vw,2.6rem);
+      font-weight:800; color:var(--white);
+      line-height:1.15; letter-spacing:-0.02em; margin-bottom:0.8rem;
+    }
+    .section-sub { color:var(--muted); max-width:540px; font-size:1rem; line-height:1.75; margin-bottom:2.5rem; }
+    .section-center { text-align:center; }
+    .section-center .section-sub { margin:0 auto 2.5rem; }
+    .section-title .electric { color:var(--electric); }
+
+    /* PROBLEM VS SOLUTION */
+    .compare-section { background:var(--navy-mid); }
+    .compare-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:2rem; margin-top:2.5rem; align-items:stretch;
+    }
+    .compare-col {
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius-lg);
+      padding:2rem; overflow:hidden;
+    }
+    .compare-col.problem { border-color:rgba(239,68,68,0.2); }
+    .compare-col.solution { border-color:var(--border-electric); box-shadow:0 0 40px rgba(0,212,255,0.08); }
+    .compare-header {
+      display:flex; align-items:center; gap:0.8rem;
+      margin-bottom:1.5rem; padding-bottom:1.2rem;
+      border-bottom:1px solid var(--border);
+    }
+    .compare-icon {
+      width:40px; height:40px; border-radius:10px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.1rem; flex-shrink:0;
+    }
+    .compare-icon.red { background:rgba(239,68,68,0.1); }
+    .compare-icon.blue { background:var(--electric-light); }
+    .compare-header h3 {
+      font-family:'Sora',sans-serif; font-size:1.1rem;
+      font-weight:700; color:var(--white);
+    }
+    .compare-header span { font-size:0.78rem; color:var(--muted); }
+    .compare-item {
+      display:flex; align-items:flex-start; gap:0.9rem;
+      padding:0.85rem 0; border-bottom:1px solid var(--border);
+    }
+    .compare-item:last-child { border-bottom:none; }
+    .compare-item .ci-icon {
+      width:30px; height:30px; border-radius:8px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:0.85rem; flex-shrink:0; margin-top:0.1rem;
+    }
+    .ci-icon.bad { background:rgba(239,68,68,0.1); color:#f87171; }
+    .ci-icon.good { background:var(--electric-light); color:var(--electric); }
+    .compare-item h4 { font-size:0.9rem; font-weight:600; color:var(--white); margin-bottom:0.2rem; }
+    .compare-item p { font-size:0.82rem; color:var(--muted); }
+
+    /* AGENTS */
+    .agents-section { background:var(--navy); }
+    .agents-grid {
+      display:grid;
+      grid-template-columns:repeat(5, 1fr);
+      gap:1.2rem; margin-top:2.5rem;
+    }
+    .agent-card {
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:1.5rem 1.2rem;
+      text-align:center;
+      transition:all 0.3s var(--ease);
+      cursor:default; position:relative; overflow:hidden;
+    }
+    .agent-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg, transparent, var(--electric), transparent);
+      transform:scaleX(0); transition:transform 0.3s;
+    }
+    .agent-card:hover { transform:translateY(-6px); box-shadow:0 12px 40px rgba(0,212,255,0.12); border-color:var(--border-electric); background:var(--surface-hover); }
+    .agent-card:hover::before { transform:scaleX(1); }
+    .agent-num {
+      position:absolute; top:0.7rem; right:0.7rem;
+      font-size:0.65rem; font-weight:700;
+      color:var(--electric); opacity:0.5; font-family:'Sora',sans-serif;
+    }
+    .agent-icon-wrap {
+      width:52px; height:52px; border-radius:14px;
+      background:var(--electric-light);
+      border:1px solid var(--border-electric);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.4rem; margin:0 auto 0.9rem;
+    }
+    .agent-card h3 {
+      font-family:'Sora',sans-serif; font-size:0.85rem;
+      font-weight:700; color:var(--white); margin-bottom:0.4rem;
+    }
+    .agent-card p { font-size:0.75rem; color:var(--muted); line-height:1.5; }
+    .agent-tag {
+      display:inline-block; margin-top:0.7rem;
+      background:var(--electric-light); color:var(--electric);
+      font-size:0.65rem; font-weight:700; padding:0.2rem 0.7rem;
+      border-radius:100px; letter-spacing:0.05em; text-transform:uppercase;
+    }
+
+    /* COUNTER */
+    .counter-section {
+      background:linear-gradient(135deg, var(--navy-light) 0%, var(--navy-mid) 100%);
+      border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+      padding:3.5rem 1.5rem;
+    }
+    .counter-grid {
+      display:grid; grid-template-columns:repeat(4,1fr);
+      gap:2rem; max-width:900px; margin:0 auto; text-align:center;
+    }
+    .counter-item strong {
+      font-family:'Sora',sans-serif; font-size:2.8rem; font-weight:800;
+      color:var(--electric); display:block; line-height:1;
+    }
+    .counter-item span { color:var(--muted); font-size:0.82rem; margin-top:0.3rem; display:block; }
+
+    /* INDUSTRIES */
+    .industries-section { background:var(--navy-mid); }
+    .industries-grid {
+      display:grid; grid-template-columns:repeat(4,1fr);
+      gap:1.5rem; margin-top:2.5rem;
+    }
+    .industry-card {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:var(--radius-lg); padding:1.8rem;
+      transition:all 0.3s var(--ease);
+    }
+    .industry-card:hover { transform:translateY(-5px); box-shadow:0 12px 40px rgba(0,212,255,0.1); border-color:var(--border-electric); }
+    .industry-icon { font-size:2rem; margin-bottom:0.9rem; }
+    .industry-card h3 { font-family:'Sora',sans-serif; font-size:1rem; font-weight:700; color:var(--white); margin-bottom:0.8rem; }
+    .agent-pill {
+      display:inline-flex; align-items:center; gap:0.35rem;
+      background:var(--surface-hover); border:1px solid var(--border);
+      color:var(--text); font-size:0.75rem; font-weight:500;
+      padding:0.3rem 0.8rem; border-radius:100px;
+      margin:0.2rem 0.15rem;
+    }
+    .agent-pill i { color:var(--electric); font-size:0.65rem; }
+
+    /* PRICING */
+    .pricing-section { background:var(--navy); }
+    .pricing-scarcity {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.25);
+      color:var(--amber); padding:0.4rem 1.2rem; border-radius:100px;
+      font-size:0.78rem; font-weight:700; margin-bottom:1.5rem;
+    }
+    .pricing-grid {
+      display:grid; grid-template-columns:repeat(4,1fr);
+      gap:1.5rem; margin-top:2.5rem; align-items:start;
+    }
+    .plan-card {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:var(--radius-xl); padding:2rem;
+      transition:all 0.3s var(--ease); position:relative;
+    }
+    .plan-card:hover { transform:translateY(-5px); box-shadow:0 20px 60px rgba(0,0,0,0.3); }
+    .plan-card.popular { border-color:var(--border-electric); box-shadow:0 0 40px rgba(0,212,255,0.1); }
+    .plan-badge {
+      position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+      background:var(--electric); color:var(--navy);
+      font-size:0.68rem; font-weight:800; letter-spacing:0.06em;
+      text-transform:uppercase; padding:0.28rem 1rem;
+      border-radius:100px; white-space:nowrap;
+    }
+    .plan-badge.amber { background:var(--amber); color:var(--navy); }
+    .plan-badge.purple { background:var(--purple); color:var(--white); }
+    .plan-name { font-family:'Sora',sans-serif; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:0.5rem; }
+    .plan-price-old { color:var(--lighter); text-decoration:line-through; font-size:0.85rem; }
+    .plan-price { font-family:'Sora',sans-serif; font-size:2.4rem; font-weight:800; color:var(--white); line-height:1; margin:0.2rem 0 0.15rem; }
+    .plan-price span { font-size:1rem; color:var(--muted); font-weight:500; }
+    .plan-note { color:var(--muted); font-size:0.78rem; margin-bottom:1.5rem; }
+    .plan-divider { height:1px; background:var(--border); margin:1.2rem 0; }
+    .plan-features { list-style:none; display:flex; flex-direction:column; gap:0.6rem; margin-bottom:1.8rem; }
+    .plan-features li { display:flex; align-items:flex-start; gap:0.6rem; font-size:0.84rem; color:var(--text); }
+    .plan-features li .chk { color:var(--electric); font-weight:800; flex-shrink:0; margin-top:0.1rem; }
+    .plan-features li.dim { color:var(--lighter); }
+    .plan-features li.dim .chk { color:var(--lighter); }
+    .plan-cta { width:100%; text-align:center; justify-content:center; border:none; cursor:pointer; font-family:'Inter',sans-serif; }
+
+    /* WHY */
+    .why-section { background:var(--navy-mid); }
+    .why-grid {
+      display:grid; grid-template-columns:repeat(2,1fr);
+      gap:1.5rem; margin-top:2.5rem;
+    }
+    .why-card {
+      display:flex; align-items:flex-start; gap:1.2rem;
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:var(--radius); padding:1.5rem;
+      transition:all 0.3s var(--ease);
+    }
+    .why-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,0.2); border-color:var(--border-electric); }
+    .why-icon-wrap {
+      width:48px; height:48px; border-radius:12px;
+      background:var(--electric-light); border:1px solid var(--border-electric);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.3rem; flex-shrink:0;
+    }
+    .why-card h3 { font-family:'Sora',sans-serif; font-size:1rem; font-weight:700; color:var(--white); margin-bottom:0.35rem; }
+    .why-card p { color:var(--muted); font-size:0.86rem; }
+
+    /* DISCOUNT BANNER */
+    .discount-banner {
+      background:linear-gradient(135deg, rgba(124,58,237,0.15) 0%, rgba(0,212,255,0.08) 100%);
+      border:1px solid rgba(124,58,237,0.3);
+      border-radius:var(--radius-lg); padding:2rem;
+      margin:3rem auto 0; max-width:800px;
+      text-align:center;
+    }
+    .discount-banner h3 { font-family:'Sora',sans-serif; font-size:1.3rem; font-weight:800; color:var(--white); margin-bottom:0.5rem; }
+    .discount-banner p { color:var(--muted); font-size:0.9rem; margin-bottom:1rem; }
+    .discount-code {
+      display:inline-block; font-family:'Sora',sans-serif; font-size:1.4rem; font-weight:800;
+      color:var(--electric); letter-spacing:0.1em;
+      background:var(--electric-light); border:1px dashed var(--border-electric);
+      padding:0.5rem 2rem; border-radius:10px; margin:0.5rem 0;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-section { background:var(--navy); }
+    .testimonials-grid {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:1.5rem; margin-top:2.5rem;
+    }
+    .testimonial-card {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:var(--radius-lg); padding:1.8rem;
+      transition:all 0.3s var(--ease);
+    }
+    .testimonial-card:hover { transform:translateY(-4px); border-color:var(--border-electric); }
+    .stars { color:var(--amber); font-size:0.9rem; margin-bottom:0.8rem; }
+    .testimonial-card p { color:var(--text); font-size:0.9rem; line-height:1.7; margin-bottom:1.2rem; font-style:italic; }
+    .testimonial-author { display:flex; align-items:center; gap:0.8rem; }
+    .author-avatar {
+      width:40px; height:40px; border-radius:50%;
+      background:var(--electric-light); border:2px solid var(--border-electric);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:700; font-size:0.85rem; color:var(--electric);
+      flex-shrink:0;
+    }
+    .author-name { font-size:0.88rem; font-weight:600; color:var(--white); }
+    .author-role { font-size:0.75rem; color:var(--muted); }
+
+    /* FORM */
+    .form-section {
+      background:linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 100%);
+    }
+    .form-wrapper {
+      max-width:760px; margin:0 auto;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius-xl);
+      padding:3rem 2.5rem;
+    }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.5rem; }
+    .form-group { display:flex; flex-direction:column; gap:0.4rem; }
+    .form-group.full { grid-column:1/-1; }
+    .form-group label { font-size:0.82rem; font-weight:600; color:var(--muted); }
+    .form-group input, .form-group select, .form-group textarea {
+      background:rgba(255,255,255,0.05);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:0.8rem 1rem;
+      color:var(--white);
+      font-family:'Inter',sans-serif;
+      font-size:0.9rem;
+      outline:none;
+      transition:border 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color:var(--electric);
+      box-shadow:0 0 0 3px rgba(0,212,255,0.1);
+    }
+    .form-group select option { background:var(--navy-mid); color:var(--text); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color:var(--lighter); }
+    .form-group textarea { resize:vertical; min-height:100px; }
+    .form-submit {
+      margin-top:1.5rem;
+      width:100%; padding:1rem;
+      background:var(--electric); color:var(--navy);
+      font-family:'Inter',sans-serif; font-size:1rem; font-weight:700;
+      border:none; border-radius:100px; cursor:pointer;
+      transition:all 0.25s; display:flex; align-items:center; justify-content:center; gap:0.5rem;
+    }
+    .form-submit:hover { background:var(--electric-dark); transform:translateY(-2px); box-shadow:0 0 40px rgba(0,212,255,0.4); }
+    .form-success {
+      display:none; text-align:center; padding:2rem 0;
+    }
+    .form-success .success-icon { font-size:3rem; margin-bottom:1rem; }
+    .form-success h3 { font-family:'Sora',sans-serif; font-size:1.4rem; font-weight:700; color:var(--white); margin-bottom:0.5rem; }
+    .form-success p { color:var(--muted); }
+
+    /* FAQ */
+    .faq-section { background:var(--navy-mid); }
+    .faq-list { margin-top:2.5rem; display:flex; flex-direction:column; max-width:760px; margin-left:auto; margin-right:auto; }
+    .faq-item { border-top:1px solid var(--border); }
+    .faq-item:last-child { border-bottom:1px solid var(--border); }
+    .faq-q {
+      font-family:'Sora',sans-serif; font-weight:700; font-size:0.95rem;
+      color:var(--white); display:flex; justify-content:space-between; align-items:center;
+      cursor:pointer; padding:1.2rem 0; user-select:none; transition:color 0.2s;
+    }
+    .faq-q:hover { color:var(--electric); }
+    .faq-arrow {
+      width:28px; height:28px; border-radius:50%;
+      background:var(--surface); border:1px solid var(--border);
+      display:flex; align-items:center; justify-content:center;
+      font-size:0.75rem; transition:all 0.25s; flex-shrink:0; color:var(--muted);
+    }
+    .faq-item.open .faq-arrow { background:var(--electric); border-color:var(--electric); color:var(--navy); transform:rotate(180deg); }
+    .faq-a {
+      color:var(--muted); font-size:0.9rem; max-height:0; overflow:hidden;
+      transition:max-height 0.35s ease, padding 0.2s; line-height:1.75;
+    }
+    .faq-item.open .faq-a { max-height:200px; padding-bottom:1.2rem; }
+
+    /* FINAL CTA */
+    .final-cta {
+      background:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,212,255,0.1) 0%, transparent 70%), var(--navy);
+      padding:6rem 1.5rem; text-align:center;
+      border-top:1px solid var(--border);
+    }
+    .final-cta h2 {
+      font-family:'Sora',sans-serif; font-size:clamp(2rem,5vw,3rem);
+      font-weight:800; color:var(--white); margin-bottom:1rem; letter-spacing:-0.02em;
+    }
+    .final-cta p { color:var(--muted); margin-bottom:2.5rem; font-size:1rem; }
+
+    /* FOOTER */
+    footer {
+      background:#0d0d1a;
+      border-top:1px solid var(--border);
+      padding:2.5rem 1.5rem; text-align:center;
+    }
+    .footer-logo { font-family:'Sora',sans-serif; font-weight:800; font-size:1.2rem; color:var(--white); margin-bottom:0.8rem; }
+    .footer-logo span { color:var(--electric); }
+    footer p { color:var(--lighter); font-size:0.8rem; line-height:1.9; }
+    footer a { color:var(--electric); text-decoration:none; }
+    footer a:hover { color:var(--white); }
+    .footer-divider { height:1px; background:var(--border); margin:1rem auto; max-width:400px; }
+
+    /* WA FLOAT */
+    .wa-float {
+      position:fixed; bottom:1.5rem; right:1.5rem;
+      background:linear-gradient(145deg,#25D366,#128C7E);
+      width:58px; height:58px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 6px 24px rgba(0,0,0,0.35);
+      transition:all 0.2s; z-index:300;
+      animation:floatWA 2.5s ease-in-out infinite;
+      text-decoration:none;
+    }
+    .wa-float:hover { transform:scale(1.12)!important; box-shadow:0 10px 32px rgba(37,211,102,0.5); animation:none; }
+    @keyframes floatWA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+    /* REVEAL */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:0.1s; }
+    .reveal-delay-2 { transition-delay:0.2s; }
+    .reveal-delay-3 { transition-delay:0.3s; }
+    .reveal-delay-4 { transition-delay:0.4s; }
+
+    /* RESPONSIVE */
+    @media(max-width:1100px) {
+      .agents-grid { grid-template-columns:repeat(4,1fr); }
+      .pricing-grid { grid-template-columns:repeat(2,1fr); }
+      .industries-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:900px) {
+      .agents-grid { grid-template-columns:repeat(3,1fr); }
+      .compare-grid { grid-template-columns:1fr; }
+      .counter-grid { grid-template-columns:repeat(2,1fr); }
+      .testimonials-grid { grid-template-columns:1fr; }
+    }
+    @media(max-width:700px) {
+      nav { padding:1rem 1.2rem; }
+      .nav-links { display:none; flex-direction:column; position:absolute; top:65px; left:0; right:0; background:var(--navy-mid); padding:1.5rem 2rem; border-bottom:1px solid var(--border); z-index:100; }
+      .nav-links.open { display:flex; }
+      .hamburger { display:flex; }
+      .agents-grid { grid-template-columns:repeat(2,1fr); }
+      .pricing-grid { grid-template-columns:1fr; max-width:400px; margin-left:auto; margin-right:auto; }
+      .industries-grid { grid-template-columns:1fr; }
+      .why-grid { grid-template-columns:1fr; }
+      .hero-stats { flex-direction:column; gap:0; padding:1rem 1.5rem; }
+      .stat-item { padding:0.8rem; border-right:none!important; border-bottom:1px solid var(--border); }
+      .stat-item:last-child { border-bottom:none; }
+      .form-grid { grid-template-columns:1fr; }
+      .form-wrapper { padding:2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="logo">
+    <i class="fa-solid fa-robot" style="color:var(--electric);font-size:1.1rem;"></i>
+    GO<span>Auto IA</span>
+    <span class="badge-new">Nuevo</span>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="#agentes">Los 10 Agentes</a>
+    <a href="#planes">Planes</a>
+    <a href="#industrias">Casos de uso</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://goclientes.com" target="_blank" class="btn-nav-outline"><i class="fa-solid fa-house" style="font-size:0.75rem;"></i> GOClientes</a>
+    <a href="#contacto" class="btn-nav"><i class="fa-solid fa-bolt" style="font-size:0.75rem;"></i> Quiero mi Agente</a>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span class="blink"></span> Nuevo servicio — Lanzamiento 2025</div>
+  <h1>Agentes de IA que trabajan<br><span class="electric">24/7 por ti</span><br><span class="dim">(sin sueldo, sin quejas, sin vacaciones)</span></h1>
+  <p class="hero-sub">
+    Automatiza ventas, atención al cliente y marketing con empleados digitales que cuestan <strong>90% menos que contratar personal</strong>. Impulsado por IA + n8n.
+  </p>
+  <div class="hero-btns">
+    <a href="#contacto" class="btn-primary">
+      <i class="fa-solid fa-robot"></i>
+      Quiero mi Agente IA →
+    </a>
+    <a href="#agentes" class="btn-secondary">
+      Ver los 10 agentes disponibles
+      <i class="fa-solid fa-chevron-down" style="font-size:0.8rem;"></i>
+    </a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item"><strong>10</strong><span>Agentes disponibles</span></div>
+    <div class="stat-item"><strong>24/7</strong><span>Sin descanso</span></div>
+    <div class="stat-item"><strong>90%</strong><span>Menos que un empleado</span></div>
+    <div class="stat-item"><strong>48h</strong><span>Activación rápida</span></div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-scroll" id="trustScroll">
+    <div class="trust-item"><span class="tick">✦</span> Agentes disponibles 24/7 sin interrupciones</div>
+    <div class="trust-item"><span class="tick">✦</span> 90% más barato que contratar personal</div>
+    <div class="trust-item"><span class="tick">✦</span> Sin conocimientos técnicos requeridos</div>
+    <div class="trust-item"><span class="tick">✦</span> Integración con WhatsApp, Email, RRSS</div>
+    <div class="trust-item"><span class="tick">✦</span> Soporte en español, 100% personalizado</div>
+    <div class="trust-item"><span class="tick">✦</span> Descuento exclusivo para clientes GOClientes</div>
+    <div class="trust-item"><span class="tick">✦</span> Agentes disponibles 24/7 sin interrupciones</div>
+    <div class="trust-item"><span class="tick">✦</span> 90% más barato que contratar personal</div>
+    <div class="trust-item"><span class="tick">✦</span> Sin conocimientos técnicos requeridos</div>
+    <div class="trust-item"><span class="tick">✦</span> Integración con WhatsApp, Email, RRSS</div>
+    <div class="trust-item"><span class="tick">✦</span> Soporte en español, 100% personalizado</div>
+    <div class="trust-item"><span class="tick">✦</span> Descuento exclusivo para clientes GOClientes</div>
+  </div>
+</div>
+
+<!-- PROBLEM VS SOLUTION -->
+<section class="compare-section">
+  <div class="container">
+    <div class="reveal section-center">
+      <div class="section-tag"><i class="fa-solid fa-scale-balanced"></i> El problema vs la solución</div>
+      <h2 class="section-title">¿Cuánto te está costando <span class="electric">no automatizar?</span></h2>
+      <p class="section-sub">Cada día sin automatización es dinero perdido, clientes sin respuesta y horas que no recuperas.</p>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-col problem reveal reveal-delay-1">
+        <div class="compare-header">
+          <div class="compare-icon red"><i class="fa-solid fa-triangle-exclamation" style="color:#f87171;"></i></div>
+          <div>
+            <h3>Sin automatización</h3>
+            <span>Lo que pierdes hoy</span>
+          </div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-icon bad"><i class="fa-solid fa-dollar-sign"></i></div>
+          <div>
+            <h4>Empleados caros y frágiles</h4>
+            <p>$600.000–$1.200.000/mes por cada persona. Vacaciones, licencias y rotación constante.</p>
+          </div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-icon bad"><i class="fa-solid fa-clock"></i></div>
+          <div>
+            <h4>Horario limitado: 8 hrs al día</h4>
+            <p>Los clientes escriben a medianoche y nadie responde. Pierdes ventas mientras duermes.</p>
+          </div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-icon bad"><i class="fa-solid fa-face-tired"></i></div>
+          <div>
+            <h4>Errores humanos inevitables</h4>
+            <p>Datos mal ingresados, respuestas inconsistentes y tareas que "se olvidaron".</p>
+          </div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-icon bad"><i class="fa-solid fa-hourglass-half"></i></div>
+          <div>
+            <h4>Respuestas lentas = clientes perdidos</h4>
+            <p>El 78% de los compradores elige al proveedor que responde primero. ¿Eres tú?</p>
+          </div>
+        </div>
+      </div>
+      <div class="compare-col solution reveal reveal-delay-2">
+        <div class="compare-header">
+          <div class="compare-icon blue"><i class="fa-solid fa-robot" style="color:var(--electric);"></i></div>
+          <div>
+            <h3>Con GO Automatizaciones IA</h3>
+            <span>Lo que ganas desde hoy</span>
+          </div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-icon good"><i class="fa-solid fa-piggy-bank"></i></div>
+          <div>
+            <h4>IA desde $197/mes, 90% de ahorro</h4>
+            <p>Un agente IA hace el trabajo de 2-3 personas por una fracción del costo mensual.</p>
+          </div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-icon good"><i class="fa-solid fa-infinity"></i></div>
+          <div>
+            <h4>24/7, 365 días, sin excusas</h4>
+            <p>Tu negocio responde, vende y publica mientras tú descansas. Sin interrupciones.</p>
+          </div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-icon good"><i class="fa-solid fa-bullseye"></i></div>
+          <div>
+            <h4>Precisión total, cero errores</h4>
+            <p>Las mismas respuestas perfectas en cada interacción. Sin variaciones ni descuidos.</p>
+          </div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-icon good"><i class="fa-solid fa-bolt"></i></div>
+          <div>
+            <h4>Respuesta instantánea en segundos</h4>
+            <p>Sé el primero en responder siempre. Más ventas cerradas, más clientes felices.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENTS -->
+<section class="agents-section" id="agentes">
+  <div class="container">
+    <div class="reveal section-center">
+      <div class="section-tag"><i class="fa-solid fa-robot"></i> Los 10 agentes</div>
+      <h2 class="section-title">Tu equipo digital completo<br><span class="electric">listo para trabajar</span></h2>
+      <p class="section-sub">Cada agente está especializado en una tarea. Elige los que necesitas o actívalos todos.</p>
+    </div>
+    <div class="agents-grid">
+      <div class="agent-card reveal reveal-delay-1">
+        <div class="agent-num">01</div>
+        <div class="agent-icon-wrap">📱</div>
+        <h3>Redes Sociales</h3>
+        <p>Publica automáticamente en Instagram, Facebook, TikTok y más según tu calendario.</p>
+        <span class="agent-tag">Marketing</span>
+      </div>
+      <div class="agent-card reveal reveal-delay-2">
+        <div class="agent-num">02</div>
+        <div class="agent-icon-wrap">🎬</div>
+        <h3>Anuncios CGI</h3>
+        <p>Convierte fotos de tus productos en videos publicitarios de alta calidad con IA.</p>
+        <span class="agent-tag">Publicidad</span>
+      </div>
+      <div class="agent-card reveal reveal-delay-3">
+        <div class="agent-num">03</div>
+        <div class="agent-icon-wrap">🔄</div>
+        <h3>Videos 360°</h3>
+        <p>Muestra productos desde todos los ángulos con experiencias visuales inmersivas.</p>
+        <span class="agent-tag">E-commerce</span>
+      </div>
+      <div class="agent-card reveal reveal-delay-4">
+        <div class="agent-num">04</div>
+        <div class="agent-icon-wrap">📞</div>
+        <h3>Llamadas de Voz</h3>
+        <p>Llama y califica leads automáticamente con voz IA realista en español.</p>
+        <span class="agent-tag">Ventas</span>
+      </div>
+      <div class="agent-card reveal reveal-delay-1">
+        <div class="agent-num">05</div>
+        <div class="agent-icon-wrap">💼</div>
+        <h3>Leads LinkedIn</h3>
+        <p>Extrae contactos calificados de LinkedIn y los envía directo a tu CRM.</p>
+        <span class="agent-tag">Prospección</span>
+      </div>
+      <div class="agent-card reveal reveal-delay-2">
+        <div class="agent-num">06</div>
+        <div class="agent-icon-wrap">🤖</div>
+        <h3>Bot Soporte</h3>
+        <p>Responde FAQs y consultas frecuentes 24/7 por WhatsApp, web y más canales.</p>
+        <span class="agent-tag">Soporte</span>
+      </div>
+      <div class="agent-card reveal reveal-delay-3">
+        <div class="agent-num">07</div>
+        <div class="agent-icon-wrap">📧</div>
+        <h3>Email Auto</h3>
+        <p>Gestiona, responde y clasifica correos entrantes sin intervención humana.</p>
+        <span class="agent-tag">Productividad</span>
+      </div>
+      <div class="agent-card reveal reveal-delay-4">
+        <div class="agent-num">08</div>
+        <div class="agent-icon-wrap">🧾</div>
+        <h3>Facturas PDF</h3>
+        <p>Extrae datos de PDFs y los organiza automáticamente en Excel o tu sistema.</p>
+        <span class="agent-tag">Contabilidad</span>
+      </div>
+      <div class="agent-card reveal reveal-delay-1">
+        <div class="agent-num">09</div>
+        <div class="agent-icon-wrap">🎥</div>
+        <h3>Videos sin Rostro</h3>
+        <p>Crea contenido viral para YouTube y TikTok sin aparecer en cámara.</p>
+        <span class="agent-tag">Contenido</span>
+      </div>
+      <div class="agent-card reveal reveal-delay-2">
+        <div class="agent-num">10</div>
+        <div class="agent-icon-wrap">✍️</div>
+        <h3>Guiones YouTube</h3>
+        <p>Escribe guiones completos optimizados para retención y monetización.</p>
+        <span class="agent-tag">Contenido</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTER -->
+<section class="counter-section">
+  <div class="counter-grid">
+    <div class="counter-item">
+      <strong class="count" data-target="84">0</strong>
+      <span>Empresas automatizadas</span>
+    </div>
+    <div class="counter-item">
+      <strong class="count" data-target="12400">0</strong>
+      <span>Tareas automatizadas/mes</span>
+    </div>
+    <div class="counter-item">
+      <strong class="count" data-target="90">0</strong>
+      <span>% de ahorro vs empleado</span>
+    </div>
+    <div class="counter-item">
+      <strong class="count" data-target="97">0</strong>
+      <span>% clientes satisfechos</span>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="industries-section" id="industrias">
+  <div class="container">
+    <div class="reveal section-center">
+      <div class="section-tag"><i class="fa-solid fa-building"></i> Por industria</div>
+      <h2 class="section-title">¿Para qué tipo de negocio<br><span class="electric">es ideal?</span></h2>
+      <p class="section-sub">Los agentes se adaptan a tu industria. Aquí van los combos más populares.</p>
+    </div>
+    <div class="industries-grid">
+      <div class="industry-card reveal reveal-delay-1">
+        <div class="industry-icon">🛒</div>
+        <h3>E-Commerce & Tiendas Online</h3>
+        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1rem;">Vende más, reduce soporte y automatiza tu contabilidad.</p>
+        <div>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Anuncios CGI</span>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Bot Soporte</span>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Facturas PDF</span>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Videos 360°</span>
+        </div>
+      </div>
+      <div class="industry-card reveal reveal-delay-2">
+        <div class="industry-icon">🏠</div>
+        <h3>Inmobiliarias & Agentes</h3>
+        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1rem;">Genera leads B2B y da seguimiento automático a todos.</p>
+        <div>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Leads LinkedIn</span>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Llamadas de Voz</span>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Email Auto</span>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Bot Soporte</span>
+        </div>
+      </div>
+      <div class="industry-card reveal reveal-delay-3">
+        <div class="industry-icon">🎙️</div>
+        <h3>Creadores de Contenido</h3>
+        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1rem;">Publica más rápido, crea contenido viral sin cámaras.</p>
+        <div>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Redes Sociales</span>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Videos sin Rostro</span>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Guiones YouTube</span>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Anuncios CGI</span>
+        </div>
+      </div>
+      <div class="industry-card reveal reveal-delay-4">
+        <div class="industry-icon">🏥</div>
+        <h3>Clínicas & Estéticas</h3>
+        <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1rem;">Agenda automática, soporte 24/7 y contenido constante.</p>
+        <div>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Bot Soporte</span>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Email Auto</span>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Redes Sociales</span>
+          <span class="agent-pill"><i class="fa-solid fa-circle"></i> Llamadas de Voz</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="planes">
+  <div class="container">
+    <div class="reveal section-center">
+      <div class="pricing-scarcity"><i class="fa-solid fa-fire"></i> Precios de lanzamiento — Disponibles por tiempo limitado</div>
+      <div class="section-tag"><i class="fa-solid fa-tag"></i> Planes y precios</div>
+      <h2 class="section-title">Elige el nivel de<br><span class="electric">automatización</span> que necesitas</h2>
+      <p class="section-sub">Sin contratos largos. Sin cobros ocultos. Cancela cuando quieras.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- BÁSICO -->
+      <div class="plan-card reveal reveal-delay-1">
+        <div class="plan-name">Plan Básico</div>
+        <div class="plan-price-old">Precio normal: $297/mes</div>
+        <div class="plan-price">$197 <span>/mes</span></div>
+        <div class="plan-note">· Facturación mensual · Cancela cuando quieras</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="chk">✓</span> 3 agentes a elección</li>
+          <li><span class="chk">✓</span> Configuración inicial incluida</li>
+          <li><span class="chk">✓</span> Soporte por email</li>
+          <li><span class="chk">✓</span> Panel de monitoreo básico</li>
+          <li><span class="chk">✓</span> Actualizaciones incluidas</li>
+          <li class="dim"><span class="chk">—</span> Soporte prioritario</li>
+          <li class="dim"><span class="chk">—</span> Agentes personalizados</li>
+          <li class="dim"><span class="chk">—</span> Sesión de entrenamiento</li>
+        </ul>
+        <a href="#contacto" class="btn-secondary plan-cta">Empezar ahora</a>
+      </div>
+
+      <!-- PRO (POPULAR) -->
+      <div class="plan-card popular reveal reveal-delay-2">
+        <div class="plan-badge">⭐ Más elegido</div>
+        <div class="plan-name">Plan Pro</div>
+        <div class="plan-price-old">Precio normal: $797/mes</div>
+        <div class="plan-price">$497 <span>/mes</span></div>
+        <div class="plan-note">· Facturación mensual · Cancela cuando quieras</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="chk">✓</span> 7 agentes a elección</li>
+          <li><span class="chk">✓</span> Configuración completa</li>
+          <li><span class="chk">✓</span> Soporte prioritario WhatsApp</li>
+          <li><span class="chk">✓</span> Sesión de entrenamiento 1:1</li>
+          <li><span class="chk">✓</span> Panel de monitoreo avanzado</li>
+          <li><span class="chk">✓</span> Integraciones personalizadas</li>
+          <li><span class="chk">✓</span> Actualizaciones incluidas</li>
+          <li class="dim"><span class="chk">—</span> Todos los 10 agentes</li>
+        </ul>
+        <a href="#contacto" class="btn-primary plan-cta"><i class="fa-solid fa-bolt" style="font-size:0.85rem;"></i> El más contratado →</a>
+      </div>
+
+      <!-- ELITE -->
+      <div class="plan-card reveal reveal-delay-3">
+        <div class="plan-badge amber">🔥 Solución total</div>
+        <div class="plan-name">Plan Elite</div>
+        <div class="plan-price-old">Precio normal: $1.497/mes</div>
+        <div class="plan-price">$997 <span>/mes</span></div>
+        <div class="plan-note">· Facturación mensual · Cancela cuando quieras</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="chk">✓</span> Los 10 agentes activados</li>
+          <li><span class="chk">✓</span> Agente dedicado asignado</li>
+          <li><span class="chk">✓</span> Personalizaciones a medida</li>
+          <li><span class="chk">✓</span> Soporte 24/7 por WhatsApp</li>
+          <li><span class="chk">✓</span> Sesiones mensuales de optimización</li>
+          <li><span class="chk">✓</span> Integraciones ilimitadas</li>
+          <li><span class="chk">✓</span> Reportes de rendimiento mensuales</li>
+          <li><span class="chk">✓</span> SLA de respuesta garantizado</li>
+        </ul>
+        <a href="#contacto" class="btn-purple plan-cta">🚀 Quiero el Elite</a>
+      </div>
+
+      <!-- SETUP ÚNICO -->
+      <div class="plan-card reveal reveal-delay-4">
+        <div class="plan-badge purple">💡 Pago único</div>
+        <div class="plan-name">Setup + Mantenimiento</div>
+        <div class="plan-price">$500 <span>setup</span></div>
+        <div class="plan-note">+ $97/mes mantenimiento</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="chk">✓</span> Instalación en tu servidor</li>
+          <li><span class="chk">✓</span> 3 agentes a elección</li>
+          <li><span class="chk">✓</span> Tú controlas todo</li>
+          <li><span class="chk">✓</span> Mantenimiento mensual mínimo</li>
+          <li><span class="chk">✓</span> Capacitación inicial incluida</li>
+          <li><span class="chk">✓</span> Documentación completa</li>
+          <li class="dim"><span class="chk">—</span> Soporte prioritario</span></li>
+          <li class="dim"><span class="chk">—</span> Personalizaciones</li>
+        </ul>
+        <a href="#contacto" class="btn-secondary plan-cta">Consultar detalles</a>
+      </div>
+    </div>
+
+    <!-- DISCOUNT BANNER -->
+    <div class="discount-banner reveal">
+      <div style="font-size:1.8rem;margin-bottom:0.7rem;">🎁</div>
+      <h3>¿Ya eres cliente de GOClientes?</h3>
+      <p>Si tienes una página web con nosotros, tienes un <strong style="color:var(--electric);">20% de descuento</strong> en cualquier plan. Usa el código al contactarnos:</p>
+      <div class="discount-code">GOCLIENTES20</div>
+      <div style="margin-top:1rem;">
+        <a href="#contacto" class="btn-purple" style="font-size:0.9rem;padding:0.75rem 1.8rem;">
+          <i class="fa-solid fa-crown" style="font-size:0.85rem;"></i>
+          Soy cliente GOClientes →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why-section">
+  <div class="container">
+    <div class="reveal section-center">
+      <div class="section-tag"><i class="fa-solid fa-star"></i> Por qué elegirnos</div>
+      <h2 class="section-title">No somos una agencia genérica.<br><span class="electric">Somos tu socio digital.</span></h2>
+      <p class="section-sub">GOClientes ya ayudó a +200 negocios locales con páginas web. Ahora llevamos esa confianza a las automatizaciones.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon-wrap">🤝</div>
+        <div>
+          <h3>Confianza comprobada</h3>
+          <p>Más de 200 clientes activos confían en GOClientes para sus páginas web. Ahora extendemos esa relación a las automatizaciones con IA.</p>
+        </div>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon-wrap">🎯</div>
+        <div>
+          <h3>Te ayudamos a elegir el agente correcto</h3>
+          <p>No vendemos tecnología por vender. Analizamos tu negocio y te recomendamos los agentes que realmente van a generar retorno.</p>
+        </div>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon-wrap">🇨🇱</div>
+        <div>
+          <h3>Soporte en español, personas reales</h3>
+          <p>Sin bots genéricos, sin respuestas automáticas. Hablamos tu idioma (chileno), entendemos tu contexto y te acompañamos en el proceso.</p>
+        </div>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon-wrap">⚙️</div>
+        <div>
+          <h3>Tú decides cómo desplegarlo</h3>
+          <p>Instalamos en tu propio servidor o lo gestionamos nosotros en la nube. Total flexibilidad según tus necesidades técnicas y presupuesto.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="reveal section-center">
+      <div class="section-tag"><i class="fa-solid fa-comment-dots"></i> Testimonios</div>
+      <h2 class="section-title">Clientes que ya <span class="electric">automatizaron</span></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="stars">★★★★★</div>
+        <p>"De vender páginas web a automatizar todo mi proceso de atención al cliente. El bot de soporte responde mis consultas a las 3 AM mientras yo duermo. Es como tener un empleado perfecto."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">CM</div>
+          <div>
+            <div class="author-name">Carlos M.</div>
+            <div class="author-role">Gasfitero & Servicios, Santiago — Cliente GOClientes</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="stars">★★★★★</div>
+        <p>"El agente de redes sociales publica contenido todos los días y el de LinkedIn me trae 20–30 leads calificados por semana. Antes tardaba horas en hacer eso manualmente."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">RP</div>
+          <div>
+            <div class="author-name">Rodrigo P.</div>
+            <div class="author-role">Inmobiliaria, Providencia</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-3">
+        <div class="stars">★★★★★</div>
+        <p>"Soy creador de contenido y el agente de guiones + videos sin rostro me triplicó la producción. Ahora lanzo 5 videos por semana sin aparecer en cámara. Increíble ROI."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MV</div>
+          <div>
+            <div class="author-name">Marcela V.</div>
+            <div class="author-role">Creadora de Contenido, YouTube</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="contacto">
+  <div class="container">
+    <div class="reveal section-center">
+      <div class="section-tag"><i class="fa-solid fa-paper-plane"></i> Contáctanos</div>
+      <h2 class="section-title">Hablemos de tu<br><span class="electric">primer agente IA</span></h2>
+      <p class="section-sub">Cuéntanos qué necesitas y te decimos qué agente es el ideal para tu negocio. Sin compromiso.</p>
+    </div>
+    <div class="form-wrapper reveal">
+      <div id="contactForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fname">Nombre completo *</label>
+            <input type="text" id="fname" placeholder="Tu nombre" required />
+          </div>
+          <div class="form-group">
+            <label for="femail">Email *</label>
+            <input type="email" id="femail" placeholder="tu@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="fphone">Teléfono / WhatsApp</label>
+            <input type="tel" id="fphone" placeholder="+56 9 1234 5678" />
+          </div>
+          <div class="form-group">
+            <label for="fagent">¿Qué agente te interesa?</label>
+            <select id="fagent">
+              <option value="">Selecciona un agente...</option>
+              <option>01 — Redes Sociales</option>
+              <option>02 — Anuncios CGI</option>
+              <option>03 — Videos 360°</option>
+              <option>04 — Llamadas de Voz</option>
+              <option>05 — Leads LinkedIn</option>
+              <option>06 — Bot Soporte</option>
+              <option>07 — Email Automático</option>
+              <option>08 — Facturas PDF</option>
+              <option>09 — Videos sin Rostro</option>
+              <option>10 — Guiones YouTube</option>
+              <option>Varios / No sé cuál elegir</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="fmsg">Cuéntanos sobre tu negocio</label>
+            <textarea id="fmsg" placeholder="¿Qué hace tu negocio? ¿Qué proceso quieres automatizar? ¿Cuál es tu mayor desafío actual?"></textarea>
+          </div>
+          <div class="form-group full">
+            <label for="fdiscount">Código de descuento (opcional)</label>
+            <input type="text" id="fdiscount" placeholder="Ej: GOCLIENTES20" style="text-transform:uppercase;" />
+          </div>
+        </div>
+        <button class="btn-primary form-submit" onclick="submitForm()">
+          <i class="fa-solid fa-robot"></i>
+          Quiero mi Agente IA →
+        </button>
+        <p style="text-align:center;font-size:0.78rem;color:var(--lighter);margin-top:1rem;">
+          <i class="fa-solid fa-lock" style="font-size:0.7rem;"></i> Tus datos están protegidos. Respondemos en menos de 2 horas en horario laboral.
+        </p>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <div class="success-icon">🤖</div>
+        <h3>¡Solicitud recibida!</h3>
+        <p>Te responderemos en menos de 2 horas por WhatsApp o email.<br>Mientras tanto, puedes escribirnos directamente:</p>
+        <div style="margin-top:1.5rem;">
+          <a href="https://wa.me/56987685450?text=Hola,%20quiero%20saber%20más%20sobre%20los%20Agentes%20IA%20de%20GOClientes" class="btn-primary" target="_blank" style="display:inline-flex;">
+            <i class="fa-brands fa-whatsapp"></i>
+            Escribir por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="reveal section-center">
+      <div class="section-tag"><i class="fa-solid fa-circle-question"></i> Preguntas frecuentes</div>
+      <h2 class="section-title">Todo lo que necesitas saber</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q">¿Necesito saber programar para usar los agentes? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Para nada. Nosotros hacemos la configuración completa. Tú solo nos cuentas de tu negocio por WhatsApp y en 48–72 horas tienes el agente funcionando. Cero código de tu parte.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Los agentes se integran con mis herramientas actuales? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Sí. Los agentes se conectan con WhatsApp, Gmail, Instagram, Facebook, LinkedIn, Google Sheets, Excel, Notion, CRMs y más de 200 aplicaciones. Si usas una herramienta específica, consúltanos y lo evaluamos sin costo.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Puedo cancelar el plan cuando quiera? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Sí, sin penalidades ni contratos de permanencia. Si cancelas, los agentes dejarán de operar al término del mes pagado. Te recomendamos al menos 2–3 meses para ver los resultados completos de la automatización.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Qué diferencia hay entre el plan mensual y el setup único? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">En los planes mensuales nosotros gestionamos todo en nuestra infraestructura y tú no te preocupas de nada. En el setup único, instalamos los agentes en tu propio servidor o nube, tú controlas todo, y pagas solo $97/mes de mantenimiento. Ideal si tienes equipo técnico.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Cuánto tiempo tarda en verse resultados? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">La mayoría de los clientes ven resultados en la primera semana: más respuestas automáticas, más publicaciones o más leads. Los resultados de negocio (ingresos, conversiones) suelen verse con claridad entre 30 y 60 días de operación.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container reveal">
+    <h2>Tu competencia ya está<br><em style="color:var(--electric);font-style:normal;">automatizando.</em> ¿Y tú?</h2>
+    <p>Cada día sin agentes IA es dinero, tiempo y clientes que pierdes. Empieza hoy.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="#contacto" class="btn-primary" style="font-size:1.05rem;padding:1rem 2.2rem;">
+        <i class="fa-solid fa-robot"></i>
+        Quiero mi Agente IA ahora
+      </a>
+      <a href="https://wa.me/56987685450?text=Hola,%20quiero%20info%20sobre%20GO%20Automatizaciones%20IA" class="btn-secondary" target="_blank" style="font-size:1.05rem;padding:1rem 2.2rem;">
+        <i class="fa-brands fa-whatsapp"></i>
+        Hablar por WhatsApp
+      </a>
+    </div>
+    <p style="margin-top:1.5rem;font-size:0.8rem;color:var(--lighter);">
+      ⚡ Activación en 48 horas · Sin contratos · Cancela cuando quieras
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">GO<span>Auto</span>IA</div>
+  <p>Un servicio de <a href="https://goclientes.com" target="_blank">GOClientes.com</a> — Hecho para negocios en Chile 🇨🇱</p>
+  <div class="footer-divider"></div>
+  <p>
+    📩 <a href="mailto:equipo@goclientes.com">equipo@goclientes.com</a> &nbsp;·&nbsp;
+    📱 <a href="https://wa.me/56987685450">+56 9 8768 5450</a> &nbsp;·&nbsp;
+    🌐 <a href="https://goclientes.com" target="_blank">goclientes.com</a>
+  </p>
+  <p style="margin-top:0.5rem;">© 2025 GOClientes — Todos los derechos reservados</p>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/56987685450?text=Hola,%20quiero%20info%20sobre%20GO%20Automatizaciones%20IA" class="wa-float" target="_blank" title="Escríbenos por WhatsApp">
+  <i class="fa-brands fa-whatsapp" style="font-size:1.6rem;color:white;"></i>
+</a>
+
+<script>
+  window.addEventListener('scroll',()=>{
+    document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);
+  });
+
+  function toggleMenu(){
+    const l=document.getElementById('navLinks');
+    l.classList.toggle('open');
+  }
+
+  document.querySelectorAll('.faq-q').forEach(q=>{
+    q.addEventListener('click',()=>{
+      const item=q.parentElement;
+      const was=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!was) item.classList.add('open');
+    });
+  });
+
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}
+    });
+  },{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  function animateCounter(el){
+    const target=parseInt(el.dataset.target);
+    const dur=1800;
+    const step=target/(dur/16);
+    let cur=0;
+    const t=setInterval(()=>{
+      cur=Math.min(cur+step,target);
+      el.textContent=Math.floor(cur).toLocaleString('es-CL')+(el.dataset.suffix||'');
+      if(cur>=target)clearInterval(t);
+    },16);
+  }
+  const cObs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){animateCounter(e.target);cObs.unobserve(e.target);}
+    });
+  },{threshold:0.5});
+  document.querySelectorAll('.count').forEach(el=>cObs.observe(el));
+
+  function submitForm(){
+    const name=document.getElementById('fname').value.trim();
+    const email=document.getElementById('femail').value.trim();
+    if(!name||!email){alert('Por favor ingresa tu nombre y email.');return;}
+    const agent=document.getElementById('fagent').value||'No especificado';
+    const phone=document.getElementById('fphone').value.trim();
+    const msg=document.getElementById('fmsg').value.trim();
+    const code=document.getElementById('fdiscount').value.trim();
+    let waMsg=`Hola! Me interesa GO Automatizaciones IA.%0A%0ANombre: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}`;
+    if(phone) waMsg+=`%0ATeléfono: ${encodeURIComponent(phone)}`;
+    waMsg+=`%0AAgente: ${encodeURIComponent(agent)}`;
+    if(msg) waMsg+=`%0AMensaje: ${encodeURIComponent(msg)}`;
+    if(code) waMsg+=`%0ACódigo: ${encodeURIComponent(code)}`;
+    window.open(`https://wa.me/56987685450?text=${waMsg}`,'_blank');
+    document.getElementById('contactForm').style.display='none';
+    const s=document.getElementById('formSuccess');
+    s.style.display='block';
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const id=a.getAttribute('href');
+      if(id==='#') return;
+      const el=document.querySelector(id);
+      if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
