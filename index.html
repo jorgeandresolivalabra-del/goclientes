@@ -73,7 +73,7 @@
       text-decoration: none;
     }
     .logo span { color: var(--green); }
-    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
     .nav-links a { color: var(--body); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
     .nav-links a:hover { color: var(--green); }
     .btn-nav {
@@ -88,7 +88,23 @@
       display: inline-flex; align-items: center; gap: 0.4rem;
     }
     .btn-nav:hover { background: var(--green-dark); transform: translateY(-1px); box-shadow: var(--shadow-green); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    
+    .btn-nav-ai {
+      background: linear-gradient(135deg, var(--green), #00a0e0);
+      color: white;
+      font-weight: 700;
+      padding: 0.55rem 1.4rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      border: none;
+      box-shadow: 0 2px 8px rgba(0,198,94,0.3);
+    }
+    .btn-nav-ai:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,198,94,0.5); background: linear-gradient(135deg, var(--green-dark), #0080c0); }
+    
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
     .hamburger span { width: 24px; height: 2px; background: var(--heading); border-radius: 2px; transition: all 0.3s; }
 
     /* HERO */
@@ -164,6 +180,9 @@
       font-size: 1rem;
       transition: all 0.25s var(--ease);
       box-shadow: var(--shadow-green);
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
     }
     .btn-primary:hover { background: var(--green-dark); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,198,94,0.4); }
     .btn-secondary {
@@ -179,6 +198,19 @@
       transition: all 0.25s var(--ease);
     }
     .btn-secondary:hover { background: var(--green-light); transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent;
+      color: var(--green);
+      font-weight: 600;
+      padding: 0.7rem 1.5rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      border: 1.5px solid var(--green);
+      transition: all 0.25s var(--ease);
+    }
+    .btn-outline:hover { background: var(--green-light); transform: translateY(-2px); }
     .btn-red {
       display: inline-flex; align-items: center; gap: 0.6rem;
       background: var(--red);
@@ -242,7 +274,7 @@
 
     /* SECTIONS */
     section { padding: 5rem 1.5rem; }
-    .container { max-width: 1140px; margin: 0 auto; }
+    .container { max-width: 1200px; margin: 0 auto; }
     .section-tag {
       display: inline-flex; align-items: center; gap: 0.4rem;
       font-size: 0.72rem;
@@ -308,7 +340,6 @@
       border-top: 1px solid var(--border);
       transition: all 0.3s;
     }
-    .step:hover { background: transparent; }
     .step-num {
       font-family: 'Sora', sans-serif;
       font-size: 2.5rem;
@@ -385,7 +416,7 @@
     }
     .counter-item span { color: rgba(255,255,255,0.8); font-size: 0.85rem; font-weight: 500; margin-top: 0.3rem; display: block; }
 
-    /* PRICING */
+    /* PRICING - PLANES PRINCIPALES */
     .pricing-section { background: var(--bg2); }
     .pricing-scarcity {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -403,7 +434,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       margin-top: 2.5rem;
-      align-items: start;
+      align-items: stretch;
     }
     .plan-card {
       background: white;
@@ -412,6 +443,8 @@
       padding: 2rem;
       transition: all 0.3s var(--ease);
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
     .plan-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-5px); }
     .plan-card.popular {
@@ -444,7 +477,7 @@
       color: var(--muted);
       margin-bottom: 0.5rem;
     }
-    .plan-price-old { color: var(--lighter); text-decoration: line-through; font-size: 0.9rem; }
+    .plan-price-old { color: var(--lighter); text-decoration: line-through; font-size: 0.85rem; }
     .plan-price {
       font-family: 'Sora', sans-serif;
       font-size: 2.8rem;
@@ -453,94 +486,184 @@
       line-height: 1;
       margin: 0.2rem 0 0.2rem;
     }
-    .plan-price span { font-size: 1.1rem; color: var(--muted); font-weight: 500; }
-    .plan-note { color: var(--muted); font-size: 0.8rem; margin-bottom: 1.5rem; }
+    .plan-price span { font-size: 1rem; color: var(--muted); font-weight: 500; }
+    .plan-note { color: var(--muted); font-size: 0.75rem; margin-bottom: 1.2rem; }
     .plan-delivery {
       display: inline-flex; align-items: center; gap: 0.3rem;
       background: var(--green-light);
       color: var(--green-dark);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 700;
       padding: 0.25rem 0.8rem;
       border-radius: 100px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
     }
-    .plan-divider { height: 1px; background: var(--border); margin: 1.2rem 0; }
-    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.8rem; }
+    .plan-divider { height: 1px; background: var(--border); margin: 1rem 0; }
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.8rem; flex: 1; }
     .plan-features li {
       display: flex; align-items: flex-start; gap: 0.6rem;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       color: var(--body);
     }
     .plan-features li .chk { color: var(--green); font-weight: 800; flex-shrink: 0; margin-top: 0.1rem; }
     .plan-features li.dimmed { color: var(--lighter); }
     .plan-features li.dimmed .chk { color: var(--lighter); }
-    .plan-cta { width: 100%; text-align: center; justify-content: center; border: none; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .plan-cta { width: 100%; text-align: center; justify-content: center; border: none; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; margin-top: auto; }
 
-    /* COMPARISON TABLE */
-    .comparison-section { background: white; }
-    .comp-table {
+    /* MICROSERVICIOS */
+    .microservices-section { background: white; }
+    .micro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+    .micro-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: all 0.3s var(--ease);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .micro-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-green);
+    }
+    .micro-info h4 {
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: 0.3rem;
+    }
+    .micro-info p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .micro-price {
+      text-align: right;
+    }
+    .micro-price .price {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--green);
+    }
+    .micro-price .price small {
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .micro-price .old-price {
+      font-size: 0.7rem;
+      color: var(--lighter);
+      text-decoration: line-through;
+    }
+    .micro-price .btn-micro {
+      margin-top: 0.5rem;
+      padding: 0.4rem 1rem;
+      font-size: 0.75rem;
+    }
+
+    /* PRECIOS POR PAÍS */
+    .prices-table-section { background: var(--bg2); }
+    .currency-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 2.5rem;
+      margin-top: 2rem;
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow-md);
+      background: white;
     }
-    .comp-table thead th {
+    .currency-table thead th {
       background: var(--heading);
       color: white;
-      padding: 1rem 1.2rem;
+      padding: 1rem;
       font-family: 'Sora', sans-serif;
       font-size: 0.85rem;
       font-weight: 700;
       text-align: center;
     }
-    .comp-table thead th:first-child { text-align: left; }
-    .comp-table thead th.pop-col { background: var(--green); }
-    .comp-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
-    .comp-table tbody tr:hover { background: var(--bg2); }
-    .comp-table tbody td { padding: 0.8rem 1.2rem; font-size: 0.85rem; text-align: center; color: var(--body); }
-    .comp-table tbody td:first-child { text-align: left; font-weight: 600; color: var(--heading); }
-    .comp-table tbody td .yes { color: var(--green); font-weight: 800; font-size: 1rem; }
-    .comp-table tbody td .no { color: var(--lighter); }
+    .currency-table thead th:first-child { text-align: left; }
+    .currency-table tbody tr { border-bottom: 1px solid var(--border); }
+    .currency-table tbody tr:hover { background: var(--bg2); }
+    .currency-table tbody td {
+      padding: 0.8rem 1rem;
+      font-size: 0.85rem;
+      text-align: center;
+      color: var(--body);
+    }
+    .currency-table tbody td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: var(--heading);
+    }
+    .currency-table tbody td .plan-name-sm {
+      font-weight: 700;
+      color: var(--green);
+    }
 
-    /* BONUSES */
-    .bonuses-grid {
+    /* BUNDLES */
+    .bundles-section { background: white; }
+    .bundles-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
-      margin-top: 2.5rem;
+      margin-top: 2rem;
     }
-    .bonus-card {
-      background: white;
-      border: 1px solid var(--border);
+    .bundle-card {
+      background: linear-gradient(135deg, #f0fdf6 0%, #ffffff 100%);
+      border: 2px solid var(--border-green);
       border-radius: var(--radius-lg);
       padding: 1.8rem;
       transition: all 0.3s var(--ease);
       text-align: center;
     }
-    .bonus-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--border-green); }
-    .bonus-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-    .bonus-card h3 {
+    .bundle-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    .bundle-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .bundle-card h3 {
       font-family: 'Sora', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
+      font-size: 1.2rem;
+      font-weight: 800;
       color: var(--heading);
       margin-bottom: 0.5rem;
     }
-    .bonus-card p { color: var(--muted); font-size: 0.88rem; }
-    .bonus-tag {
+    .bundle-card p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .bundle-price {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--green);
+      margin: 0.5rem 0;
+    }
+    .bundle-price .old {
+      font-size: 1rem;
+      color: var(--lighter);
+      text-decoration: line-through;
+      font-weight: 500;
+    }
+    .bundle-offer {
       display: inline-block;
-      background: var(--green-light);
-      color: var(--green-dark);
+      background: var(--red);
+      color: white;
       font-size: 0.7rem;
       font-weight: 700;
-      padding: 0.2rem 0.7rem;
+      padding: 0.2rem 0.8rem;
       border-radius: 100px;
-      margin-bottom: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
     }
 
     /* INCLUDES */
@@ -683,7 +806,7 @@
 
     /* FAQ */
     .faq-section { background: var(--bg2); }
-    .faq-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0; }
+    .faq-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0; max-width: 760px; margin-left: auto; margin-right: auto; }
     .faq-item {
       border-top: 1px solid var(--border);
       transition: background 0.2s;
@@ -721,6 +844,146 @@
       line-height: 1.7;
     }
     .faq-item.open .faq-a { max-height: 200px; padding-bottom: 1.2rem; }
+
+    /* SECCIÓN IA (al final de la página) */
+    .ai-section {
+      background: linear-gradient(135deg, #f0fdf6 0%, #ffffff 100%);
+      border-top: 2px solid var(--green);
+      border-bottom: 1px solid var(--border-green);
+      margin-top: 0;
+    }
+    .ai-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+    .ai-showcase-text {
+      flex: 1;
+      min-width: 260px;
+    }
+    .ai-showcase-text h3 {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--heading);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .ai-showcase-text h3 span {
+      background: linear-gradient(135deg, var(--green), #00a0e0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .ai-showcase-text p {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .ai-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+    }
+    .ai-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--body);
+      box-shadow: var(--shadow-sm);
+    }
+    .ai-feature i, .ai-feature .emoji { color: var(--green); font-size: 0.9rem; }
+    .ai-showcase-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.2rem;
+    }
+    .ai-stat {
+      text-align: left;
+    }
+    .ai-stat strong {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--green);
+      display: block;
+      line-height: 1;
+    }
+    .ai-stat span {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .btn-ai {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, var(--green), #00a0e0);
+      color: white;
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.25s var(--ease);
+      box-shadow: var(--shadow-green);
+      margin-top: 0.5rem;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-ai:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0,198,94,0.4);
+      background: linear-gradient(135deg, var(--green-dark), #0080c0);
+    }
+    .ai-showcase-icons {
+      flex: 1;
+      min-width: 260px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-md);
+    }
+    .ai-icon-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.6rem;
+      background: var(--bg2);
+      border-radius: var(--radius);
+      transition: all 0.2s;
+    }
+    .ai-icon-item:hover {
+      transform: translateX(4px);
+      background: var(--green-light);
+    }
+    .ai-icon-item .emoji {
+      font-size: 1.6rem;
+    }
+    .ai-icon-item .text h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: 0.1rem;
+    }
+    .ai-icon-item .text p {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
 
     /* FINAL CTA */
     .final-cta {
@@ -781,8 +1044,9 @@
       transition: all 0.2s;
       z-index: 300;
       animation: floatWA 2.5s ease-in-out infinite;
+      text-decoration: none;
     }
-    .wa-float:hover { transform: scale(1.12); box-shadow: 0 10px 32px rgba(37,211,102,0.5); }
+    .wa-float:hover { transform: scale(1.12); box-shadow: 0 10px 32px rgba(37,211,102,0.5); animation: none; }
     @keyframes floatWA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
 
     /* REVEAL */
@@ -799,12 +1063,19 @@
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .pricing-grid { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
-      .bonuses-grid { grid-template-columns: 1fr; }
+      .bundles-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
       .counter-grid { grid-template-columns: repeat(2, 1fr); }
+      .ai-showcase { flex-direction: column; text-align: center; }
+      .ai-showcase-text { text-align: center; }
+      .ai-showcase-stats { justify-content: center; }
+      .ai-features { justify-content: center; }
+      .micro-card { flex-direction: column; text-align: center; }
+      .micro-price { text-align: center; }
     }
     @media (max-width: 700px) {
       nav { padding: 1rem 1.2rem; }
-      .nav-links { display: none; }
+      .nav-links { display: none; position: absolute; top: 70px; left: 0; right: 0; background: white; flex-direction: column; padding: 1.5rem; border-bottom: 1px solid var(--border); box-shadow: var(--shadow-md); z-index: 100; gap: 1rem; }
+      .nav-links.open { display: flex; }
       .hamburger { display: flex; }
       h1 { font-size: 2.2rem; }
       .problem-grid, .cases-grid, .includes-grid { grid-template-columns: 1fr; }
@@ -814,10 +1085,11 @@
       .guarantee-box { flex-direction: column; text-align: center; gap: 1.5rem; }
       .lead-form { flex-direction: column; }
       .counter-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-      .comp-table { font-size: 0.78rem; }
-      .comp-table thead th, .comp-table tbody td { padding: 0.6rem 0.5rem; }
       .step { grid-template-columns: 40px 1fr; gap: 1rem; }
       .step-num { font-size: 1.8rem; }
+      .ai-showcase-icons { grid-template-columns: 1fr; }
+      .currency-table { font-size: 0.75rem; }
+      .currency-table td, .currency-table th { padding: 0.5rem; }
     }
   </style>
 </head>
@@ -826,16 +1098,20 @@
 <!-- NAV -->
 <nav id="navbar">
   <a href="#" class="logo">Go<span>Clientes</span></a>
-  <div class="nav-links">
+  <div class="nav-links" id="navLinks">
     <a href="#como-funciona">Cómo funciona</a>
     <a href="#planes">Planes</a>
-    <a href="#casos">Casos de éxito</a>
+    <a href="#microservicios">Microservicios</a>
+    <a href="#casos">Casos</a>
     <a href="#faq">FAQ</a>
+    <a href="/ia/automatizaciones" class="btn-nav-ai" target="_blank">
+      🤖 GO Automatizaciones IA
+    </a>
     <a href="https://wa.me/56987685450?text=Hola,%20quiero%20reservar%20mi%20cupo%20para%20GoClientes" class="btn-nav" target="_blank">💬 Reservar cupo</a>
   </div>
-  <div class="hamburger" onclick="toggleMenu()">
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -977,56 +1253,279 @@
   </div>
 </section>
 
-<!-- INCLUDES -->
-<section>
+<!-- PLANES PRINCIPALES -->
+<section class="pricing-section" id="planes">
   <div class="container">
     <div class="reveal section-center">
-      <div class="section-tag">Qué incluye</div>
-      <h2 class="section-title">Todo listo en un solo pago</h2>
-      <p class="section-sub">Sin sorpresas, sin costos ocultos. Todo lo que tu negocio necesita para captar clientes online.</p>
+      <div class="pricing-scarcity">⚠️ Precios de lanzamiento — Cupos limitados</div>
+      <div class="section-tag">Planes y precios</div>
+      <h2 class="section-title">📦 Elige el nivel que <span style="color:var(--green);">transformará su negocio</span></h2>
+      <p class="section-sub">Pago único. Sin mensualidades. Sin sorpresas. Elige el nivel que mejor se adapta a lo que necesitas.</p>
     </div>
-    <div class="includes-grid">
-      <div class="include-item reveal reveal-delay-1">
-        <div class="include-icon-wrap">🖥️</div>
-        <div>
-          <h3>Página optimizada para celular</h3>
-          <p>Diseño moderno, veloz y 100% responsive. Carga en menos de 2 segundos.</p>
+    <div class="pricing-grid">
+
+      <!-- PLAN BÁSICO ENTRY -->
+      <div class="plan-card reveal reveal-delay-1">
+        <div class="plan-name">Plan Básico Entry</div>
+        <div class="plan-price-old">Precio normal: $1.200 USD</div>
+        <div class="plan-price">$900 <span>USD</span></div>
+        <div class="plan-note">Pago único · Sin mensualidades</div>
+        <div class="plan-delivery">⏱️ Entrega en 48 horas</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="chk">✓</span> Web hasta 5 páginas</li>
+          <li><span class="chk">✓</span> SEO on-page básico</li>
+          <li><span class="chk">✓</span> Google Tag Manager + 3 eventos</li>
+          <li><span class="chk">✓</span> Google Business Profile optimizado</li>
+          <li><span class="chk">✓</span> Chatbot simple (3 flujos)</li>
+          <li><span class="chk">✓</span> 2 creatividades para RRSS</li>
+          <li><span class="chk">✓</span> Soporte 30 días email</li>
+          <li class="dimmed"><span class="chk">—</span> Blog integrado</li>
+          <li class="dimmed"><span class="chk">—</span> Dominación local avanzada</li>
+        </ul>
+        <a href="https://wa.me/56987685450?text=Hola,%20quiero%20contratar%20el%20Plan%20Básico%20Entry%20de%20GoClientes" class="btn-primary plan-cta" target="_blank">Lo quiero →</a>
+      </div>
+
+      <!-- PLAN MEDIA ⭐ MÁS VENDIDO -->
+      <div class="plan-card popular reveal reveal-delay-2">
+        <div class="plan-badge">⭐ Más vendido</div>
+        <div class="plan-name">Plan Media</div>
+        <div class="plan-price-old">Precio normal: $2.500 USD</div>
+        <div class="plan-price">$1.800 <span>USD</span></div>
+        <div class="plan-note">Pago único · Sin mensualidades</div>
+        <div class="plan-delivery">⏱️ Entrega en 5 días</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="chk">✓</span> Web hasta 8 páginas + blog</li>
+          <li><span class="chk">✓</span> SEO completo on-page + auditoría inicial</li>
+          <li><span class="chk">✓</span> GTM + eventos avanzados (scroll, tiempo)</li>
+          <li><span class="chk">✓</span> Dominación local: Maps + 5 directorios</li>
+          <li><span class="chk">✓</span> Chatbot avanzado con flujos condicionales</li>
+          <li><span class="chk">✓</span> 3 creatividades + Estrategia Publicidad (Google/Meta)</li>
+          <li><span class="chk">✓</span> Informe mensual + soporte prioritario 60d</li>
+          <li><span class="chk">✓</span> Hosting de alta velocidad incluido</li>
+        </ul>
+        <a href="https://wa.me/56987685450?text=Hola,%20quiero%20contratar%20el%20Plan%20Media%20de%20GoClientes" class="btn-primary plan-cta" target="_blank">Seleccionar plan →</a>
+      </div>
+
+      <!-- PLAN FULL SERVICE -->
+      <div class="plan-card reveal reveal-delay-3">
+        <div class="plan-badge red">🔥 Solución completa</div>
+        <div class="plan-name">Full Service</div>
+        <div class="plan-price-old">Precio normal: $4.800 USD</div>
+        <div class="plan-price">$3.500 <span>USD</span></div>
+        <div class="plan-note">Pago único · Sin mensualidades</div>
+        <div class="plan-delivery">⏱️ Entrega en 10 días</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="chk">✓</span> Web hasta 12 páginas + área clientes</li>
+          <li><span class="chk">✓</span> Auditoría SEO profunda + optimización continua</li>
+          <li><span class="chk">✓</span> GTM multicanal + remarketing</li>
+          <li><span class="chk">✓</span> Dominación Local PRO (15+ directorios, reseñas automatizadas)</li>
+          <li><span class="chk">✓</span> Chatbot con IA + derivación a CRM/WhatsApp API</li>
+          <li><span class="chk">✓</span> 5 creatividades + campañas duales (Google + Meta)</li>
+          <li><span class="chk">✓</span> Dashboard Looker Studio + 90 días soporte prioritario</li>
+          <li><span class="chk">✓</span> 🎁 Video bienvenida + botón pagos + garantía 30 días</li>
+        </ul>
+        <a href="https://wa.me/56987685450?text=Hola,%20quiero%20contratar%20el%20Plan%20Full%20Service%20de%20GoClientes" class="btn-red plan-cta" target="_blank">Solicitar Full →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABLA DE PRECIOS POR PAÍS -->
+<section class="prices-table-section">
+  <div class="container">
+    <div class="reveal section-center">
+      <div class="section-tag">💰 Precios oficiales</div>
+      <h2 class="section-title">Paga en tu <span style="color:var(--green);">moneda local</span></h2>
+      <p class="section-sub">Convertimos nuestros precios a tu moneda para que pagues sin comisiones extra.</p>
+    </div>
+    <div class="reveal" style="overflow-x:auto;">
+      <table class="currency-table">
+        <thead>
+          <tr>
+            <th>Plan</th>
+            <th>USD</th>
+            <th>CLP (Chile)</th>
+            <th>MXN (México)</th>
+            <th>COP (Colombia)</th>
+            <th>PEN (Perú)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="plan-name-sm">Plan Básico Entry</span></td>
+            <td>$900</td>
+            <td>$750.000</td>
+            <td>$16.500</td>
+            <td>$3.600.000</td>
+            <td>S/ 3.400</td>
+          </tr>
+          <tr><td><span class="plan-name-sm">Plan Media ⭐</span></td>
+            <td>$1.800</td>
+            <td>$1.500.000</td>
+            <td>$33.000</td>
+            <td>$7.200.000</td>
+            <td>S/ 6.800</td>
+          </tr>
+          <tr><td><span class="plan-name-sm">Plan Full Service</span></td>
+            <td>$3.500</td>
+            <td>$2.900.000</td>
+            <td>$64.000</td>
+            <td>$14.000.000</td>
+            <td>S/ 13.200</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- MICROSERVICIOS -->
+<section class="microservices-section" id="microservicios">
+  <div class="container">
+    <div class="reveal section-center">
+      <div class="section-tag">🧩 A la carta</div>
+      <h2 class="section-title">Microservicios · <span style="color:var(--green);">Paga solo lo que necesita</span></h2>
+      <p class="section-sub">Servicios específicos para complementar tu presencia digital. Elige solo lo que necesitas.</p>
+    </div>
+    <div class="micro-grid">
+      <div class="micro-card reveal reveal-delay-1">
+        <div class="micro-info">
+          <h4>📋 Auditoría SEO exprés</h4>
+          <p>5 páginas + 5 recomendaciones clave</p>
+        </div>
+        <div class="micro-price">
+          <div class="price">USD <span style="font-size:1.8rem;">150</span></div>
+          <a href="https://wa.me/56987685450?text=Hola,%20quiero%20la%20Auditoría%20SEO%20exprés" class="btn-outline btn-micro" target="_blank">Contratar</a>
         </div>
       </div>
-      <div class="include-item reveal reveal-delay-2">
-        <div class="include-icon-wrap">💬</div>
-        <div>
-          <h3>WhatsApp directo + mensaje automático</h3>
-          <p>Botón visible con mensaje preescrito. El cliente llega listo para contratar.</p>
+      <div class="micro-card reveal reveal-delay-2">
+        <div class="micro-info">
+          <h4>🗺️ Optimización Google Maps</h4>
+          <p>Ficha completa + fotos + atributos</p>
+        </div>
+        <div class="micro-price">
+          <div class="price">USD <span style="font-size:1.8rem;">120</span></div>
+          <a href="https://wa.me/56987685450?text=Hola,%20quiero%20Optimización%20Google%20Maps" class="btn-outline btn-micro" target="_blank">Contratar</a>
         </div>
       </div>
-      <div class="include-item reveal reveal-delay-1">
-        <div class="include-icon-wrap">⚙️</div>
-        <div>
-          <h3>Configuración completa</h3>
-          <p>Dominio .cl y hosting incluidos. Todo funcionando en 48 horas, sin que toques nada.</p>
+      <div class="micro-card reveal reveal-delay-3">
+        <div class="micro-info">
+          <h4>🔧 GTM + GA4 básico</h4>
+          <p>Instalación + 3 eventos clave</p>
+        </div>
+        <div class="micro-price">
+          <div class="price">USD <span style="font-size:1.8rem;">200</span></div>
+          <a href="https://wa.me/56987685450?text=Hola,%20quiero%20GTM%20+%20GA4%20básico" class="btn-outline btn-micro" target="_blank">Contratar</a>
         </div>
       </div>
-      <div class="include-item reveal reveal-delay-2">
-        <div class="include-icon-wrap">📝</div>
-        <div>
-          <h3>Textos listos para vender</h3>
-          <p>Frases de impacto adaptadas a tu servicio y a la forma de hablar en Chile.</p>
+      <div class="micro-card reveal reveal-delay-1">
+        <div class="micro-info">
+          <h4>🤖 Chatbot simple</h4>
+          <p>3 flujos básicos (saludo, horarios)</p>
+        </div>
+        <div class="micro-price">
+          <div class="price">USD <span style="font-size:1.8rem;">250</span></div>
+          <a href="https://wa.me/56987685450?text=Hola,%20quiero%20Chatbot%20simple" class="btn-outline btn-micro" target="_blank">Contratar</a>
         </div>
       </div>
-      <div class="include-item reveal reveal-delay-1">
-        <div class="include-icon-wrap">🗺️</div>
-        <div>
-          <h3>Google Maps integrado</h3>
-          <p>Tus clientes te encuentran en el mapa y saben exactamente dónde estás.</p>
+      <div class="micro-card reveal reveal-delay-2">
+        <div class="micro-info">
+          <h4>🎨 3 creatividades estáticas</h4>
+          <p>Diseño para RRSS (JPG/PNG)</p>
+        </div>
+        <div class="micro-price">
+          <div class="price">USD <span style="font-size:1.8rem;">150</span></div>
+          <a href="https://wa.me/56987685450?text=Hola,%20quiero%20creatividades%20estáticas" class="btn-outline btn-micro" target="_blank">Contratar</a>
         </div>
       </div>
-      <div class="include-item reveal reveal-delay-2">
-        <div class="include-icon-wrap">🔍</div>
-        <div>
-          <h3>SEO básico incluido</h3>
-          <p>Meta tags, estructura y keywords para que Google te encuentre en tu zona.</p>
+      <div class="micro-card reveal reveal-delay-3">
+        <div class="micro-info">
+          <h4>📄 Web landing page (1 pg)</h4>
+          <p>Ideal para campañas específicas</p>
         </div>
+        <div class="micro-price">
+          <div class="price">USD <span style="font-size:1.8rem;">400</span></div>
+          <a href="https://wa.me/56987685450?text=Hola,%20quiero%20Landing%20Page" class="btn-outline btn-micro" target="_blank">Contratar</a>
+        </div>
+      </div>
+      <div class="micro-card reveal reveal-delay-1">
+        <div class="micro-info">
+          <h4>🎯 Configuración Google Ads</h4>
+          <p>Cuenta + 2 campañas + keywords</p>
+        </div>
+        <div class="micro-price">
+          <div class="price">USD <span style="font-size:1.8rem;">500</span></div>
+          <a href="https://wa.me/56987685450?text=Hola,%20quiero%20Configuración%20Google%20Ads" class="btn-outline btn-micro" target="_blank">Contratar</a>
+        </div>
+      </div>
+      <div class="micro-card reveal reveal-delay-2">
+        <div class="micro-info">
+          <h4>📈 Informe mensual automatizado</h4>
+          <p>Looker Studio + PDF config</p>
+        </div>
+        <div class="micro-price">
+          <div class="price">USD <span style="font-size:1.8rem;">300</span></div>
+          <a href="https://wa.me/56987685450?text=Hola,%20quiero%20Informe%20mensual" class="btn-outline btn-micro" target="_blank">Contratar</a>
+        </div>
+      </div>
+      <div class="micro-card reveal reveal-delay-3">
+        <div class="micro-info">
+          <h4>🧠 Optimización mensual</h4>
+          <p>SEO + campañas (cada mes)</p>
+        </div>
+        <div class="micro-price">
+          <div class="price">USD <span style="font-size:1.8rem;">500</span><small>/mes</small></div>
+          <a href="https://wa.me/56987685450?text=Hola,%20quiero%20Optimización%20mensual" class="btn-outline btn-micro" target="_blank">Contratar</a>
+        </div>
+      </div>
+      <div class="micro-card reveal reveal-delay-1">
+        <div class="micro-info">
+          <h4>🌐 Web completa 10 páginas</h4>
+          <p>Con SEO + GTM + formularios</p>
+        </div>
+        <div class="micro-price">
+          <div class="price">USD <span style="font-size:1.8rem;">1.200</span></div>
+          <a href="https://wa.me/56987685450?text=Hola,%20quiero%20Web%20completa%2010%20páginas" class="btn-outline btn-micro" target="_blank">Contratar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUNDLES DE LANZAMIENTO -->
+<section class="bundles-section">
+  <div class="container">
+    <div class="reveal section-center">
+      <div class="section-tag">🎁 Ofertas especiales</div>
+      <h2 class="section-title">Bundle de <span style="color:var(--green);">Lanzamiento Digital</span></h2>
+      <p class="section-sub">Combina servicios y ahorra hasta un 30%</p>
+    </div>
+    <div class="bundles-grid">
+      <div class="bundle-card reveal reveal-delay-1">
+        <div class="bundle-icon">📍</div>
+        <div class="bundle-offer">Ahorra $70 USD</div>
+        <h3>Bundle Local</h3>
+        <p>Maps + Auditoría SEO + 3 creatividades</p>
+        <div class="bundle-price"><span class="old">USD 420</span> → USD 350</div>
+        <a href="https://wa.me/56987685450?text=Hola,%20quiero%20el%20Bundle%20Local%20de%20GoClientes" class="btn-primary" style="padding:0.7rem 1.5rem;font-size:0.85rem;" target="_blank">Aprovechar oferta →</a>
+      </div>
+      <div class="bundle-card reveal reveal-delay-2">
+        <div class="bundle-icon">💬</div>
+        <div class="bundle-offer">Ahorra $100 USD</div>
+        <h3>Bundle Conversión</h3>
+        <p>Chatbot simple + GTM + landing page</p>
+        <div class="bundle-price"><span class="old">USD 850</span> → USD 750</div>
+        <a href="https://wa.me/56987685450?text=Hola,%20quiero%20el%20Bundle%20Conversión%20de%20GoClientes" class="btn-primary" style="padding:0.7rem 1.5rem;font-size:0.85rem;" target="_blank">Aprovechar oferta →</a>
+      </div>
+      <div class="bundle-card reveal reveal-delay-3">
+        <div class="bundle-icon">🏢</div>
+        <div class="bundle-offer">Ahorra $150 USD</div>
+        <h3>Bundle Empresarial</h3>
+        <p>Web 10 páginas + SEO local completo + campaña Google</p>
+        <div class="bundle-price"><span class="old">USD 2.150</span> → USD 2.000</div>
+        <a href="https://wa.me/56987685450?text=Hola,%20quiero%20el%20Bundle%20Empresarial%20de%20GoClientes" class="btn-primary" style="padding:0.7rem 1.5rem;font-size:0.85rem;" target="_blank">Aprovechar oferta →</a>
       </div>
     </div>
   </div>
@@ -1068,164 +1567,6 @@
         <p class="case-desc">"Tengo mi agenda llena todas las semanas. Los clientes me encuentran en Google, tocan el botón de WhatsApp y reservan. Increíble lo simple que es."</p>
         <p style="color:var(--lighter);font-size:0.78rem;margin-bottom:0.7rem;">— Mabel R., Estética, Ñuñoa</p>
         <span class="case-result">💅 Agenda completa cada semana</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section class="pricing-section" id="planes">
-  <div class="container">
-    <div class="reveal section-center">
-      <div class="pricing-scarcity">⚠️ Precio especial de lanzamiento — Cupos limitados para entrega en 48h</div>
-      <div class="section-tag">Planes y precios</div>
-      <h2 class="section-title">Elige el plan ideal para tu negocio</h2>
-      <p class="section-sub">Pago único. Sin mensualidades. Sin sorpresas. Elige el nivel que mejor se adapta a lo que necesitas.</p>
-    </div>
-    <div class="pricing-grid">
-
-      <!-- ESENCIAL -->
-      <div class="plan-card reveal reveal-delay-1">
-        <div class="plan-name">Plan Esencial</div>
-        <div class="plan-price-old">Precio normal: $129.900</div>
-        <div class="plan-price">$89.900 <span>CLP</span></div>
-        <div class="plan-note">Pago único · Sin mensualidades ocultas</div>
-        <div class="plan-delivery">⏱️ Entrega en 48 horas</div>
-        <div class="plan-divider"></div>
-        <ul class="plan-features">
-          <li><span class="chk">✓</span> Página web optimizada (1 página)</li>
-          <li><span class="chk">✓</span> Botón WhatsApp con mensaje automático</li>
-          <li><span class="chk">✓</span> <strong>Hosting Profesional + Dominio .cl incluido (1er año)</strong></li>
-          <li><span class="chk">✓</span> Textos profesionales listos</li>
-          <li><span class="chk">✓</span> SEO básico (meta tags y estructura)</li>
-          <li><span class="chk">✓</span> Diseño responsive para celular</li>
-          <li><span class="chk">✓</span> Google Maps integrado</li>
-          <li class="dimmed"><span class="chk">—</span> Páginas adicionales</li>
-          <li class="dimmed"><span class="chk">—</span> Pixel Facebook / Analytics</li>
-          <li class="dimmed"><span class="chk">—</span> Chatbot WhatsApp</li>
-          <li class="dimmed"><span class="chk">—</span> Campañas Ads</li>
-        </ul>
-        <a href="https://wa.me/56987685450?text=Hola,%20quiero%20contratar%20el%20Plan%20Esencial%20de%20GoClientes" class="btn-primary plan-cta" target="_blank">Contratar ahora</a>
-      </div>
-
-      <!-- PROFESIONAL (POPULAR) -->
-      <div class="plan-card popular reveal reveal-delay-2">
-        <div class="plan-badge">⭐ Más popular</div>
-        <div class="plan-name">Plan Profesional</div>
-        <div class="plan-price-old">Precio normal: $249.900</div>
-        <div class="plan-price">$169.900 <span>CLP</span></div>
-        <div class="plan-note">Pago único · Sin mensualidades ocultas</div>
-        <div class="plan-delivery">⏱️ Entrega en 5 días</div>
-        <div class="plan-divider"></div>
-        <ul class="plan-features">
-          <li><span class="chk">✓</span> Todo el Plan Esencial</li>
-          <li><span class="chk">✓</span> 3 páginas adicionales (servicios, galería, contacto)</li>
-          <li><span class="chk">✓</span> <strong>Hosting de Alta Velocidad incluido</strong></li>
-          <li><span class="chk">✓</span> Google Maps interactivo configurado</li>
-          <li><span class="chk">✓</span> Pixel de Facebook/Meta + Google Analytics</li>
-          <li><span class="chk">✓</span> Tracking de conversiones básico</li>
-          <li><span class="chk">✓</span> Chatbot WhatsApp con respuestas personalizadas</li>
-          <li><span class="chk">✓</span> Optimización para campañas de Ads</li>
-          <li><span class="chk">✓</span> SEO mejorado (keywords, schema, velocidad)</li>
-          <li><span class="chk">✓</span> Soporte por WhatsApp 30 días</li>
-          <li class="dimmed"><span class="chk">—</span> Hasta 10 páginas</li>
-          <li class="dimmed"><span class="chk">—</span> Campañas Ads incluidas</li>
-        </ul>
-        <a href="https://wa.me/56987685450?text=Hola,%20quiero%20contratar%20el%20Plan%20Profesional%20de%20GoClientes" class="btn-primary plan-cta" target="_blank">Más contratado →</a>
-      </div>
-
-      <!-- PREMIUM -->
-      <div class="plan-card reveal reveal-delay-3">
-        <div class="plan-badge red">🔥 Oferta especial</div>
-        <div class="plan-name">Plan Premium - Solución Total</div>
-        <div class="plan-price-old">Precio normal: $499.900</div>
-        <div class="plan-price">$299.900 <span>CLP</span></div>
-        <div class="plan-note">Pago único · Sin mensualidades ocultas</div>
-        <div class="plan-delivery">⏱️ Entrega en 10 días</div>
-        <div class="plan-divider"></div>
-        <ul class="plan-features">
-          <li><span class="chk">✓</span> Todo el Plan Profesional</li>
-          <li><span class="chk">✓</span> Hasta 10 páginas (blog, portafolio, testimonios…)</li>
-          <li><span class="chk">✓</span> <strong>Solución Total: Web + Publicidad</strong> (Estrategia + Configuración de Campañas)</li>
-          <li><span class="chk">✓</span> 3 creatividades para redes sociales</li>
-          <li><span class="chk">✓</span> Chatbot avanzado con flujos condicionales</li>
-          <li><span class="chk">✓</span> Google Tag Manager + eventos avanzados</li>
-          <li><span class="chk">✓</span> SEO completo on-page + auditoría inicial</li>
-          <li><span class="chk">✓</span> Dominación búsqueda local (Maps + SEO local)</li>
-          <li><span class="chk">✓</span> Soporte prioritario 60 días</li>
-          <li><span class="chk">✓</span> Optimización orgánica + pago</li>
-        </ul>
-        <a href="https://wa.me/56987685450?text=Hola,%20quiero%20contratar%20el%20Plan%20Premium%20de%20GoClientes" class="btn-red plan-cta" target="_blank">🔥 OFERTA ESPECIAL 🔥</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMPARISON TABLE -->
-<section class="comparison-section">
-  <div class="container">
-    <div class="reveal section-center">
-      <div class="section-tag">Comparativa</div>
-      <h2 class="section-title">¿Qué incluye cada plan?</h2>
-    </div>
-    <div class="reveal" style="overflow-x:auto;">
-      <table class="comp-table">
-        <thead>
-          <tr>
-            <th>Característica</th>
-            <th>Esencial</th>
-            <th class="pop-col">Profesional ⭐</th>
-            <th>Premium 🔥</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Página web optimizada</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-          <tr><td>Botón WhatsApp + mensaje auto</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-          <tr><td>Dominio .cl + hosting incluido</td><td><span class="yes">✓</span> (Profesional)</td><td><span class="yes">✓</span> (Alta Velocidad)</td><td><span class="yes">✓</span> (Alta Velocidad)</td></tr>
-          <tr><td>SEO básico</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-          <tr><td>Google Maps integrado</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-          <tr><td>Páginas adicionales</td><td><span class="no">—</span></td><td>3 páginas</td><td>Hasta 10</td></tr>
-          <tr><td>Pixel FB + Google Analytics</td><td><span class="no">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-          <tr><td>Chatbot WhatsApp</td><td><span class="no">—</span></td><td>Básico</td><td>Avanzado</td></tr>
-          <tr><td>Campañas Google/Meta Ads</td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">✓</span> (Estrategia+Config)</td></tr>
-          <tr><td>SEO Local avanzado</td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
-          <tr><td>Google Tag Manager</td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
-          <tr><td>Creatividades para redes</td><td><span class="no">—</span></td><td><span class="no">—</span></td><td>3 diseños</td></tr>
-          <tr><td>Soporte incluido</td><td><span class="no">—</span></td><td>30 días</td><td>60 días prioritario</td></tr>
-          <tr><td>Tiempo de entrega</td><td>48 horas</td><td>5 días</td><td>10 días</td></tr>
-          <tr><td style="font-weight:700;color:var(--green);">Precio</td><td style="font-weight:700;">$89.900</td><td style="font-weight:700;color:var(--green);">$169.900</td><td style="font-weight:700;color:var(--red);">$299.900</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- BONUSES -->
-<section style="background:var(--bg2);">
-  <div class="container">
-    <div class="reveal section-center">
-      <div class="section-tag">Bonos exclusivos</div>
-      <h2 class="section-title">Bonos valorados en $120.000</h2>
-      <p class="section-sub">Incluidos en los planes Profesional y Premium, sin costo adicional.</p>
-    </div>
-    <div class="bonuses-grid">
-      <div class="bonus-card reveal reveal-delay-1">
-        <div class="bonus-icon">🎁</div>
-        <div class="bonus-tag">Bono 1 — Profesional y Premium</div>
-        <h3>Plantillas de respuesta WhatsApp</h3>
-        <p>Mensajes pre-escritos que convierten consultas en ventas. Listos para usar desde el día 1.</p>
-      </div>
-      <div class="bonus-card reveal reveal-delay-2">
-        <div class="bonus-icon">📊</div>
-        <div class="bonus-tag">Bono 2 — Todos los planes</div>
-        <h3>Optimización gratuita 30 días</h3>
-        <p>Ajustamos textos, estructura y diseño para maximizar los resultados de tu página.</p>
-      </div>
-      <div class="bonus-card reveal reveal-delay-3">
-        <div class="bonus-icon">💬</div>
-        <div class="bonus-tag">Bono 3 — Profesional y Premium</div>
-        <h3>Guía para publicitar tu página</h3>
-        <p>Te enseñamos cómo compartir tu web para multiplicar el tráfico desde el primer mes.</p>
       </div>
     </div>
   </div>
@@ -1275,12 +1616,13 @@
     <span class="payment-badge">💵 Mercado Pago</span>
     <span class="payment-badge">🔵 Visa</span>
     <span class="payment-badge">🟠 Mastercard</span>
+    <span class="payment-badge">₿ Cripto (USDC/BTC)</span>
   </div>
 </div>
 
 <!-- FAQ -->
 <section class="faq-section" id="faq">
-  <div class="container" style="max-width:760px;">
+  <div class="container">
     <div class="reveal section-center">
       <div class="section-tag">Preguntas frecuentes</div>
       <h2 class="section-title">Todo lo que necesitas saber</h2>
@@ -1304,11 +1646,11 @@
       </div>
       <div class="faq-item">
         <div class="faq-q">¿Puedo ver ejemplos de páginas que han creado? <span class="faq-arrow">▼</span></div>
-        <div class="faq-a">¡Sí! Escríbenos por WhatsApp y te mostramos casos reales de clientes activos. También puedes ver destapesantiago24h.cl y agrichef.cl como ejemplos de lo que hacemos.</div>
+        <div class="faq-a">¡Sí! Escríbenos por WhatsApp y te mostramos casos reales de clientes activos.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">¿Qué pasa si quiero cambiar algo de la página después? <span class="faq-arrow">▼</span></div>
-        <div class="faq-a">Durante los primeros 30 días (o 60 días en Plan Premium) hacemos cambios sin costo. Después de ese período, los ajustes menores tienen un costo simbólico. Siempre puedes contactarnos por WhatsApp para coordinar.</div>
+        <div class="faq-a">Durante los primeros 30 días (o 90 días en Plan Full Service) hacemos cambios sin costo. Después de ese período, los ajustes menores tienen un costo simbólico. Siempre puedes contactarnos por WhatsApp para coordinar.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">¿Puedo hablar con alguien antes de decidirme? <span class="faq-arrow">▼</span></div>
@@ -1327,7 +1669,75 @@
       <svg viewBox="0 0 24 24" width="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 2C6.477 2 2 6.477 2 11.999c0 1.85.495 3.585 1.362 5.078L2 22l5.047-1.345C8.447 21.513 10.18 22 11.998 22c5.523 0 10-4.477 10-10C21.998 6.477 17.521 2 11.998 2z"/></svg>
       Quiero mi GoClientes ahora
     </a>
-    <p style="margin-top:1.2rem;font-size:0.8rem;">⚠️ Precio de lanzamiento disponible solo para los primeros 10 negocios · Cupos limitados para entrega en 48h</p>
+    <p style="margin-top:1.2rem;font-size:0.8rem;">⚠️ Precios de lanzamiento disponibles por tiempo limitado · Cupos para entrega rápida</p>
+  </div>
+</section>
+
+<!-- SECCIÓN GO AUTOMATIZACIONES IA (AL FINAL) -->
+<section class="ai-section">
+  <div class="container">
+    <div class="reveal section-center">
+      <div class="section-tag">🚀 Nuevo servicio GOClientes</div>
+      <h2 class="section-title">Agentes de IA que trabajan <span style="color: var(--green);">24/7 por ti</span></h2>
+      <p class="section-sub">Automatiza ventas, atención al cliente y marketing con empleados digitales que cuestan 90% menos que contratar personal.</p>
+    </div>
+    <div class="ai-showcase">
+      <div class="ai-showcase-text reveal">
+        <h3>Lleva tu negocio al siguiente nivel con <span>Automatizaciones IA</span></h3>
+        <p>Más de 200 clientes ya confían en GOClientes para sus páginas web. Ahora damos un paso más: agentes inteligentes que trabajan para ti sin descanso, sin sueldo y sin quejas.</p>
+        <div class="ai-features">
+          <span class="ai-feature">🤖 Bot de Soporte 24/7</span>
+          <span class="ai-feature">📞 Llamadas automáticas</span>
+          <span class="ai-feature">📱 Redes Sociales IA</span>
+          <span class="ai-feature">🎬 Anuncios CGI</span>
+          <span class="ai-feature">📧 Email automático</span>
+          <span class="ai-feature">🧾 Facturación automática</span>
+        </div>
+        <div class="ai-showcase-stats">
+          <div class="ai-stat">
+            <strong>10</strong>
+            <span>Agentes disponibles</span>
+          </div>
+          <div class="ai-stat">
+            <strong>90%</strong>
+            <span>menos que un empleado</span>
+          </div>
+          <div class="ai-stat">
+            <strong>24/7</strong>
+            <span>sin descanso</span>
+          </div>
+        </div>
+        <a href="/ia/automatizaciones" class="btn-ai" target="_blank">
+          Conocer Agentes IA →
+        </a>
+      </div>
+      <div class="ai-showcase-icons reveal reveal-delay-2">
+        <div class="ai-icon-item">
+          <div class="emoji">📱</div>
+          <div class="text"><h4>Redes Sociales</h4><p>Publica automáticamente</p></div>
+        </div>
+        <div class="ai-icon-item">
+          <div class="emoji">🎬</div>
+          <div class="text"><h4>Anuncios CGI</h4><p>Convierte fotos en videos</p></div>
+        </div>
+        <div class="ai-icon-item">
+          <div class="emoji">🔄</div>
+          <div class="text"><h4>Videos 360°</h4><p>Muestra productos</p></div>
+        </div>
+        <div class="ai-icon-item">
+          <div class="emoji">📞</div>
+          <div class="text"><h4>Llamadas de Voz</h4><p>Califica leads</p></div>
+        </div>
+        <div class="ai-icon-item">
+          <div class="emoji">💼</div>
+          <div class="text"><h4>Leads LinkedIn</h4><p>Extrae contactos</p></div>
+        </div>
+        <div class="ai-icon-item">
+          <div class="emoji">🤖</div>
+          <div class="text"><h4>Bot Soporte</h4><p>Responde 24/7</p></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1348,24 +1758,22 @@
 <script>
   // NAV scroll shadow
   window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    const nav = document.getElementById('navbar');
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
   });
 
   // Mobile menu toggle
   function toggleMenu() {
-    const links = document.querySelector('.nav-links');
-    links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
-    links.style.flexDirection = 'column';
-    links.style.position = 'absolute';
-    links.style.top = '70px';
-    links.style.left = '0';
-    links.style.right = '0';
-    links.style.background = 'white';
-    links.style.padding = '1.5rem 2rem';
-    links.style.borderBottom = '1px solid #E5E7EB';
-    links.style.boxShadow = '0 8px 24px rgba(0,0,0,0.08)';
-    links.style.zIndex = '100';
+    const links = document.getElementById('navLinks');
+    if (links) links.classList.toggle('open');
   }
+
+  // Cerrar menú al hacer click en enlace
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks')?.classList.remove('open');
+    });
+  });
 
   // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(q => {
@@ -1396,7 +1804,7 @@
     let current = 0;
     const timer = setInterval(() => {
       current = Math.min(current + step, target);
-      el.textContent = Math.floor(current).toLocaleString('es-CL') + (el.dataset.suffix || '');
+      el.textContent = Math.floor(current).toLocaleString('es-CL');
       if (current >= target) clearInterval(timer);
     }, 16);
   }
@@ -1412,7 +1820,7 @@
 
   // Lead magnet
   function sendLead() {
-    const name = document.getElementById('lead-name').value.trim();
+    const name = document.getElementById('lead-name')?.value.trim();
     if (!name) { alert('Por favor ingresa tu nombre.'); return; }
     const msg = encodeURIComponent(`Hola, soy ${name} y quiero la guía gratuita de GoClientes`);
     window.open(`https://wa.me/56987685450?text=${msg}`, '_blank');
