@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
-    /* ===== VARIABLES ===== */
+    /* ===== VARIABLES (Mismas del original) ===== */
     :root {
       --green: #00C65E;
       --green-dark: #009e4b;
@@ -436,94 +436,484 @@
     .faq-a { max-height:0; overflow:hidden; transition:max-height 0.4s var(--ease), padding 0.4s; font-size:0.9rem; color:var(--muted); line-height:1.7; }
     .faq-item.open .faq-a { max-height:300px; padding:0 1.5rem 1.2rem; }
 
-    /* Lead Magnet */
-    .lead-section {
-      background:linear-gradient(135deg,var(--dark) 0%,#1a2a1c 100%);
-      position:relative; overflow:hidden;
+    /* =============================================
+       NUEVA SECCIÓN DE FORMULARIO PREMIUM
+    ============================================= */
+    .premium-form-section {
+      padding: 5rem 1.5rem;
+      background: linear-gradient(135deg, #0b0f14 0%, #0a0e13 100%);
+      position: relative;
+      overflow: hidden;
     }
-    .lead-section::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(circle,rgba(0,198,94,0.1) 0%,transparent 70%); animation:float 20s ease-in-out infinite; }
-    .lead-box {
-      max-width:750px; margin:0 auto; text-align:center;
-      padding:3.5rem 3rem; background:rgba(255,255,255,0.05); backdrop-filter:blur(20px);
-      border:1px solid rgba(255,255,255,0.15); border-radius:var(--radius-xl);
-      position:relative; z-index:1; transition:all 0.3s;
-    }
-    .lead-box:hover { transform:translateY(-5px); box-shadow:0 20px 50px rgba(0,0,0,0.3); }
-    .lead-icon { font-size:3rem; margin-bottom:1rem; animation:float 3s ease-in-out infinite; }
-    .lead-box h3 { font-family:'Sora',sans-serif; font-size:2rem; font-weight:800; margin-bottom:1rem; background:linear-gradient(135deg,white,var(--green)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-    .lead-box p { color:rgba(255,255,255,0.7); margin-bottom:1.8rem; font-size:1rem; line-height:1.6; }
-    .lead-form { display:flex; gap:0.8rem; max-width:500px; margin:0 auto; flex-wrap:wrap; justify-content:center; }
-    .lead-form input { flex:1; min-width:200px; padding:1rem 1.5rem; border-radius:100px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.1); color:white; font-family:inherit; font-size:0.95rem; outline:none; transition:all 0.3s; }
-    .lead-form input:focus { border-color:var(--green); background:rgba(255,255,255,0.15); transform:scale(1.02); }
-    .lead-form input::placeholder { color:rgba(255,255,255,0.4); }
-    .lead-form button { background:linear-gradient(135deg,var(--green),var(--green-dark)); color:white; font-weight:700; padding:1rem 2rem; border-radius:100px; border:none; cursor:pointer; font-family:inherit; font-size:0.95rem; transition:all 0.3s; white-space:nowrap; }
-    .lead-form button:hover { transform:scale(1.05); box-shadow:0 0 20px rgba(0,198,94,0.5); }
-    .lead-benefits { display:flex; justify-content:center; gap:1.5rem; margin-top:1.5rem; font-size:0.75rem; color:rgba(255,255,255,0.4); flex-wrap:wrap; }
 
-    /* Final CTA */
-    .final-cta { background:linear-gradient(135deg,#0f1117,#1a2a1c); padding:5rem 1.5rem; text-align:center; position:relative; overflow:hidden; }
-    .final-cta::before { content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:600px; height:600px; background:radial-gradient(circle,rgba(0,198,94,0.15) 0%,transparent 70%); animation:float 10s ease-in-out infinite; }
-    .scarcity-badge { display:inline-block; background:linear-gradient(135deg,var(--red),var(--red-dark)); color:white; padding:0.4rem 1.2rem; border-radius:100px; font-size:0.85rem; font-weight:700; margin-bottom:1.2rem; animation:glowPulse 2s infinite; }
-    .quick-form { display:flex; gap:0.8rem; justify-content:center; margin-top:1.8rem; flex-wrap:wrap; }
-    .quick-form input { padding:1rem 1.5rem; border-radius:100px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.1); color:white; font-size:0.95rem; width:220px; transition:all 0.3s; font-family:inherit; }
-    .quick-form input:focus { border-color:var(--green); outline:none; transform:scale(1.02); }
-    .quick-form input::placeholder { color:rgba(255,255,255,0.4); }
-    .trust-badges-small { display:flex; gap:1.5rem; justify-content:center; margin-top:1.5rem; font-size:0.75rem; color:rgba(255,255,255,0.4); flex-wrap:wrap; }
+    .premium-form-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(0, 255, 136, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .premium-form-container {
+      max-width: 880px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .premium-form-card {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 255, 136, 0.2);
+      border-radius: 2rem;
+      padding: 2.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 255, 136, 0.1);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+
+    .premium-form-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(0, 255, 136, 0.3);
+    }
+
+    .premium-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      padding: 0.35rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--green, #00ff88);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .premium-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      color: var(--heading, #f8fafc);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .premium-highlight {
+      background: linear-gradient(135deg, #00ff88, #00d26a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      position: relative;
+      display: inline-block;
+    }
+
+    .premium-highlight::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #00ff88, transparent);
+      opacity: 0.6;
+    }
+
+    .premium-subtitle {
+      color: var(--muted, #94a3b8);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .premium-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .premium-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .premium-full-width {
+      grid-column: span 2;
+    }
+
+    .premium-half-width {
+      grid-column: span 1;
+    }
+
+    .premium-form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted, #94a3b8);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .premium-form-group input,
+    .premium-form-group select,
+    .premium-form-group textarea {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(0, 255, 136, 0.2);
+      border-radius: 1rem;
+      padding: 0.9rem 1rem;
+      color: var(--body, #cbd5e1);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      transition: all 0.25s ease;
+      outline: none;
+      width: 100%;
+    }
+
+    .premium-form-group input:focus,
+    .premium-form-group select:focus,
+    .premium-form-group textarea:focus {
+      border-color: #00ff88;
+      box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      transform: scale(1.01);
+    }
+
+    .premium-form-group input::placeholder,
+    .premium-form-group textarea::placeholder {
+      color: var(--lighter, #64748b);
+    }
+
+    .premium-form-group select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%2300ff88' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1.2rem;
+    }
+
+    .premium-submit-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      width: 100%;
+      background: linear-gradient(135deg, #00ff88, #00b35f);
+      color: #0b0f14;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 1rem 1.8rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
+      box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+      margin-top: 0.8rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .premium-submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 255, 136, 0.7);
+      background: linear-gradient(135deg, #22c55e, #00d26a);
+    }
+
+    .premium-security-text {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--muted, #94a3b8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
 
     /* Footer */
-    footer { background:linear-gradient(135deg,#0a0d0b,#0f1117); border-top:1px solid rgba(255,255,255,0.05); padding:3rem 1.5rem 2rem; }
-    .footer-cities { display:flex; gap:0.6rem; flex-wrap:wrap; justify-content:center; margin-bottom:2rem; }
-    .footer-city { background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.5); padding:0.3rem 0.8rem; border-radius:100px; font-size:0.75rem; font-weight:500; border:1px solid rgba(255,255,255,0.08); transition:all 0.3s; cursor:default; }
-    .footer-city:hover { background:rgba(0,198,94,0.15); color:var(--green); border-color:var(--green); }
-    .footer-trust-badges { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-bottom:2rem; }
-    .footer-badge { display:flex; align-items:center; gap:0.5rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); padding:0.5rem 1rem; border-radius:100px; font-size:0.75rem; color:rgba(255,255,255,0.6); }
-    .footer-badge i { color:var(--green); }
-    .footer-content { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; margin-bottom:2rem; }
-    .footer-col h4 { color:white; font-family:'Sora',sans-serif; font-size:1rem; margin-bottom:1rem; }
-    .footer-col p, .footer-col a { color:rgba(255,255,255,0.5); font-size:0.85rem; text-decoration:none; line-height:1.8; transition:all 0.3s; }
-    .footer-col a:hover { color:var(--green); transform:translateX(5px); display:inline-block; }
-    .social-icons { display:flex; gap:1rem; margin-top:1rem; }
-    .social-icons a { width:36px; height:36px; background:rgba(255,255,255,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:all 0.3s; color:rgba(255,255,255,0.7); }
-    .social-icons a:hover { background:var(--green); transform:translateY(-3px) scale(1.1); color:white; }
-    .footer-bottom { text-align:center; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.05); color:rgba(255,255,255,0.3); font-size:0.75rem; }
-    .footer-logo { font-family:'Sora',sans-serif; font-weight:800; font-size:1.5rem; margin-bottom:1rem; background:linear-gradient(135deg,white,var(--green)); -webkit-background-clip:text; background-clip:text; color:transparent; display:block; }
+    footer {
+      background: linear-gradient(135deg, #0a0d0b, #0f1117);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 3rem 1.5rem 2rem;
+    }
+    .footer-cities {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .footer-city {
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.5);
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.3s;
+      cursor: default;
+    }
+    .footer-city:hover {
+      background: rgba(0,198,94,0.15);
+      color: var(--green);
+      border-color: var(--green);
+    }
+    .footer-trust-badges {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .footer-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-badge i { color: var(--green); }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-col h4 {
+      color: white;
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .footer-col p, .footer-col a {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+      text-decoration: none;
+      line-height: 1.8;
+      transition: all 0.3s;
+    }
+    .footer-col a:hover {
+      color: var(--green);
+      transform: translateX(5px);
+      display: inline-block;
+    }
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .social-icons a {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      color: rgba(255,255,255,0.7);
+    }
+    .social-icons a:hover {
+      background: var(--green);
+      transform: translateY(-3px) scale(1.1);
+      color: white;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.3);
+      font-size: 0.75rem;
+    }
+    .footer-logo {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, white, var(--green));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: block;
+    }
 
     /* WhatsApp Float & Chat Preview */
-    .wa-float { position:fixed; bottom:1.5rem; right:1.5rem; background:linear-gradient(145deg,#25D366,#128C7E); width:65px; height:65px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 24px rgba(0,0,0,0.3); transition:all 0.3s; z-index:300; animation:float 2.5s ease-in-out infinite; text-decoration:none; }
-    .wa-float:hover { transform:scale(1.15); box-shadow:0 10px 40px rgba(37,211,102,0.6); animation:none; }
-    .chat-preview {
-      position:fixed; bottom:6.5rem; right:1.5rem; background:white; border-radius:16px 16px 0 16px;
-      box-shadow:0 8px 32px rgba(0,0,0,0.15); padding:1rem 1.2rem; max-width:260px;
-      z-index:299; animation:fadeUp 0.5s ease; border:1px solid #e5e7eb;
+    .wa-float {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: linear-gradient(145deg,#25D366,#128C7E);
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+      transition: all 0.3s;
+      z-index: 300;
+      animation: float 2.5s ease-in-out infinite;
+      text-decoration: none;
     }
-    .chat-preview.hidden { display:none; }
-    .chat-header { display:flex; align-items:center; gap:0.7rem; margin-bottom:0.8rem; }
-    .chat-avatar { width:36px; height:36px; background:linear-gradient(135deg,#25D366,#128C7E); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:1rem; flex-shrink:0; }
-    .chat-name { font-weight:700; font-size:0.85rem; color:#111; }
-    .chat-status { font-size:0.7rem; color:#25D366; }
-    .chat-bubble { background:#dcf8c6; border-radius:12px 12px 0 12px; padding:0.7rem 1rem; font-size:0.82rem; color:#111; line-height:1.5; position:relative; }
-    .chat-bubble::after { content:'✓✓'; position:absolute; bottom:0.3rem; right:0.5rem; font-size:0.6rem; color:#53bdeb; }
-    .chat-time { font-size:0.65rem; color:#999; margin-top:0.3rem; text-align:right; }
-    .chat-close { position:absolute; top:0.5rem; right:0.7rem; background:none; border:none; cursor:pointer; color:#999; font-size:1rem; }
+    .wa-float:hover {
+      transform: scale(1.15);
+      box-shadow: 0 10px 40px rgba(37,211,102,0.6);
+      animation: none;
+    }
+    .chat-preview {
+      position: fixed;
+      bottom: 6.5rem;
+      right: 1.5rem;
+      background: white;
+      border-radius: 16px 16px 0 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      padding: 1rem 1.2rem;
+      max-width: 260px;
+      z-index: 299;
+      animation: fadeUp 0.5s ease;
+      border: 1px solid #e5e7eb;
+    }
+    .chat-preview.hidden { display: none; }
+    .chat-header {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+    .chat-avatar {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg,#25D366,#128C7E);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .chat-name {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #111;
+    }
+    .chat-status {
+      font-size: 0.7rem;
+      color: #25D366;
+    }
+    .chat-bubble {
+      background: #dcf8c6;
+      border-radius: 12px 12px 0 12px;
+      padding: 0.7rem 1rem;
+      font-size: 0.82rem;
+      color: #111;
+      line-height: 1.5;
+      position: relative;
+    }
+    .chat-bubble::after {
+      content: '✓✓';
+      position: absolute;
+      bottom: 0.3rem;
+      right: 0.5rem;
+      font-size: 0.6rem;
+      color: #53bdeb;
+    }
+    .chat-time {
+      font-size: 0.65rem;
+      color: #999;
+      margin-top: 0.3rem;
+      text-align: right;
+    }
+    .chat-close {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.7rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #999;
+      font-size: 1rem;
+    }
 
     /* Responsive */
-    @media (max-width:1100px) {
-      .pricing-grid, .dashboard-grid, .problem-grid, .steps-grid, .casos-grid { grid-template-columns:repeat(2,1fr); }
-      .footer-content { grid-template-columns:repeat(2,1fr); }
+    @media (max-width: 1100px) {
+      .pricing-grid, .dashboard-grid, .problem-grid, .steps-grid, .casos-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
-    @media (max-width:768px) {
-      .pricing-grid, .dashboard-grid, .problem-grid, .fomo-grid, .steps-grid, .casos-grid { grid-template-columns:1fr; }
-      .footer-content { grid-template-columns:1fr; text-align:center; }
-      nav { padding:1rem; }
-      .nav-links { display:none; position:absolute; top:70px; left:0; right:0; background:var(--nav-bg); flex-direction:column; padding:1.5rem; border-bottom:1px solid var(--border); box-shadow:var(--shadow-md); z-index:100; gap:1rem; }
-      .nav-links.open { display:flex; }
-      .hamburger { display:flex; }
-      .hero-stats { flex-direction:column; }
-      .stat-item:not(:last-child) { border-right:none; border-bottom:1px solid var(--border); }
-      .lead-box { padding:2rem 1.5rem; }
-      .lead-box h3 { font-size:1.5rem; }
-      .chat-preview { right:1rem; max-width:240px; }
-      .social-icons { justify-content:center; }
+    @media (max-width: 768px) {
+      .pricing-grid, .dashboard-grid, .problem-grid, .fomo-grid, .steps-grid, .casos-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      nav {
+        padding: 1rem;
+      }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--nav-bg);
+        flex-direction: column;
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-md);
+        z-index: 100;
+        gap: 1rem;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .hero-stats {
+        flex-direction: column;
+      }
+      .stat-item:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .chat-preview {
+        right: 1rem;
+        max-width: 240px;
+      }
+      .social-icons {
+        justify-content: center;
+      }
+      .premium-form-card {
+        padding: 1.5rem;
+      }
+      .premium-form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .premium-full-width,
+      .premium-half-width {
+        grid-column: span 1;
+      }
     }
   </style>
 </head>
@@ -685,14 +1075,78 @@
   </div>
 </section>
 
-<section class="lead-section">
-  <div style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem">
-    <div class="lead-box reveal"><div class="lead-icon">🎁✨</div><h3>¡Descarga Gratis! Guía: Atrae Clientes por WhatsApp</h3><p>5 estrategias probadas que usan los negocios locales más exitosos en Chile para llenar su WhatsApp todos los días. <strong>100% gratis y sin spam.</strong></p><div class="lead-form"><input type="text" id="lead-name" placeholder="👤 Tu nombre" /><button onclick="sendLead()">📥 Quiero la guía gratis →</button></div><div class="lead-benefits"><span>✓ PDF descargable</span><span>✓ Ejemplos reales</span><span>✓ Sin compromiso</span><span>✓ Envío inmediato</span></div></div>
-  </div>
-</section>
+<!-- ========== NUEVO FORMULARIO PREMIUM (reemplaza las antiguas secciones de captura) ========== -->
+<section class="premium-form-section" id="contacto-premium">
+  <div class="premium-form-container">
+    <div class="premium-form-card">
+      <div class="premium-badge">
+        🚀 CONTÁCTANOS
+      </div>
+      <h2 class="premium-title">
+        Hablemos de tu primer <span class="premium-highlight">agente IA</span>
+      </h2>
+      <p class="premium-subtitle">
+        Cuéntanos qué necesitas y te diremos qué automatización es ideal para tu negocio.
+      </p>
 
-<section class="final-cta">
-  <div class="reveal" style="max-width:800px;margin:0 auto;position:relative;z-index:1"><div class="scarcity-badge">⚠️ Quedan <span id="finalSpots">7</span> cupos disponibles en Santiago/Zona Centro</div><h2 style="font-family:'Sora',sans-serif;font-size:clamp(1.8rem,5vw,3rem);color:white;margin-bottom:1rem">¿Listo para llenar tu WhatsApp<br>de <em style="color:var(--green);font-style:normal">clientes reales?</em></h2><p style="color:rgba(255,255,255,0.6);margin-bottom:1.5rem">Última oportunidad hasta 15 mayo 2025 · Únete a 187 personas que ya lo lograron</p><div class="quick-form"><input type="text" placeholder="👤 Tu nombre" id="finalName" /><input type="text" placeholder="📱 Tu WhatsApp" id="finalWhatsapp" /><button class="btn-primary" onclick="sendFinalCTA()" style="padding:1rem 2rem">🎯 Reservar mi cupo →</button></div><div class="trust-badges-small"><span>✓ Sin compromiso</span><span>✓ Respuesta en &lt;2h</span><span>✓ Sin tarjeta requerida</span><span>✓ Cancelas cuando quieras</span></div></div>
+      <form id="premiumLeadForm" class="premium-form">
+        <div class="premium-form-grid">
+          <!-- Nombre -->
+          <div class="premium-form-group">
+            <label for="premium-name">Nombre completo *</label>
+            <input type="text" id="premium-name" name="name" required placeholder="Ej: Carlos Riquelme">
+          </div>
+
+          <!-- Email -->
+          <div class="premium-form-group">
+            <label for="premium-email">Email *</label>
+            <input type="email" id="premium-email" name="email" required placeholder="tu@negocio.cl">
+          </div>
+
+          <!-- Teléfono -->
+          <div class="premium-form-group">
+            <label for="premium-phone">Teléfono / WhatsApp</label>
+            <input type="tel" id="premium-phone" name="phone" placeholder="+56 9 1234 5678">
+          </div>
+
+          <!-- Select solución -->
+          <div class="premium-form-group">
+            <label for="premium-solution">¿Qué solución te interesa?</label>
+            <select id="premium-solution" name="solution">
+              <option value="">Selecciona una opción</option>
+              <option>Agente IA para WhatsApp</option>
+              <option>Automatización de ventas</option>
+              <option>Chatbot IA</option>
+              <option>CRM + WhatsApp</option>
+              <option>Automatización con n8n</option>
+              <option>Atención al cliente IA</option>
+              <option>Otro</option>
+            </select>
+          </div>
+
+          <!-- Textarea (ocupa toda la fila) -->
+          <div class="premium-form-group premium-full-width">
+            <label for="premium-message">¿Qué hace tu negocio y qué proceso quieres automatizar?</label>
+            <textarea id="premium-message" name="message" rows="3" placeholder="Ej: Tengo una peluquería y quiero que un bot responda preguntas frecuentes por WhatsApp 24/7..."></textarea>
+          </div>
+
+          <!-- Código descuento (opcional) -->
+          <div class="premium-form-group premium-half-width">
+            <label for="premium-discount">Código de descuento (opcional)</label>
+            <input type="text" id="premium-discount" name="discount" placeholder="Ej: GOCLIENTES20">
+          </div>
+        </div>
+
+        <button type="submit" class="premium-submit-btn">
+          🚀 Quiero mi Agente IA →
+        </button>
+
+        <p class="premium-security-text">
+          🔒 Tus datos están protegidos. Respondemos normalmente en menos de 2 horas.
+        </p>
+      </form>
+    </div>
+  </div>
 </section>
 
 <footer>
@@ -772,7 +1226,6 @@
     document.getElementById('liveSearch').innerText = Math.floor(Math.random() * (89 - 15 + 1) + 15);
     const spots = Math.floor(Math.random() * (9 - 3 + 1) + 3);
     document.getElementById('liveSpots').innerText = spots;
-    document.getElementById('finalSpots') && (document.getElementById('finalSpots').innerText = spots);
     document.getElementById('cuposRestantes') && (document.getElementById('cuposRestantes').innerText = spots);
     document.getElementById('liveTimestamp').innerHTML = `Actualizado hace ${Math.floor(Math.random() * 5)} min`;
   }
@@ -804,11 +1257,45 @@
   setTimeout(() => { const cp = document.getElementById('chatPreview'); if (cp) cp.style.display = 'block'; }, 4000);
   setInterval(rotateChatMessage, 6000);
 
-  // Lead & Final CTA
-  function sendLead() { const name = document.getElementById('lead-name')?.value.trim(); if (!name) { alert('Por favor ingresa tu nombre.'); return; } window.open(`https://wa.me/56987685450?text=Hola,%20soy%20${encodeURIComponent(name)}%20y%20quiero%20la%20guía%20gratuita%20de%20GoClientes`, '_blank'); }
-  function sendFinalCTA() { const name = document.getElementById('finalName')?.value.trim(); const wa = document.getElementById('finalWhatsapp')?.value.trim(); if (!name || !wa) { alert('Por favor completa tu nombre y WhatsApp'); return; } window.open(`https://wa.me/56987685450?text=Hola,%20soy%20${encodeURIComponent(name)}%20(${encodeURIComponent(wa)})%20y%20quiero%20reservar%20mi%20cupo`, '_blank'); }
+  // Función para actualizar contador de espectadores en hero
   function updateWatchers() { const el = document.getElementById('watchersCount'); if (el) el.textContent = Math.floor(Math.random() * (62 - 35 + 1) + 35); }
   setInterval(updateWatchers, 12000);
+
+  // ===== NUEVO FORMULARIO PREMIUM: envío por WhatsApp =====
+  const premiumForm = document.getElementById('premiumLeadForm');
+  if (premiumForm) {
+    premiumForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('premium-name')?.value.trim();
+      const email = document.getElementById('premium-email')?.value.trim();
+      if (!name || !email) {
+        alert('Por favor, completa tu nombre y correo electrónico.');
+        return;
+      }
+      const phone = document.getElementById('premium-phone')?.value.trim();
+      const solution = document.getElementById('premium-solution')?.value || 'No especificada';
+      const message = document.getElementById('premium-message')?.value.trim();
+      const discount = document.getElementById('premium-discount')?.value.trim();
+
+      let waText = `Hola! Me interesa GO Automatizaciones IA.%0A%0A`;
+      waText += `📌 *Datos de contacto*%0A`;
+      waText += `Nombre: ${encodeURIComponent(name)}%0A`;
+      waText += `Email: ${encodeURIComponent(email)}%0A`;
+      if (phone) waText += `Teléfono: ${encodeURIComponent(phone)}%0A`;
+      waText += `%0A🤖 *Solución de interés*%0A`;
+      waText += `${encodeURIComponent(solution)}%0A`;
+      if (message) {
+        waText += `%0A📝 *Detalles del negocio*%0A${encodeURIComponent(message)}%0A`;
+      }
+      if (discount) {
+        waText += `%0A🎟️ *Código descuento*: ${encodeURIComponent(discount)}%0A`;
+      }
+
+      window.open(`https://wa.me/56987685450?text=${waText}`, '_blank');
+      alert('✅ ¡Solicitud enviada! Te contactaremos en menos de 2 horas por WhatsApp.');
+      premiumForm.reset();
+    });
+  }
 </script>
 </body>
 </html>
