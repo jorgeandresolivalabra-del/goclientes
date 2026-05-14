@@ -1,1 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>GoClientes.cl | Llena tu WhatsApp de clientes</title>
+  <!-- Tailwind CSS + Font Awesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* CSS Premium 2026 - Glassmorphism + Neones + Microinteracciones */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap');
+    * { font-family: 'Inter', sans-serif; }
+    
+    :root {
+      --primary-dark: #0f2b5e;
+      --primary: #1e40af;
+      --accent: #10b981;
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --transition-smooth: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .dark {
+      --bg-primary: #0a0f1a;
+      --bg-secondary: #111827;
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --card-bg: rgba(17, 24, 39, 0.75);
+      --border-glow: rgba(16, 185, 129, 0.4);
+    }
+    body {
+      transition: background-color 0.3s, color 0.2s;
+    }
+    .dark body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+    }
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+    }
+    .dark .glass-card {
+      background: var(--card-bg);
+      border-color: var(--border-glow);
+    }
+    .hero-bg-2026 {
+      background: linear-gradient(135deg, #0a2540 0%, #1e3a8a 50%, #0f766e 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-2026::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(16, 185, 129, 0.2) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(30, 64, 175, 0.2) 0%, transparent 50%);
+      animation: subtleMove 25s ease infinite;
+    }
+    @keyframes subtleMove {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(30px, 20px); }
+    }
+    .service-card {
+      transition: var(--transition-smooth);
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+    .service-card:hover {
+      transform: translateY(-12px) scale(1.02) rotateY(2deg) rotateX(1deg);
+      box-shadow: 0 30px 40px -20px rgba(0,0,0,0.3);
+    }
+    .btn-wa {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+    .btn-wa::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s;
+    }
+    .btn-wa:hover::after {
+      left: 100%;
+    }
+    .btn-wa:active { transform: scale(0.97); }
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: all 0.8s ease;
+    }
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .counter-number {
+      font-feature-settings: "tnum";
+      font-variant-numeric: tabular-nums;
+    }
+    .theme-toggle {
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      transition: transform 0.2s;
+      z-index: 100;
+    }
+    .theme-toggle:hover { transform: scale(1.1); }
+    .trust-logo {
+      background: rgba(255,255,255,0.05);
+      border-radius: 1rem;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      text-align: center;
+      backdrop-filter: blur(4px);
+    }
+    .dark .trust-logo {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(16,185,129,0.2);
+    }
+    .trust-logo:hover {
+      transform: translateY(-3px);
+      background: rgba(16,185,129,0.1);
+    }
+    /* Video background section */
+    .video-section {
+      position: relative;
+      overflow: hidden;
+      background-color: #000;
+    }
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(10,37,64,0.85) 0%, rgba(15,43,94,0.8) 100%);
+      z-index: 1;
+    }
+    .video-content {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
 
+  <!-- Botón Modo Oscuro flotante -->
+  <button id="darkModeToggle" class="theme-toggle fixed bottom-5 right-5 z-50 bg-gray-800/80 dark:bg-white/10 text-white p-3 rounded-full shadow-xl backdrop-blur-md border border-white/20">
+    <i class="fas fa-moon dark:hidden text-lg"></i>
+    <i class="fas fa-sun hidden dark:inline-block text-lg"></i>
+  </button>
+
+  <!-- ================= HERO SECTION 2026 ================= -->
+  <section class="hero-bg-2026 text-white relative min-h-[90vh] flex items-center">
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+    <div class="container mx-auto px-5 md:px-8 py-16 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-block glass-card px-5 py-2 rounded-full text-sm font-semibold mb-6 backdrop-blur-md">
+          <i class="fas fa-chart-line mr-2 text-green-400"></i> +52 negocios chilenos confían
+        </div>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 bg-gradient-to-r from-white via-green-200 to-blue-300 bg-clip-text text-transparent">
+          Llena tu WhatsApp de clientes <span class="text-green-400 underline decoration-2">desde $25.000</span>
+        </h1>
+        <p class="text-xl text-blue-100 max-w-2xl mx-auto mb-8">
+          Servicios digitales express que conectan tu negocio con más consultas reales en <strong class="text-white">24 a 72 horas</strong>. Precios pensados para Pymes chilenas, resultados garantizados.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-5 justify-center">
+          <a href="https://wa.me/56912345678?text=Hola%21%20Quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="btn-wa bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-xl text-xl shadow-xl flex items-center justify-center gap-3">
+            <i class="fab fa-whatsapp text-2xl"></i> ¡QUIERO CLIENTES AHORA!
+          </a>
+          <a href="#servicios" class="glass-card text-white font-semibold py-4 px-7 rounded-xl text-lg transition hover:bg-white/20 border border-white/30">
+            Ver Servicios Express
+          </a>
+        </div>
+        <p class="text-blue-100 text-sm mt-8"><i class="fas fa-clock mr-1"></i> Implementación rápida · Soporte vía WhatsApp · Certificación HubSpot</p>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-10 md:h-14">
+        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28 70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08 36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="#f9fafb" class="dark:fill-gray-950" opacity="0.95"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ========== PRUEBA SOCIAL (CONTADORES ANIMADOS) ========== -->
+  <section class="bg-white dark:bg-gray-900 py-12 border-b border-gray-100 dark:border-gray-800">
+    <div class="container mx-auto px-5 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+        <div class="flex flex-col items-center"><div class="text-5xl font-black text-primary dark:text-green-400 counter-number" id="counter-business">+0</div><p class="text-gray-600 dark:text-gray-300 text-lg font-medium mt-2">negocios atendidos en Chile</p></div>
+        <div class="flex flex-col items-center"><div class="text-5xl font-black text-primary dark:text-green-400 counter-number" id="counter-repeat">0%</div><p class="text-gray-600 dark:text-gray-300 text-lg font-medium mt-2">repiten o recomiendan</p></div>
+        <div class="flex flex-col items-center"><div class="text-5xl font-black text-primary dark:text-green-400">4.9<span class="text-3xl">/5</span></div><div class="flex text-yellow-400 text-xl mt-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><p class="text-gray-600 dark:text-gray-300 text-lg font-medium">calificación promedio</p></div>
+        <div class="flex flex-col items-center"><div class="text-5xl font-black text-primary dark:text-green-400 counter-number" id="counter-leads">0</div><p class="text-gray-600 dark:text-gray-300 text-lg font-medium mt-2">leads generados para clientes</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MARCAS QUE CONFÍAN (EMPRESAS HISPANOAMERICANAS) ========== -->
+  <section class="py-12 bg-gray-50 dark:bg-gray-800/20">
+    <div class="container mx-auto px-5 md:px-8 text-center">
+      <p class="text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 font-semibold mb-6">Empresas que confían en GoClientes</p>
+      <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6">
+        <div class="trust-logo"><i class="fas fa-store mr-2 text-green-500"></i> Distribuidora Andes</div>
+        <div class="trust-logo"><i class="fas fa-tshirt mr-2 text-green-500"></i> Moda Vita</div>
+        <div class="trust-logo"><i class="fas fa-laptop-code mr-2 text-green-500"></i> TechSoluciones CL</div>
+        <div class="trust-logo"><i class="fas fa-utensils mr-2 text-green-500"></i> Sabores del Sur</div>
+        <div class="trust-logo"><i class="fas fa-dumbbell mr-2 text-green-500"></i> FitEnergy</div>
+        <div class="trust-logo"><i class="fas fa-hand-holding-heart mr-2 text-green-500"></i> EmprendeMujer</div>
+        <div class="trust-logo"><i class="fas fa-tools mr-2 text-green-500"></i> Mecánica Rápida</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICIOS EXPRESS (COMPLETOS) ================= -->
+  <section id="servicios" class="py-16 md:py-24 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-5 md:px-8">
+      <div class="text-center mb-14">
+        <span class="text-green-600 dark:text-green-400 font-semibold tracking-wide uppercase text-sm"><i class="fas fa-bolt mr-1"></i> Resultados en 24-72h</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mt-3">Servicios Express</h2>
+        <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mt-3">Soluciones enfocadas, precios accesibles para Pymes chilenas.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Tarjeta 1: Auditoría Inbound -->
+        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent backdrop-blur-sm"></div><div class="relative z-10 p-6 flex flex-col h-full text-white min-h-[280px]"><div class="text-5xl mb-2">📊</div><h3 class="text-2xl font-bold">Auditoría Inbound + Reporte</h3><p class="text-gray-200 text-sm mt-2 mb-4">Revisión completa de canales digitales y recomendaciones para atraer clientes por inbound.</p><div class="mt-auto"><p class="text-3xl font-black text-green-400 mb-3">$29.000 - $39.000</p><a href="https://wa.me/56912345678?text=Quiero%20Auditoría%20Inbound" target="_blank" class="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-500 text-white font-semibold py-2.5 px-5 rounded-xl w-full transition btn-wa"><i class="fab fa-whatsapp"></i> Lo quiero</a></div></div></div>
+        <!-- Tarjeta 2: Chatwoot + IA -->
+        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1531746790731-6c087fecd65a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent backdrop-blur-sm"></div><div class="relative z-10 p-6"><div class="text-5xl mb-2">🤖</div><h3 class="text-2xl font-bold text-white">Instalación Chatwoot + Agente IA</h3><p class="text-gray-200 text-sm mt-2">Centraliza chats y responde 24/7 con IA.</p><div class="mt-auto pt-4"><p class="text-3xl font-black text-green-400">$39.000 - $59.000</p><a href="#" class="btn-wa inline-flex items-center justify-center gap-2 bg-green-600 text-white font-semibold py-2.5 px-5 rounded-xl w-full mt-2"><i class="fab fa-whatsapp"></i> Lo quiero</a></div></div></div>
+        <!-- Tarjeta 3: Sitio Web Estático -->
+        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent backdrop-blur-sm"></div><div class="relative z-10 p-6"><div class="text-5xl mb-2">🌐</div><h3 class="text-2xl font-bold text-white">Sitio Web Estático Básico</h3><p class="text-gray-200 text-sm">Presencia profesional responsive. Hasta 5 páginas.</p><div class="mt-4"><p class="text-3xl font-black text-green-400">$49.000 - $69.000</p><a href="#" class="btn-wa inline-flex items-center justify-center gap-2 bg-green-600 text-white font-semibold py-2.5 px-5 rounded-xl w-full"><i class="fab fa-whatsapp"></i> Lo quiero</a></div></div></div>
+        <!-- Tarjeta 4: Landing Page + Lead Magnet -->
+        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent backdrop-blur-sm"></div><div class="relative z-10 p-6"><div class="text-5xl mb-2">📥</div><h3 class="text-2xl font-bold text-white">Landing Page + Lead Magnet</h3><p class="text-gray-200 text-sm">Página de alta conversión con imán de leads.</p><div class="mt-4"><p class="text-3xl font-black text-green-400">$59.000 - $79.000</p><a href="#" class="btn-wa inline-flex items-center justify-center gap-2 bg-green-600 text-white font-semibold py-2.5 px-5 rounded-xl w-full"><i class="fab fa-whatsapp"></i> Lo quiero</a></div></div></div>
+        <!-- Tarjeta 5: Config Meta Ads -->
+        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent backdrop-blur-sm"></div><div class="relative z-10 p-6"><div class="text-5xl mb-2">📣</div><h3 class="text-2xl font-bold text-white">Configuración Básica Meta Ads</h3><p class="text-gray-200 text-sm">Campañas optimizadas para leads por WhatsApp.</p><div class="mt-4"><p class="text-3xl font-black text-green-400">$49.000 - $79.000</p><a href="#" class="btn-wa inline-flex items-center justify-center gap-2 bg-green-600 text-white font-semibold py-2.5 px-5 rounded-xl w-full"><i class="fab fa-whatsapp"></i> Lo quiero</a></div></div></div>
+        <!-- Tarjeta 6: Plantillas WhatsApp -->
+        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent backdrop-blur-sm"></div><div class="relative z-10 p-6"><div class="text-5xl mb-2">💬</div><h3 class="text-2xl font-bold text-white">Plantillas WhatsApp + Secuencias</h3><p class="text-gray-200 text-sm">Kit de mensajes y automatización para cerrar ventas.</p><div class="mt-4"><p class="text-3xl font-black text-green-400">$25.000 - $35.000</p><a href="#" class="btn-wa inline-flex items-center justify-center gap-2 bg-green-600 text-white font-semibold py-2.5 px-5 rounded-xl w-full"><i class="fab fa-whatsapp"></i> Lo quiero</a></div></div></div>
+        <!-- Tarjeta 7: Config Meta Business -->
+        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent backdrop-blur-sm"></div><div class="relative z-10 p-6"><div class="text-5xl mb-2">🔐</div><h3 class="text-2xl font-bold text-white">Config. y Verificación Meta Business</h3><p class="text-gray-200 text-sm">Habilita tu ecosistema publicitario.</p><div class="mt-4"><p class="text-3xl font-black text-green-400">$39.000 - $55.000</p><a href="#" class="btn-wa inline-flex items-center justify-center gap-2 bg-green-600 text-white font-semibold py-2.5 px-5 rounded-xl w-full"><i class="fab fa-whatsapp"></i> Lo quiero</a></div></div></div>
+        <!-- Tarjeta 8: Entorno Facebook Ads -->
+        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent backdrop-blur-sm"></div><div class="relative z-10 p-6"><div class="text-5xl mb-2">📈</div><h3 class="text-2xl font-bold text-white">Entorno Facebook Ads (Pixel, Catálogo)</h3><p class="text-gray-200 text-sm">Instalación de Pixel, catálogo y eventos.</p><div class="mt-4"><p class="text-3xl font-black text-green-400">$45.000 - $65.000</p><a href="#" class="btn-wa inline-flex items-center justify-center gap-2 bg-green-600 text-white font-semibold py-2.5 px-5 rounded-xl w-full"><i class="fab fa-whatsapp"></i> Lo quiero</a></div></div></div>
+        <!-- Tarjeta 9: Documentos PDF -->
+        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent backdrop-blur-sm"></div><div class="relative z-10 p-6"><div class="text-5xl mb-2">📄</div><h3 class="text-2xl font-bold text-white">Documentos Profesionales en PDF</h3><p class="text-gray-200 text-sm">Catálogos, cotizaciones de alto impacto.</p><div class="mt-4"><p class="text-3xl font-black text-green-400">$29.000 - $59.000</p><a href="#" class="btn-wa inline-flex items-center justify-center gap-2 bg-green-600 text-white font-semibold py-2.5 px-5 rounded-xl w-full"><i class="fab fa-whatsapp"></i> Lo quiero</a></div></div></div>
+        <!-- Tarjeta 10: Mini Pack WhatsApp -->
+        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center ring-2 ring-green-500" style="background-image: url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent backdrop-blur-sm"></div><div class="relative z-10 p-6"><div class="text-5xl mb-2">🚀</div><h3 class="text-2xl font-bold text-white">Mini Pack WhatsApp</h3><p class="text-gray-200 text-sm">Kit completo: plantillas + secuencias + agente básico.</p><div class="mt-4"><p class="text-3xl font-black text-green-400">$89.000</p><a href="#" class="btn-wa inline-flex items-center justify-center gap-2 bg-green-600 text-white font-semibold py-2.5 px-5 rounded-xl w-full"><i class="fab fa-whatsapp"></i> Lo quiero</a></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CASOS DE ÉXITO EXPRESS ========== -->
+  <section class="py-12 bg-gray-50 dark:bg-gray-800/20">
+    <div class="container mx-auto px-5 md:px-8">
+      <div class="text-center mb-10"><h2 class="text-3xl font-bold text-gray-800 dark:text-white">✨ Casos de éxito express ✨</h2><p class="text-gray-500 dark:text-gray-400">Resultados reales en menos de 30 días</p></div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card p-5 text-center rounded-xl"><i class="fas fa-chart-line text-3xl text-green-600 mb-2"></i><p class="font-bold">+80% consultas por WhatsApp</p><p class="text-sm">Panadería "El Trigal" · Maipú</p></div>
+        <div class="glass-card p-5 text-center rounded-xl"><i class="fas fa-calendar-check text-3xl text-green-600 mb-2"></i><p class="font-bold">120 leads en 2 semanas</p><p class="text-sm">Estudio Jurídico R&L · Santiago</p></div>
+        <div class="glass-card p-5 text-center rounded-xl"><i class="fas fa-whatsapp text-3xl text-green-600 mb-2"></i><p class="font-bold">Ahorro de 15h/semana</p><p class="text-sm">Clínica Dental Smile · Viña</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PAQUETES COMBO DESTACADOS CON VIDEO DE FONDO (MEJORA 2026) ================= -->
+  <section class="video-section relative py-24 md:py-32 overflow-hidden">
+    <!-- Video de fondo libre (Mixkit - red digital, sin copyright) -->
+    <video class="video-background" autoplay loop muted playsinline>
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-network-animation-of-internet-connections-1241-large.mp4" type="video/mp4">
+      <!-- Fallback: imagen estática -->
+      <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="absolute inset-0 w-full h-full object-cover">
+    </video>
+    <div class="video-overlay"></div>
+    
+    <div class="video-content container mx-auto px-5 md:px-8 relative z-10">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">Paquetes Combo Destacados</h2>
+        <p class="text-blue-100 text-lg mt-2">Ahorra y multiplica tus resultados con nuestras soluciones integradas</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Mini Pack WhatsApp -->
+        <div class="glass-card p-7 text-center hover:scale-105 transition duration-300 backdrop-blur-md bg-white/10 border-white/30">
+          <div class="text-6xl mb-3">💎</div>
+          <h3 class="text-2xl font-bold text-white">Mini Pack WhatsApp</h3>
+          <p class="text-gray-200 text-sm my-3">Plantillas + secuencias automatizadas + asesoría exprés</p>
+          <div class="text-4xl font-extrabold text-green-400 my-3">$89.000</div>
+          <a href="https://wa.me/56912345678?text=Quiero%20el%20Mini%20Pack%20WhatsApp" target="_blank" class="btn-wa bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl inline-flex gap-2 w-full justify-center"><i class="fab fa-whatsapp text-xl"></i> Contratar ahora</a>
+        </div>
+        <!-- Pack Arranca Ya (Recomendado) -->
+        <div class="glass-card p-7 text-center hover:scale-105 transition duration-300 ring-2 ring-green-400 backdrop-blur-md bg-white/10 relative">
+          <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-xs font-bold px-4 py-1 rounded-full">🔥 Recomendado</div>
+          <div class="text-6xl mb-3">⚡</div>
+          <h3 class="text-2xl font-bold text-white">Pack Arranca Ya</h3>
+          <p class="text-gray-200 text-sm my-3">Sitio Web + Landing Page + Lead Magnet. Todo en uno.</p>
+          <div class="text-4xl font-extrabold text-green-400 my-3">$129.000</div>
+          <a href="https://wa.me/56912345678?text=Quiero%20el%20Pack%20Arranca%20Ya" target="_blank" class="btn-wa bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl inline-flex gap-2 w-full justify-center"><i class="fab fa-whatsapp text-xl"></i> Lo quiero</a>
+        </div>
+        <!-- Pack Ads Inicial -->
+        <div class="glass-card p-7 text-center hover:scale-105 transition duration-300 backdrop-blur-md bg-white/10 border-white/30">
+          <div class="text-6xl mb-3">📢</div>
+          <h3 class="text-2xl font-bold text-white">Pack Ads Inicial</h3>
+          <p class="text-gray-200 text-sm my-3">Meta Business + Pixel + Catálogo + Configuración completa</p>
+          <div class="text-4xl font-extrabold text-green-400 my-3">$149.000</div>
+          <a href="https://wa.me/56912345678?text=Quiero%20el%20Pack%20Ads%20Inicial" target="_blank" class="btn-wa bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl inline-flex gap-2 w-full justify-center"><i class="fab fa-whatsapp text-xl"></i> Adquirir Pack</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIOS ========== -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-800/20">
+    <div class="container mx-auto px-5 md:px-8">
+      <div class="text-center mb-12"><i class="fas fa-comment-dots text-4xl text-green-600"></i><h2 class="text-4xl font-bold mt-2">Lo que dicen nuestros clientes</h2></div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass-card p-6"><div class="flex text-yellow-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="italic">"Aumentamos 40% los mensajes por WhatsApp en 48 horas. Excelente servicio."</p><div class="flex items-center gap-3 mt-4"><img src="https://randomuser.me/api/portraits/women/68.jpg" class="w-12 h-12 rounded-full object-cover"><div><p class="font-bold">Carolina Méndez</p><p class="text-xs">Cafetería El Bosque</p></div></div></div>
+        <div class="glass-card p-6"><div class="flex text-yellow-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="italic">"En una semana teníamos web y landing captando leads. El mejor pack."</p><div class="flex items-center gap-3 mt-4"><img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-12 h-12 rounded-full object-cover"><div><p class="font-bold">Felipe Rojas</p><p class="text-xs">Maderas Rojas</p></div></div></div>
+        <div class="glass-card p-6"><div class="flex text-yellow-400 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="italic">"Pasamos de 0 a 15 consultas semanales con Meta Ads. 100% recomendado."</p><div class="flex items-center gap-3 mt-4"><img src="https://randomuser.me/api/portraits/women/45.jpg" class="w-12 h-12 rounded-full object-cover"><div><p class="font-bold">María Teresa López</p><p class="text-xs">Clínica Dental Sonrisa</p></div></div></div>
+      </div>
+      <div class="max-w-md mx-auto mt-8 bg-green-50 dark:bg-gray-800 rounded-xl p-3 flex justify-between items-center"><div><i class="fab fa-google"></i> <span class="font-bold">4.9</span> ★★★★★ <span class="text-sm">32 reseñas</span></div><span class="text-green-600">Excelente</span></div>
+    </div>
+  </section>
+
+  <!-- ========== GARANTÍAS Y CONFIANZA ========== -->
+  <section class="py-14 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-5 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+        <div class="glass-card p-4"><i class="fas fa-certificate text-4xl text-green-600 mb-2"></i><h3 class="font-bold">Certificación HubSpot</h3><p class="text-sm">Inbound Marketing oficial</p></div>
+        <div class="glass-card p-4"><i class="fas fa-rocket text-4xl text-green-600 mb-2"></i><h3 class="font-bold">Entrega rápida</h3><p class="text-sm">24 a 72 horas</p></div>
+        <div class="glass-card p-4"><i class="fas fa-lock text-4xl text-green-600 mb-2"></i><h3 class="font-bold">Pago seguro</h3><p class="text-sm">Transferencia, Mercado Pago</p></div>
+        <div class="glass-card p-4"><i class="fas fa-headset text-4xl text-green-600 mb-2"></i><h3 class="font-bold">Soporte activo</h3><p class="text-sm">Post-venta vía WhatsApp</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-gradient-to-r from-gray-900 to-gray-800 text-white pt-12 pb-6">
+    <div class="container mx-auto px-5 md:px-8 text-center">
+      <h3 class="text-3xl font-bold mb-4">¿Listo para llenar tu WhatsApp de clientes?</h3>
+      <p class="mb-6">Empieza hoy con uno de nuestros Servicios Express o paquetes combinados.</p>
+      <a href="https://wa.me/56912345678?text=Hola%20quiero%20consultar" target="_blank" class="btn-wa bg-green-600 hover:bg-green-700 px-10 py-4 rounded-xl text-xl inline-flex gap-3"><i class="fab fa-whatsapp fa-2x"></i> ESCRIBIR A GOCLIENTES</a>
+      <hr class="border-gray-700 my-8">
+      <div class="flex flex-col md:flex-row justify-between text-sm"><div><i class="fab fa-whatsapp"></i> +56 9 1234 5678 · contacto@goclientes.cl</div><div>© 2025 GoClientes.cl - Agencia especializada en Pymes Chilenas</div></div>
+    </div>
+  </footer>
+
+  <script>
+    // Contadores animados
+    function animateCounter(el, start, end, suffix = '') {
+      let current = start;
+      const step = Math.ceil((end - start) / 60);
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= end) { el.innerText = end + suffix; clearInterval(timer); }
+        else { el.innerText = (suffix === '%' ? current : '+' + current) + suffix; }
+      }, 25);
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const business = document.getElementById('counter-business');
+          const repeat = document.getElementById('counter-repeat');
+          const leads = document.getElementById('counter-leads');
+          if (business && business.innerText === '+0') animateCounter(business, 0, 52, '');
+          if (repeat && repeat.innerText === '0%') animateCounter(repeat, 0, 89, '%');
+          if (leads && leads.innerText === '0') animateCounter(leads, 0, 1250, '');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+    const statsSection = document.querySelector('.bg-white.py-12.border-b');
+    if (statsSection) observer.observe(statsSection);
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.scroll-reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.service-card, .glass-card, .testimonial-card').forEach(el => { el.classList.add('scroll-reveal'); revealObserver.observe(el); });
+    setTimeout(() => { document.querySelectorAll('.scroll-reveal').forEach(el => { if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add('revealed'); }); }, 200);
+
+    // Dark mode toggle
+    const toggle = document.getElementById('darkModeToggle');
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+      });
+      if (localStorage.getItem('darkMode') === 'true') document.documentElement.classList.add('dark');
+    }
+  </script>
+</body>
+</html>
