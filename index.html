@@ -202,31 +202,29 @@
       padding: 10rem 1.5rem 6rem; text-align: center;
       position: relative; overflow: hidden; min-height: 100vh;
       display: flex; flex-direction: column; justify-content: center; align-items: center;
-      background-color: #0a0e13; /* fallback oscuro */
+      background-color: #0a0e13;
     }
-    /* Capa 1: imagen principal (imag2.png) */
     .hero-bg-img {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background-image: url('/img/imag2.png');
+      background-image: url('img/imag2.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      opacity: 0.3;
+      opacity: 0.2;
       z-index: 0;
     }
-    /* Capa 2: segunda imagen (img3.png) con posición diferente (p.ej., abajo derecha) */
     .hero-bg-img2 {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background-image: url('/img/img3.png');
+      background-image: url('img/img3.png');
       background-size: contain;
       background-position: bottom right;
       background-repeat: no-repeat;
-      opacity: 0.25;
+      opacity: 0.15;
       z-index: 0;
     }
     [data-theme="dark"] .hero-bg-img,
     [data-theme="dark"] .hero-bg-img2 {
-      opacity: 0.2;
+      opacity: 0.12;
     }
     #particles-canvas { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events: none; z-index: 1; }
     .hero > * { position: relative; z-index: 2; }
@@ -830,10 +828,6 @@
 </head>
 <body>
 
-<!-- ... resto del HTML (navbar, live-bar, hero, problem, pasos, etc.) ... -->
-<!-- Por brevedad, mantengo el contenido exacto de la versión anterior, solo cambiando las imágenes de fondo. -->
-<!-- Asegúrate de que el resto del código esté completo. Para no repetir 5000 líneas, aquí pongo el resumen: -->
-
 <div id="readProgress"></div>
 <div class="cursor"></div>
 <div class="cursor-follower"></div>
@@ -864,7 +858,7 @@
 
 <section class="hero">
   <div class="hero-bg-img"></div>
-  <div class="hero-bg-img2"></div>  <!-- Segunda imagen -->
+  <div class="hero-bg-img2"></div>
   <canvas id="particles-canvas"></canvas>
   <div class="hero-badge"><span class="pulse"></span> 🔴 <span id="watchersCount">47</span> personas viendo esta oferta ahora</div>
   <div style="margin-bottom:0.5rem;">
@@ -895,8 +889,326 @@
   </div>
 </section>
 
-<!-- El resto de secciones (trust-bar, problem-section, steps-section, fomo-section, dashboard-section, casos-section, pricing-section, faq-section, premium-form-section, footer, wa-float y script) permanecen exactamente igual que en el código anterior. -->
-<!-- Para que el archivo no sea enorme, he dejado las partes clave. Pero tú debes incluir el resto completo. -->
+<div class="trust-bar">
+  <div class="trust-scroll">
+    <div class="trust-item"><span class="tick">✓</span> 🏆 +187 clientes satisfechos</div>
+    <div class="trust-item"><span class="tick">✓</span> ⭐ 4.98 Google Rating</div>
+    <div class="trust-item"><span class="tick">✓</span> 🏅 Certificados Google Partner</div>
+    <div class="trust-item"><span class="tick">✓</span> 📰 Aparecimos en Emol</div>
+    <div class="trust-item"><span class="tick">✓</span> 🚀 1,247+ proyectos completados</div>
+    <div class="trust-item"><span class="tick">✓</span> 🌎 42+ ciudades en Chile</div>
+  </div>
+</div>
 
+<section class="problem-section">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center"><div class="section-tag">El problema real</div><h2 class="section-title">¿Te identificas con esto?</h2><p class="section-sub" style="margin:0 auto 2rem">Millones de personas buscan servicios locales cada día. Si no apareces, le das el negocio a tu competencia.</p></div>
+    <div class="problem-grid">
+      <div class="problem-card reveal"><div class="problem-icon">📁</div><h3>Datos viejos, sin clientes nuevos</h3><p>Los directorios ya no funcionan. Tus contactos de hace años no te llaman más.</p></div>
+      <div class="problem-card reveal"><div class="problem-icon">🔍</div><h3>Tu competencia aparece primero</h3><p>Mientras tú no tienes presencia online, ellos reciben consultas por WhatsApp hoy.</p></div>
+      <div class="problem-card reveal"><div class="problem-icon">📞</div><h3>Solo llegan recomendaciones esporádicas</h3><p>Dependes de que alguien te pase el dato. Eso no escala.</p></div>
+      <div class="problem-card reveal"><div class="problem-icon">⏳</div><h3>Sin tiempo para aprender tecnología</h3><p>Tienes trabajo, familia y un negocio que atender.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="steps-section" id="como-funciona">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center"><div class="section-tag">🚀 Proceso</div><h2 class="section-title">En <span style="color:var(--green)">4 pasos simples</span> tienes clientes</h2><p class="section-sub" style="margin:0 auto 2rem">Nosotros hacemos todo el trabajo. Tú solo atiendes los mensajes que llegan.</p></div>
+    <div class="steps-grid">
+      <div class="step-card reveal"><div class="step-number">1</div><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=200&fit=crop" class="step-img" loading="lazy" /><h3>📱 Nos contactas por WhatsApp</h3><p>Cuéntanos qué servicio ofreces y en qué ciudad. Te respondemos en menos de 2 horas.</p></div>
+      <div class="step-card reveal"><div class="step-number">2</div><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=400&h=200&fit=crop" class="step-img" loading="lazy" /><h3>🎨 Diseñamos tu automatización</h3><p>Creamos tu infraestructura con Chatwoot, n8n y CRM adaptada a tu negocio.</p></div>
+      <div class="step-card reveal"><div class="step-number">3</div><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=200&fit=crop" class="step-img" loading="lazy" /><h3>🚀 Lanzamos campañas de ads</h3><p>Activamos campañas en Facebook y Google para atraer clientes calificados.</p></div>
+      <div class="step-card reveal"><div class="step-number">4</div><img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&h=200&fit=crop" class="step-img" loading="lazy" /><h3>💬 Los clientes te escriben</h3><p>Empiezas a recibir mensajes de clientes reales en tu WhatsApp. Tú solo respondes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="fomo-section">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center"><div class="section-tag">⚡ Actividad en vivo</div><h2 class="section-title">Lo que está pasando <span style="color:var(--green)">ahora mismo</span> en Chile</h2><p class="section-sub" style="margin:0 auto 2rem">Mientras lees esto, negocios locales ya están captando clientes</p></div>
+    <div class="fomo-grid">
+      <div class="fomo-map reveal"><h3>📍 Actividad por región</h3><div class="region-badges"><span class="region-badge active">Santiago 🔥</span><span class="region-badge">Valparaíso 🔥</span><span class="region-badge">Concepción 🔥</span><span class="region-badge">La Serena</span><span class="region-badge">Antofagasta</span></div><div style="display:flex;gap:0.5rem;margin-top:1rem;align-items:flex-end;height:100px"><div class="heat-bar" style="height:80%">78</div><div class="heat-bar" style="height:45%">43</div><div class="heat-bar" style="height:62%">59</div><div class="heat-bar" style="height:28%">24</div><div class="heat-bar" style="height:31%">27</div></div><p style="font-size:0.7rem;margin-top:0.8rem;color:var(--muted)">Clientes activos por región en las últimas 24h</p></div>
+      <div class="fomo-activities reveal"><h3>🟢 Clientes activos en este momento</h3><ul class="activity-list" id="activityList"><li><span class="activity-time">Hace 2 min</span><span>María G. de Santiago contrató Plan Media</span></li><li><span class="activity-time">Hace 5 min</span><span>Carlos R. de Viña del Mar solicitó cotización</span></li><li><span class="activity-time">Hace 12 min</span><span>Patricia L. de Concepción recibió su web</span></li><li><span class="activity-time">Hace 18 min</span><span>Francisco M. de La Florida pidió info</span></li></ul><div class="fomo-warning">⚠️ Tu competencia YA está usando esto — No te quedes atrás</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="dashboard-section">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center"><div class="section-tag">📊 Métricas en vivo</div><h2 class="section-title">Lo que está <span style="color:var(--green)">logrando GoClientes</span> ahora mismo</h2><p class="section-sub" style="margin:0 auto 2rem">Datos actualizados en tiempo real</p></div>
+    <div class="dashboard-grid">
+      <div class="dashboard-card"><div class="dashboard-icon">📞</div><div class="dashboard-value" id="dashLeads">47</div><div class="dashboard-label">Leads captados hoy</div></div>
+      <div class="dashboard-card"><div class="dashboard-icon">📊</div><div class="dashboard-value" id="dashConv">32.8</div><div class="dashboard-label">% Tasa conversión</div></div>
+      <div class="dashboard-card"><div class="dashboard-icon">🟢</div><div class="dashboard-value" id="dashActive">129</div><div class="dashboard-label">Clientes activos ahora</div></div>
+      <div class="dashboard-card"><div class="dashboard-icon">⏱️</div><div class="dashboard-value" id="dashResponse">8.2</div><div class="dashboard-label">Tiempo respuesta (min)</div></div>
+      <div class="dashboard-card"><div class="dashboard-icon">⭐</div><div class="dashboard-value" id="dashRating">4.98</div><div class="dashboard-label">Satisfacción /5</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="casos-section" id="casos">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center"><div class="section-tag">🏆 Casos de éxito</div><h2 class="section-title">Resultados <span style="color:var(--green)">reales de clientes</span> reales</h2><p class="section-sub" style="margin:0 auto 2rem">Antes y después de usar GoClientes. Nombres reales, resultados verificados.</p></div>
+    <div class="casos-grid">
+      <div class="caso-card reveal"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&h=400&fit=crop" alt="Fontanero" class="caso-img" loading="lazy" /><div class="caso-body"><div class="caso-name">Carlos Riquelme</div><div class="caso-trade">🔧 Fontanero — Santiago, Macul</div><div class="caso-stat">📈 De 3 a 23 clientes/mes</div><p class="caso-quote">"Antes me llamaban 3 personas al mes si tenía suerte. Ahora mi WhatsApp no para."</p><div class="caso-stars">★★★★★</div></div></div>
+      <div class="caso-card reveal"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=400&fit=crop" alt="Peluquería" class="caso-img" loading="lazy" /><div class="caso-body"><div class="caso-name">Andrea Salazar</div><div class="caso-trade">💇 Peluquería — Valparaíso</div><div class="caso-stat">📈 De 8 a 23 citas/semana</div><p class="caso-quote">"Con GoClientes mis citas se triplicaron en el primer mes."</p><div class="caso-stars">★★★★★</div></div></div>
+      <div class="caso-card reveal"><img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&h=400&fit=crop" alt="Electricista" class="caso-img" loading="lazy" /><div class="caso-body"><div class="caso-name">Francisco Muñoz</div><div class="caso-trade">⚡ Electricista — Concepción</div><div class="caso-stat">📈 Duplicó sus ingresos en 45 días</div><p class="caso-quote">"Ahora tengo que rechazar clientes porque no me da el tiempo."</p><div class="caso-stars">★★★★★</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-section" id="planes">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center">
+      <div class="pricing-scarcity">⚠️ Precios de lanzamiento — Solo <span id="cuposRestantes">7</span> cupos disponibles</div>
+      <div class="section-tag">Planes y precios</div>
+      <h2 class="section-title">📦 Elige el nivel que <span style="color:var(--green)">automatizará tu negocio</span></h2>
+      <p class="section-sub" style="margin:0 auto 2rem">Setup único + mensualidad baja. Sin permanencia. Cancela cuando quieras.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="plan-card reveal"><div class="plan-name">Plan Básico</div><div class="plan-price-setup">$597 <span>USD setup</span></div><div class="plan-price-monthly">+ $47 / mes</div><div class="plan-note">Pago único de instalación + mensualidad</div><div class="plan-delivery">⏱️ Entrega en 48 horas</div><div class="plan-divider"></div><ul class="plan-features"><li><span class="chk">✓</span> Chatwoot instalado y configurado</li><li><span class="chk">✓</span> Conexión WhatsApp Business API a Chatwoot</li><li><span class="chk">✓</span> n8n workflow básico (WhatsApp → Google Sheets)</li><li><span class="chk">✓</span> CRM open source con usuario básico</li><li><span class="chk">✓</span> Campaña inicial de ads (Meta Pixel + 1 campaña leads)</li><li><span class="chk">✓</span> Soporte 30 días</li></ul><a href="https://wa.me/56987685450?text=Hola,%20quiero%20el%20Plan%20Básico%20($597%20setup)" class="btn-primary plan-cta" style="width:100%">Lo quiero →</a></div>
+      <div class="plan-card popular reveal"><div class="plan-badge">⭐ Más vendido</div><div class="plan-name">Plan Media</div><div class="plan-price-setup">$1,197 <span>USD setup</span></div><div class="plan-price-monthly">+ $97 / mes</div><div class="plan-note">Pago único de instalación + mensualidad</div><div class="plan-delivery">⏱️ Entrega en 5 días</div><div class="plan-divider"></div><ul class="plan-features"><li><span class="chk">✓</span> Todo lo del Plan Básico</li><li><span class="chk">✓</span> Chatwoot avanzado (etiquetas, respuestas predefinidas)</li><li><span class="chk">✓</span> n8n flujos complejos + respuestas automáticas fuera de horario</li><li><span class="chk">✓</span> Integración bidireccional WhatsApp ↔ CRM</li><li><span class="chk">✓</span> Conversions API (Facebook y Google)</li><li><span class="chk">✓</span> 2 campañas ads Facebook + 1 campaña Google Ads</li><li><span class="chk">✓</span> Dashboard Looker Studio básico</li><li><span class="chk">✓</span> Soporte 60 días</li></ul><a href="https://wa.me/56987685450?text=Hola,%20quiero%20el%20Plan%20Media%20($1,197%20setup)" class="btn-primary plan-cta" style="width:100%">Seleccionar plan →</a></div>
+      <div class="plan-card reveal"><div class="plan-badge" style="background:var(--red)">🔥 Solución completa</div><div class="plan-name">Full Service</div><div class="plan-price-setup">$1,997 <span>USD setup</span></div><div class="plan-price-monthly">+ $147 / mes</div><div class="plan-note">Pago único de instalación + mensualidad</div><div class="plan-delivery">⏱️ Entrega en 10 días</div><div class="plan-divider"></div><ul class="plan-features"><li><span class="chk">✓</span> Todo lo del Plan Media</li><li><span class="chk">✓</span> Chatbot con IA (OpenAI) dentro de Chatwoot</li><li><span class="chk">✓</span> n8n + IA: enriquecimiento de contactos, calificación de leads</li><li><span class="chk">✓</span> 5 campañas activas de ads (Facebook + Google) con optimización</li><li><span class="chk">✓</span> Audiencias personalizadas sincronizadas con CRM</li><li><span class="chk">✓</span> Pipeline de ventas completo + email automático</li><li><span class="chk">✓</span> Dashboard ejecutivo Looker Studio (ROI, leads, costos)</li><li><span class="chk">✓</span> Garantía: 30% más leads en 60 días o devolución 50% setup</li><li><span class="chk">✓</span> Soporte 90 días + consultoría semanal</li></ul><a href="https://wa.me/56987685450?text=Hola,%20quiero%20el%20Plan%20Full%20Service%20($1,997%20setup)" class="btn-primary plan-cta btn-red" style="width:100%">Solicitar Full →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section" id="faq">
+  <div style="max-width:800px;margin:0 auto">
+    <div class="reveal" style="text-align:center"><div class="section-tag">❓ FAQ</div><h2 class="section-title">Preguntas <span style="color:var(--green)">frecuentes</span></h2><p class="section-sub" style="margin:0 auto 2rem">Todo lo que necesitas saber antes de empezar</p></div>
+    <div class="faq-list reveal">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>¿Cuánto tiempo tarda en verse resultados?</span><span class="faq-icon">+</span></div><div class="faq-a">Los primeros leads suelen llegar en las primeras 48-72 horas tras activar las campañas. Resultados consistentes entre 2 y 4 semanas.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>¿Necesito conocimientos técnicos?</span><span class="faq-icon">+</span></div><div class="faq-a">Cero. Nosotros instalamos y configuramos todo (Chatwoot, n8n, CRM). Tú solo respondes los mensajes que llegan a tu WhatsApp.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>¿Qué pasa si cancelo la mensualidad?</span><span class="faq-icon">+</span></div><div class="faq-a">Si cancelas, el sistema deja de funcionar al final del mes pagado. El setup no es reembolsable, pero los flujos básicos (Chatwoot, CRM) quedan instalados, solo se detiene el mantenimiento.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>¿Funciona para cualquier tipo de negocio?</span><span class="faq-icon">+</span></div><div class="faq-a">Sí. Está pensado para servicios locales: fontaneros, electricistas, peluquerías, talleres, clínicas, etc. Adaptamos los flujos a tu rubro.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>¿Puedo usar mi propio número de WhatsApp?</span><span class="faq-icon">+</span></div><div class="faq-a">Sí, conectamos tu número real a través de WhatsApp Business API. Sigue siendo tu número, pero ahora automatizado y multicanal.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="premium-form-section" id="contacto-premium">
+  <div class="premium-form-container">
+    <div class="premium-form-card">
+      <div class="premium-badge">🎁 BONUS EXCLUSIVO</div>
+      <h2 class="premium-title">Descarga tu <span class="premium-highlight">Guía Gratis</span></h2>
+      <div class="premium-subtitle">"Cómo Automatizar WhatsApp + Ads + CRM para tu Negocio Local (sin ser experto)"</div>
+      <div class="premium-lead-magnet"><i class="fas fa-download"></i><span><strong>✅ Al enviar este formulario recibirás:</strong> Plantillas de mensajes, checklist de automatización y ejemplos reales de campañas que generan +667% de leads.</span></div>
+      <form id="premiumLeadForm" class="premium-form">
+        <div class="premium-form-grid">
+          <div class="premium-form-group"><label>Nombre completo *</label><input type="text" id="premium-name" required placeholder="Ej: Carlos Riquelme"></div>
+          <div class="premium-form-group"><label>Email *</label><input type="email" id="premium-email" required placeholder="tu@negocio.cl"></div>
+          <div class="premium-form-group"><label>Teléfono / WhatsApp</label><input type="tel" id="premium-phone" placeholder="+56 9 1234 5678"></div>
+          <div class="premium-form-group"><label>¿Qué solución te interesa?</label><select id="premium-solution"><option value="">Selecciona una opción</option><option>Agente IA para WhatsApp</option><option>Automatización de ventas</option><option>Chatbot IA</option><option>CRM + WhatsApp</option><option>Automatización con n8n</option><option>Atención al cliente IA</option><option>Otro</option></select></div>
+          <div class="premium-form-group premium-full-width"><label>¿Qué hace tu negocio y qué proceso quieres automatizar?</label><textarea id="premium-message" rows="3" placeholder="Ej: Tengo una peluquería y quiero que un bot responda preguntas frecuentes..."></textarea></div>
+          <div class="premium-form-group premium-half-width"><label>Código de descuento (opcional)</label><input type="text" id="premium-discount" placeholder="Ej: GOCLIENTES20"></div>
+        </div>
+        <button type="submit" class="premium-submit-btn">📥 Descargar Guía Gratis → y solicitar asesoría</button>
+        <p class="premium-security-text">🔒 Tus datos están protegidos. Respondemos en menos de 2 horas.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-cities"><span class="footer-city">Santiago</span><span class="footer-city">Valparaíso</span><span class="footer-city">Concepción</span><span class="footer-city">La Serena</span><span class="footer-city">Antofagasta</span><span class="footer-city">Viña del Mar</span><span class="footer-city">Rancagua</span><span class="footer-city">Temuco</span><span class="footer-city">Puerto Montt</span><span class="footer-city">Iquique</span></div>
+  <div class="footer-trust-badges"><div class="footer-badge"><i class="fas fa-lock"></i> SSL Seguro</div><div class="footer-badge"><i class="fas fa-shield-alt"></i> Garantía 30 días</div><div class="footer-badge"><i class="fab fa-google"></i> Google Partner</div><div class="footer-badge"><i class="fas fa-award"></i> 312 reseñas ★4.98</div></div>
+  <div class="footer-content">
+    <div class="footer-col"><span class="footer-logo">Go<span style="color:var(--green)">Clientes</span></span><p>Automatizamos WhatsApp, Chatwoot, n8n y CRM para negocios locales. Más de 187 clientes confían en nosotros.</p><div class="social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="https://wa.me/56987685450"><i class="fab fa-whatsapp"></i></a></div></div>
+    <div class="footer-col"><h4>Enlaces rápidos</h4><p><a href="#como-funciona">▶ Cómo funciona</a></p><p><a href="#planes">▶ Planes y precios</a></p><p><a href="#casos">▶ Casos de éxito</a></p><p><a href="#faq">▶ Preguntas frecuentes</a></p></div>
+    <div class="footer-col"><h4>Contacto</h4><p><i class="fas fa-envelope"></i> <a href="mailto:equipo@goclientes.com">equipo@goclientes.com</a></p><p><i class="fas fa-envelope"></i> <a href="mailto:soporte@goclientes.com">soporte@goclientes.com</a></p><p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/56987685450">+56 9 8768 5450</a></p></div>
+    <div class="footer-col"><h4>Medios de pago</h4><p>💳 WebPay</p><p>🏦 Transferencia bancaria</p><p>💵 Mercado Pago</p><p>🔵 Visa / Mastercard</p><p>₿ USDC / BTC</p></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 GoClientes — Automatización con IA para negocios locales de Chile 🇨🇱</p></div>
+</footer>
+
+<a href="https://wa.me/56987685450?text=Hola,%20quiero%20info%20sobre%20GoClientes" class="wa-float" target="_blank"><i class="fab fa-whatsapp" style="font-size:32px;color:white"></i></a>
+
+<script>
+  // ========== BARRA DE PROGRESO ==========
+  window.addEventListener('scroll', () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = total > 0 ? (window.scrollY / total) * 100 : 0;
+    document.getElementById('readProgress').style.width = pct + '%';
+  });
+
+  // ========== CURSOR ==========
+  const cursor = document.querySelector('.cursor'), follower = document.querySelector('.cursor-follower');
+  if (cursor && follower) {
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      follower.style.left = e.clientX + 'px';
+      follower.style.top = e.clientY + 'px';
+    });
+  }
+
+  // ========== TEMA OSCURO ==========
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  });
+  const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
+  // ========== NAVEGACIÓN ==========
+  window.addEventListener('scroll', () => document.getElementById('navbar')?.classList.toggle('scrolled', window.scrollY > 20));
+  function toggleMenu() { document.getElementById('navLinks')?.classList.toggle('open'); }
+  document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => document.getElementById('navLinks')?.classList.remove('open')));
+
+  // ========== SCROLL REVEAL ==========
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ========== CONTADORES ==========
+  function animateCounter(el, target) {
+    let start = null;
+    const step = (ts) => {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / 1800, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(ease * target);
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    };
+    requestAnimationFrame(step);
+  }
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(e.target, parseInt(e.target.dataset.target));
+        counterObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+  // ========== PARTÍCULAS ==========
+  (function initParticles() {
+    const canvas = document.getElementById('particles-canvas'); if (!canvas) return;
+    const ctx = canvas.getContext('2d'); let particles = [], W, H;
+    function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+    resize(); window.addEventListener('resize', resize);
+    function Particle() { this.x = Math.random() * W; this.y = Math.random() * H; this.size = Math.random() * 3 + 1; this.speedX = (Math.random() - 0.5) * 0.4; this.speedY = (Math.random() - 0.5) * 0.4; this.opacity = Math.random() * 0.4 + 0.1; }
+    Particle.prototype.update = function() { this.x += this.speedX; this.y += this.speedY; if (this.x < 0 || this.x > W) this.speedX *= -1; if (this.y < 0 || this.y > H) this.speedY *= -1; };
+    Particle.prototype.draw = function() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fillStyle = `rgba(0, 198, 94, ${this.opacity})`; ctx.fill(); };
+    for (let i = 0; i < 50; i++) particles.push(new Particle());
+    function animate() { ctx.clearRect(0, 0, W, H); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
+    animate();
+  })();
+
+  // ========== TYPEWRITER ==========
+  const typeEl = document.getElementById('typewriterEl');
+  if (typeEl) {
+    const words = ['Fontaneros', 'Electricistas', 'Peluquerías', 'Talleres', 'Delivery', 'Pintores', 'Maestros'];
+    let w = 0, ch = 0, del = false, speed = 110;
+    function type() {
+      const word = words[w];
+      if (!del) {
+        typeEl.textContent = word.slice(0, ch + 1);
+        ch++;
+        if (ch === word.length) { del = true; speed = 2200; } else speed = 110;
+      } else {
+        typeEl.textContent = word.slice(0, ch - 1);
+        ch--;
+        speed = 60;
+        if (ch === 0) { del = false; w = (w + 1) % words.length; speed = 300; }
+      }
+      setTimeout(type, speed);
+    }
+    setTimeout(type, 1000);
+  }
+
+  // ========== LIVE METRICS ==========
+  function updateLiveMetrics() {
+    document.getElementById('liveClients').innerText = Math.floor(Math.random() * (47 - 12 + 1) + 12);
+    document.getElementById('liveSearch').innerText = Math.floor(Math.random() * (89 - 15 + 1) + 15);
+    const spots = Math.floor(Math.random() * (9 - 3 + 1) + 3);
+    document.getElementById('liveSpots').innerText = spots;
+    document.getElementById('cuposRestantes') && (document.getElementById('cuposRestantes').innerText = spots);
+    document.getElementById('liveTimestamp').innerHTML = `Actualizado hace ${Math.floor(Math.random() * 5)} min`;
+  }
+  setInterval(updateLiveMetrics, 5000);
+  updateLiveMetrics();
+
+  // ========== DASHBOARD ==========
+  function updateDashboard() {
+    if (document.getElementById('dashLeads')) document.getElementById('dashLeads').innerText = Math.floor(Math.random() * (89 - 30 + 1) + 30);
+    if (document.getElementById('dashConv')) document.getElementById('dashConv').innerText = (Math.random() * (45 - 18) + 18).toFixed(1);
+    if (document.getElementById('dashActive')) document.getElementById('dashActive').innerText = Math.floor(Math.random() * (200 - 80 + 1) + 80);
+    if (document.getElementById('dashResponse')) document.getElementById('dashResponse').innerText = (Math.random() * (15 - 3) + 3).toFixed(1);
+    if (document.getElementById('dashRating')) document.getElementById('dashRating').innerText = (4.7 + Math.random() * 0.3).toFixed(2);
+  }
+  setInterval(updateDashboard, 10000);
+  updateDashboard();
+
+  // ========== ACTIVIDADES FOMO ==========
+  const acts = [{ time: "Hace 2 min", text: "María G. de Santiago contrató Plan Media" },{ time: "Hace 5 min", text: "Carlos R. de Viña del Mar solicitó cotización" },{ time: "Hace 8 min", text: "Patricia L. de Concepción recibió su web" },{ time: "Hace 12 min", text: "Francisco M. de La Florida pidió info" },{ time: "Hace 15 min", text: "Andrea S. de Valparaíso contrató Full Service" }];
+  let actIdx = 0;
+  function rotateActivities() {
+    const list = document.getElementById('activityList'); if (!list) return;
+    actIdx = (actIdx + 1) % acts.length;
+    const cities = ['Santiago', 'Viña', 'Concepción', 'La Serena', 'Antofagasta'];
+    const trades = ['Fontanero', 'Electricista', 'Peluquería', 'Delivery', 'Maestro'];
+    list.innerHTML = `<li><span class="activity-time">${acts[actIdx].time}</span><span>${acts[actIdx].text}</span></li>
+      <li><span class="activity-time">Hace ${Math.floor(Math.random() * 10 + 5)} min</span><span>Nuevo cliente en ${cities[Math.floor(Math.random()*cities.length)]}</span></li>
+      <li><span class="activity-time">Hace ${Math.floor(Math.random() * 20 + 10)} min</span><span>${trades[Math.floor(Math.random()*trades.length)]} solicitó cotización</span></li>`;
+  }
+  setInterval(rotateActivities, 8000);
+  rotateActivities();
+
+  // ========== FAQ ==========
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ========== CONTADOR ESPECTADORES ==========
+  function updateWatchers() { const el = document.getElementById('watchersCount'); if (el) el.textContent = Math.floor(Math.random() * (62 - 35 + 1) + 35); }
+  setInterval(updateWatchers, 12000);
+
+  // ========== FORMULARIO PREMIUM ==========
+  const premiumForm = document.getElementById('premiumLeadForm');
+  if (premiumForm) {
+    premiumForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('premium-name')?.value.trim();
+      const email = document.getElementById('premium-email')?.value.trim();
+      if (!name || !email) {
+        alert('Por favor, completa tu nombre y correo electrónico.');
+        return;
+      }
+      const phone = document.getElementById('premium-phone')?.value.trim();
+      const solution = document.getElementById('premium-solution')?.value || 'No especificada';
+      const message = document.getElementById('premium-message')?.value.trim();
+      const discount = document.getElementById('premium-discount')?.value.trim();
+
+      let waText = `Hola! Me interesa GO Automatizaciones IA.%0A%0A`;
+      waText += `📌 Datos de contacto:%0A`;
+      waText += `Nombre: ${encodeURIComponent(name)}%0A`;
+      waText += `Email: ${encodeURIComponent(email)}%0A`;
+      if (phone) waText += `Teléfono: ${encodeURIComponent(phone)}%0A`;
+      waText += `%0A🤖 Solución de interés:%0A${encodeURIComponent(solution)}%0A`;
+      if (message) waText += `%0A📝 Detalles del negocio:%0A${encodeURIComponent(message)}%0A`;
+      if (discount) waText += `%0A🎟️ Código descuento: ${encodeURIComponent(discount)}%0A`;
+
+      window.open(`https://wa.me/56987685450?text=${waText}`, '_blank');
+
+      // LEAD MAGNET: cambiar URL por la real de Google Drive
+      const leadMagnetUrl = 'https://drive.google.com/your-guide-link-here';
+      window.open(leadMagnetUrl, '_blank');
+
+      alert('✅ ¡Solicitud enviada! Revisa tu WhatsApp y tu correo. La guía se descargará automáticamente.');
+      premiumForm.reset();
+    });
+  }
+</script>
 </body>
 </html>
