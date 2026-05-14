@@ -197,7 +197,7 @@
     .live-metric strong { color:var(--green); font-size:1.1rem; }
     .live-timestamp { color:rgba(255,255,255,0.5); font-size:0.75rem; }
 
-    /* ========== HERO CON DOS IMÁGENES DE FONDO (CORREGIDO) ========== */
+    /* ========== HERO CON DOS IMÁGENES DE FONDO (RUTAS RELATIVAS Y OPACIDAD MEJORADA) ========== */
     .hero {
       padding: 10rem 1.5rem 6rem; text-align: center;
       position: relative; overflow: hidden; min-height: 100vh;
@@ -210,7 +210,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      opacity: 0.2;
+      opacity: 0.35;
       z-index: 0;
     }
     .hero-bg-img2 {
@@ -219,12 +219,12 @@
       background-size: contain;
       background-position: bottom right;
       background-repeat: no-repeat;
-      opacity: 0.15;
+      opacity: 0.25;
       z-index: 0;
     }
     [data-theme="dark"] .hero-bg-img,
     [data-theme="dark"] .hero-bg-img2 {
-      opacity: 0.12;
+      opacity: 0.2;
     }
     #particles-canvas { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events: none; z-index: 1; }
     .hero > * { position: relative; z-index: 2; }
@@ -244,15 +244,30 @@
     h1 {
       font-family:'Sora',sans-serif; font-weight:800;
       font-size:clamp(2.2rem,6vw,4rem); line-height:1.12;
-      color:var(--heading); max-width:880px; margin:0 auto 1.2rem;
+      color: var(--heading);
+      max-width:880px; margin:0 auto 1.2rem;
       letter-spacing:-0.02em;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+    [data-theme="light"] h1 {
+      color: #111111;
+      text-shadow: 0 1px 3px rgba(255,255,255,0.2);
     }
     h1 .accent {
       background:linear-gradient(135deg,#00C65E,#10b981,#00C65E);
       background-size:200% 200%; -webkit-background-clip:text; background-clip:text;
       color:transparent; animation:gradientShift 3s ease infinite;
     }
-    .hero-sub { color:var(--muted); font-size:1.1rem; max-width:580px; margin:0 auto 2rem; line-height:1.7; }
+    .hero-sub {
+      color: var(--muted);
+      font-size:1.1rem;
+      max-width:580px;
+      margin:0 auto 2rem;
+      line-height:1.7;
+    }
+    [data-theme="light"] .hero-sub {
+      color: #2c3e50;
+    }
     .hero-social-proof { display:flex; align-items:center; justify-content:center; gap:2.5rem; flex-wrap:wrap; margin:1.8rem 0; }
     .avatar-stack { display:flex; align-items:center; }
     .avatar {
@@ -919,7 +934,7 @@
       <div class="step-card reveal"><div class="step-number">1</div><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=200&fit=crop" class="step-img" loading="lazy" /><h3>📱 Nos contactas por WhatsApp</h3><p>Cuéntanos qué servicio ofreces y en qué ciudad. Te respondemos en menos de 2 horas.</p></div>
       <div class="step-card reveal"><div class="step-number">2</div><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=400&h=200&fit=crop" class="step-img" loading="lazy" /><h3>🎨 Diseñamos tu automatización</h3><p>Creamos tu infraestructura con Chatwoot, n8n y CRM adaptada a tu negocio.</p></div>
       <div class="step-card reveal"><div class="step-number">3</div><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=200&fit=crop" class="step-img" loading="lazy" /><h3>🚀 Lanzamos campañas de ads</h3><p>Activamos campañas en Facebook y Google para atraer clientes calificados.</p></div>
-      <div class="step-card reveal"><div class="step-number">4</div><img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&h=200&fit=crop" class="step-img" loading="lazy" /><h3>💬 Los clientes te escriben</h3><p>Empiezas a recibir mensajes de clientes reales en tu WhatsApp. Tú solo respondes.</p></div>
+      <div class="step-card reveal"><div class="step-number">4</div><img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&h=200&fit=crop" class="step-img" loading="lazy" /><h3>💬 Los clientes son atendidos al instante</h3><p>El sistema responde y organiza todo automáticamente. Tú solo hablas con los realmente interesados, el resto queda gestionado.</p></div>
     </div>
   </div>
 </section>
