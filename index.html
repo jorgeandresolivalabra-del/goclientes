@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
-    /* ========== VARIABLES Y RESET (igual que antes) ========== */
+    /* ========== VARIABLES Y RESET ========== */
     :root {
       --green: #00C65E;
       --green-dark: #009e4b;
@@ -197,18 +197,20 @@
     .live-metric strong { color:var(--green); font-size:1.1rem; }
     .live-timestamp { color:rgba(255,255,255,0.5); font-size:0.75rem; }
 
-    /* ========== HERO CON VIDEO DE FONDO ========== */
+    /* ========== HERO CON IMAGEN DE FONDO LOCAL ========== */
     .hero {
       padding: 10rem 1.5rem 6rem; text-align: center;
       position: relative; overflow: hidden; min-height: 100vh;
       display: flex; flex-direction: column; justify-content: center; align-items: center;
     }
-    .hero-video {
-      position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%;
-      width: auto; height: auto; transform: translate(-50%, -50%);
-      object-fit: cover; z-index: 0; opacity: 0.15; pointer-events: none;
+    .hero-bg-img {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('goclientes/img/Gemini_Generated_Image_7bvpxr7bvpxr7bvp (1).png');
+      background-size: cover; background-position: center; background-repeat: no-repeat;
+      opacity: 0.15; z-index: 0;
+      transition: transform 0.1s linear;
     }
-    [data-theme="dark"] .hero-video { opacity: 0.12; }
+    [data-theme="dark"] .hero-bg-img { opacity: 0.12; }
     #particles-canvas { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events: none; z-index: 1; }
     .hero > * { position: relative; z-index: 2; }
     .hero-badge {
@@ -335,14 +337,13 @@
     .dashboard-value { font-family:'Sora',sans-serif; font-size:2rem; font-weight:800; color:var(--green); line-height:1; }
     .dashboard-label { font-size:0.75rem; color:var(--muted); margin-top:0.3rem; }
 
-    /* ========== CASOS DE ÉXITO (UNA SOLA IMAGEN POR TARJETA) ========== */
+    /* ========== CASOS DE ÉXITO ========== */
     .casos-section { background:var(--bg); }
     .casos-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:3rem; }
     .caso-card {
       background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius-xl);
       overflow:hidden; transition:all 0.4s var(--ease);
     }
-    .caso-card:hover { transform:translateY(-10px); box-shadow:0 20px 60px rgba(0,0,0,0.12); }
     .caso-img {
       width: 100%; height: 220px; object-fit: cover;
       transition: transform 0.5s var(--ease);
@@ -841,11 +842,7 @@
 </div>
 
 <section class="hero">
-  <video class="hero-video" autoplay loop muted playsinline>
-    <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=8c3e9b8e5f5b5c5d5e5f5g5h5i5j5k5l&profile_id=164" type="video/mp4">
-    <!-- Video alternativo en caso de que no cargue el anterior -->
-    <source src="https://cdn.pixabay.com/video/2022/03/27/113863-693996885_large.mp4" type="video/mp4">
-  </video>
+  <div class="hero-bg-img"></div>
   <canvas id="particles-canvas"></canvas>
   <div class="hero-badge"><span class="pulse"></span> 🔴 <span id="watchersCount">47</span> personas viendo esta oferta ahora</div>
   <div style="margin-bottom:0.5rem;">
@@ -934,44 +931,13 @@
   </div>
 </section>
 
-<!-- CASOS DE ÉXITO CON UNA SOLA IMAGEN POR TARJETA -->
 <section class="casos-section" id="casos">
   <div style="max-width:1200px;margin:0 auto">
     <div class="reveal" style="text-align:center"><div class="section-tag">🏆 Casos de éxito</div><h2 class="section-title">Resultados <span style="color:var(--green)">reales de clientes</span> reales</h2><p class="section-sub" style="margin:0 auto 2rem">Antes y después de usar GoClientes. Nombres reales, resultados verificados.</p></div>
     <div class="casos-grid">
-      <!-- Carlos Riquelme - Fontanero -->
-      <div class="caso-card reveal">
-        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&h=400&fit=crop" alt="Fontanero trabajando" class="caso-img" loading="lazy" />
-        <div class="caso-body">
-          <div class="caso-name">Carlos Riquelme</div>
-          <div class="caso-trade">🔧 Fontanero — Santiago, Macul</div>
-          <div class="caso-stat">📈 De 3 a 23 clientes/mes</div>
-          <p class="caso-quote">"Antes me llamaban 3 personas al mes si tenía suerte. Ahora mi WhatsApp no para. Pasé a 23 clientes mensuales."</p>
-          <div class="caso-stars">★★★★★</div>
-        </div>
-      </div>
-      <!-- Andrea Salazar - Peluquería -->
-      <div class="caso-card reveal">
-        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=400&fit=crop" alt="Peluquería profesional" class="caso-img" loading="lazy" />
-        <div class="caso-body">
-          <div class="caso-name">Andrea Salazar</div>
-          <div class="caso-trade">💇 Peluquería — Valparaíso</div>
-          <div class="caso-stat">📈 De 8 a 23 citas/semana</div>
-          <p class="caso-quote">"Con GoClientes mis citas se triplicaron en el primer mes. Ahora tengo lista de espera."</p>
-          <div class="caso-stars">★★★★★</div>
-        </div>
-      </div>
-      <!-- Francisco Muñoz - Electricista -->
-      <div class="caso-card reveal">
-        <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&h=400&fit=crop" alt="Electricista trabajando" class="caso-img" loading="lazy" />
-        <div class="caso-body">
-          <div class="caso-name">Francisco Muñoz</div>
-          <div class="caso-trade">⚡ Electricista — Concepción</div>
-          <div class="caso-stat">📈 Duplicó sus ingresos en 45 días</div>
-          <p class="caso-quote">"Ahora tengo que rechazar clientes porque no me da el tiempo. La automatización de WhatsApp fue la clave."</p>
-          <div class="caso-stars">★★★★★</div>
-        </div>
-      </div>
+      <div class="caso-card reveal"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&h=400&fit=crop" alt="Fontanero" class="caso-img" loading="lazy" /><div class="caso-body"><div class="caso-name">Carlos Riquelme</div><div class="caso-trade">🔧 Fontanero — Santiago, Macul</div><div class="caso-stat">📈 De 3 a 23 clientes/mes</div><p class="caso-quote">"Antes me llamaban 3 personas al mes si tenía suerte. Ahora mi WhatsApp no para."</p><div class="caso-stars">★★★★★</div></div></div>
+      <div class="caso-card reveal"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=400&fit=crop" alt="Peluquería" class="caso-img" loading="lazy" /><div class="caso-body"><div class="caso-name">Andrea Salazar</div><div class="caso-trade">💇 Peluquería — Valparaíso</div><div class="caso-stat">📈 De 8 a 23 citas/semana</div><p class="caso-quote">"Con GoClientes mis citas se triplicaron en el primer mes."</p><div class="caso-stars">★★★★★</div></div></div>
+      <div class="caso-card reveal"><img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&h=400&fit=crop" alt="Electricista" class="caso-img" loading="lazy" /><div class="caso-body"><div class="caso-name">Francisco Muñoz</div><div class="caso-trade">⚡ Electricista — Concepción</div><div class="caso-stat">📈 Duplicó sus ingresos en 45 días</div><p class="caso-quote">"Ahora tengo que rechazar clientes porque no me da el tiempo."</p><div class="caso-stars">★★★★★</div></div></div>
     </div>
   </div>
 </section>
