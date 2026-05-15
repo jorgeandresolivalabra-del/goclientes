@@ -1,1 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Contacto | GoClientes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .header {
+            background: #1e3a5f;  /* azul profesional */
+            padding: 2rem 2rem 1.5rem;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #ffd966;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .form-wrapper {
+            padding: 2rem 2rem 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e2a3a;
+            font-size: 0.95rem;
+        }
+
+        .required-star {
+            color: #e53e3e;
+            margin-left: 3px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 1rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 16px;
+            background-color: #fff;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #1e3a5f;
+            box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .error-message {
+            color: #e53e3e;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .captcha-group {
+            background: #f8fafc;
+            padding: 12px 16px;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .captcha-question {
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #0f172a;
+        }
+
+        .captcha-input {
+            width: 120px;
+            margin-top: 5px;
+        }
+
+        button {
+            background: #1e3a5f;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 40px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s, transform 0.1s, opacity 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        button:hover {
+            background: #0f2b44;
+            transform: scale(1.01);
+        }
+
+        button:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .alert {
+            padding: 14px 18px;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-success {
+            background: #e6f9ed;
+            color: #2b6e3c;
+            border-left: 5px solid #2b6e3c;
+        }
+
+        .alert-error {
+            background: #ffe6e5;
+            color: #c53030;
+            border-left: 5px solid #c53030;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 2rem;
+            background: #f1f5f9;
+            font-size: 0.8rem;
+            color: #475569;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 600px) {
+            .form-wrapper {
+                padding: 1.5rem;
+            }
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Contáctanos</h1>
+        <p>¿Dudas, sugerencias o necesitas ayuda? Escríbenos y te responderemos lo antes posible.</p>
+        <a href="https://www.goclientes.com" class="back-link">← Volver al inicio</a>
+    </div>
+
+    <div class="form-wrapper">
+        <!-- alertas dinámicas -->
+        <div id="alertBox" class="alert"></div>
+
+        <form id="contactForm">
+            <div class="form-group">
+                <label>Nombre completo <span class="required-star">*</span></label>
+                <input type="text" id="name" name="name" placeholder="Ej: María González" autocomplete="name">
+                <div class="error-message" id="nameError">Este campo es obligatorio.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Correo electrónico <span class="required-star">*</span></label>
+                <input type="email" id="email" name="email" placeholder="tu@ejemplo.com" autocomplete="email">
+                <div class="error-message" id="emailError">Ingresa un email válido (ej: nombre@dominio.com).</div>
+            </div>
+
+            <div class="form-group">
+                <label>Teléfono <span style="font-weight: normal;">(opcional)</span></label>
+                <input type="tel" id="phone" name="phone" placeholder="+56 9 1234 5678" autocomplete="tel">
+            </div>
+
+            <div class="form-group">
+                <label>Asunto <span class="required-star">*</span></label>
+                <input type="text" id="subject" name="subject" placeholder="Consulta sobre servicios">
+                <div class="error-message" id="subjectError">El asunto es requerido.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Mensaje <span class="required-star">*</span></label>
+                <textarea id="message" name="message" placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
+                <div class="error-message" id="messageError">No olvides escribir tu mensaje.</div>
+            </div>
+
+            <!-- Captcha simple -->
+            <div class="captcha-group">
+                <div class="captcha-question">📝 Para evitar spam, responde: ¿Cuánto es <strong>2 + 3</strong>?</div>
+                <input type="number" id="captcha" class="captcha-input" placeholder="Resultado">
+                <div class="error-message" id="captchaError">La respuesta es incorrecta. Intenta de nuevo.</div>
+            </div>
+
+            <button type="submit" id="submitBtn">
+                <span>Enviar mensaje</span>
+            </button>
+        </form>
+    </div>
+    <footer>
+        © 2025 GoClientes — Atención profesional
+    </footer>
+</div>
+
+<script>
+    (function() {
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const alertBox = document.getElementById('alertBox');
+
+        // Elementos de campos
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const subjectInput = document.getElementById('subject');
+        const messageInput = document.getElementById('message');
+        const captchaInput = document.getElementById('captcha');
+
+        // Errores
+        const nameError = document.getElementById('nameError');
+        const emailError = document.getElementById('emailError');
+        const subjectError = document.getElementById('subjectError');
+        const messageError = document.getElementById('messageError');
+        const captchaError = document.getElementById('captchaError');
+
+        // Helper: mostrar alerta
+        function showAlert(message, type) {
+            alertBox.textContent = message;
+            alertBox.className = `alert alert-${type}`;
+            alertBox.style.display = 'flex';
+            // Auto ocultar después de 5 segundos
+            setTimeout(() => {
+                if (alertBox.style.display === 'flex') {
+                    alertBox.style.display = 'none';
+                }
+            }, 5000);
+        }
+
+        function hideAlert() {
+            alertBox.style.display = 'none';
+        }
+
+        // Validación en cliente
+        function validateForm() {
+            let isValid = true;
+
+            // Nombre
+            if (!nameInput.value.trim()) {
+                nameError.style.display = 'block';
+                isValid = false;
+            } else {
+                nameError.style.display = 'none';
+            }
+
+            // Email
+            const email = emailInput.value.trim();
+            const emailRegex = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            // Asunto
+            if (!subjectInput.value.trim()) {
+                subjectError.style.display = 'block';
+                isValid = false;
+            } else {
+                subjectError.style.display = 'none';
+            }
+
+            // Mensaje
+            if (!messageInput.value.trim()) {
+                messageError.style.display = 'block';
+                isValid = false;
+            } else {
+                messageError.style.display = 'none';
+            }
+
+            // Captcha (2+3=5)
+            const captchaValue = parseInt(captchaInput.value, 10);
+            if (isNaN(captchaValue) || captchaValue !== 5) {
+                captchaError.style.display = 'block';
+                isValid = false;
+            } else {
+                captchaError.style.display = 'none';
+            }
+
+            return isValid;
+        }
+
+        // Envío con fetch a Formspree (reemplazar con tu endpoint real)
+        // Para usar este código GRATIS: ve a https://formspree.io/ , regístrate, crea un nuevo formulario,
+        // y obtén tu ID (algo como "https://formspree.io/f/xqkrgvpa"). Luego reemplaza la URL abajo.
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/tu-id-aqui';  // <-- CAMBIA ESTO
+
+        // Si no quieres usar Formspree, puedes también configurar un backend propio.
+        // Mientras pruebas, puedes descomentar la línea de simulación (más abajo)
+
+        async function submitForm(data) {
+            // Opción 1: Enviar a Formspree (requiere endpoint válido)
+            // Si aún no tienes endpoint, la petición fallará y mostrará error controlado.
+            try {
+                const response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                if (response.ok) {
+                    return { success: true };
+                } else {
+                    const errorText = await response.text();
+                    console.error('Formspree error:', errorText);
+                    return { success: false, error: 'Error en el servidor (código ' + response.status + ')' };
+                }
+            } catch (err) {
+                console.error('Network error:', err);
+                return { success: false, error: 'No se pudo conectar. Revisa tu conexión o el endpoint.' };
+            }
+        }
+
+        // Evento submit
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideAlert();
+
+            // Validar antes de enviar
+            if (!validateForm()) {
+                showAlert('Por favor, completa todos los campos obligatorios correctamente.', 'error');
+                return;
+            }
+
+            // Deshabilitar botón y mostrar spinner
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner"></span> Enviando...';
+
+            // Preparar datos
+            const formData = {
+                name: nameInput.value.trim(),
+                email: emailInput.value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                subject: subjectInput.value.trim(),
+                message: messageInput.value.trim(),
+                _subject: `Contacto GoClientes: ${subjectInput.value.trim()}` // mejor asunto en el correo
+            };
+
+            // ---- SIMULACIÓN DE PRUEBA (si no tienes endpoint real, puedes descomentar estas líneas y comentar el envío real) ----
+            // Si quieres probar sin endpoint, descomenta el bloque de abajo y comenta la llamada a submitForm.
+            /*
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                showAlert('✅ Demo: formulario simulado correctamente (sin envío real). Reemplaza el endpoint de Formspree para recibir correos.', 'success');
+                form.reset();
+            }, 1000);
+            return;
+            */
+
+            // Envío real
+            const result = await submitForm(formData);
+
+            if (result.success) {
+                showAlert('¡Mensaje enviado con éxito! Te contactaremos pronto.', 'success');
+                form.reset();  // limpia campos
+                // Resetear errores visuales
+                document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            } else {
+                showAlert('Error al enviar: ' + (result.error || 'Intenta más tarde o contacta por otro medio.'), 'error');
+            }
+
+            // Restaurar botón
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+        });
+
+        // Limpiar errores al escribir
+        const clearErrorOnInput = (input, errorEl) => {
+            input.addEventListener('input', () => {
+                errorEl.style.display = 'none';
+                hideAlert();
+            });
+        };
+        clearErrorOnInput(nameInput, nameError);
+        clearErrorOnInput(emailInput, emailError);
+        clearErrorOnInput(subjectInput, subjectError);
+        clearErrorOnInput(messageInput, messageError);
+        clearErrorOnInput(captchaInput, captchaError);
+    })();
+</script>
+</body>
+</html>
