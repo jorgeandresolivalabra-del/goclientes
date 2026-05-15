@@ -1,1 +1,1230 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>GoClientes – Llena tu WhatsApp de Clientes | +667% más clientes en 30 días</title>
+  <meta name="description" content="Automatiza WhatsApp, Chatwoot, n8n y CRM para servicios locales. Como Carlos (fontanero) pasó de 3 a 23 clientes/mes. Desde $597 USD setup + $47/mes." />
+  <meta name="keywords" content="clientes WhatsApp, automatización, n8n, Chatwoot, CRM, servicios locales Chile" />
+  <meta property="og:title" content="GoClientes – Llena tu WhatsApp de Clientes Reales" />
+  <meta property="og:description" content="+667% más consultas en 30 días. 187+ clientes ya lo lograron. Setup desde $597 + mensualidad baja." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&auto=format" />
+  <meta property="og:url" content="https://goclientes.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    /* ========== VARIABLES Y RESET ========== */
+    :root {
+      --green: #00C65E;
+      --green-dark: #009e4b;
+      --green-light: #e6f9ee;
+      --green-mid: #d0f5e3;
+      --red: #EF4444;
+      --red-dark: #dc2626;
+      --wa: #25D366;
+      --dark: #0f1117;
+      --heading: #111111;
+      --body: #374151;
+      --muted: #6B7280;
+      --lighter: #9CA3AF;
+      --bg: #FFFFFF;
+      --bg2: #F8FAF9;
+      --bg3: #F3F4F6;
+      --border: #E5E7EB;
+      --border-green: rgba(0,198,94,0.3);
+      --card-bg: #ffffff;
+      --nav-bg: rgba(255,255,255,0.95);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.10);
+      --shadow-green: 0 8px 30px rgba(0,198,94,0.25);
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --radius: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+    }
+
+    [data-theme="dark"] {
+      --heading: #f1f5f9;
+      --body: #cbd5e1;
+      --muted: #94a3b8;
+      --lighter: #64748b;
+      --bg: #0f1117;
+      --bg2: #151b25;
+      --bg3: #1e2535;
+      --border: #2d3748;
+      --border-green: rgba(0,198,94,0.2);
+      --card-bg: #1a2030;
+      --nav-bg: rgba(15,17,23,0.95);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.4);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--body);
+      overflow-x: hidden;
+      line-height: 1.6;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    /* ========== PROGRESS BAR ========== */
+    #readProgress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--green), #10b981, var(--green));
+      background-size: 200% 100%; animation: shimmer 2s linear infinite;
+      z-index: 9999; transition: width 0.1s linear;
+    }
+    @keyframes shimmer { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
+
+    /* ========== CUSTOM CURSOR ========== */
+    .cursor {
+      width: 12px; height: 12px; background: var(--green); border-radius: 50%;
+      position: fixed; pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+    .cursor-follower {
+      width: 40px; height: 40px; border: 2px solid var(--green); border-radius: 50%;
+      position: fixed; pointer-events: none; z-index: 9998;
+      transition: transform 0.15s ease; transform: translate(-50%, -50%); opacity: 0.5;
+    }
+
+    /* ========== ANIMACIONES ========== */
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    @keyframes glowPulse { 0%,100%{box-shadow:0 0 5px rgba(0,198,94,0.3)} 50%{box-shadow:0 0 25px rgba(0,198,94,0.6)} }
+    @keyframes gradientShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes slideInLeft { from{opacity:0;transform:translateX(-50px)} to{opacity:1;transform:translateX(0)} }
+    @keyframes slideInRight { from{opacity:0;transform:translateX(50px)} to{opacity:1;transform:translateX(0)} }
+    @keyframes scaleIn { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes livePulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.8)} }
+    @keyframes blink { 0%,50%{border-color:transparent} 51%,100%{border-color:var(--green)} }
+    @keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    @keyframes shine { 100% { left: 100%; } }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.8)} }
+
+    /* ========== REVEAL ========== */
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--green-light); color: var(--green-dark);
+      border: 1px solid var(--border-green); padding: 0.35rem 1rem;
+      border-radius: 100px; font-size: 0.78rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800; color: var(--heading);
+      margin-bottom: 0.8rem; line-height: 1.15;
+    }
+    .section-sub { color: var(--muted); font-size: 1.05rem; line-height: 1.7; max-width: 600px; margin-bottom: 2.5rem; }
+
+    /* ========== TOGGLE TEMA OSCURO ========== */
+    .theme-toggle {
+      width: 42px; height: 22px; background: var(--bg3);
+      border-radius: 100px; border: 1px solid var(--border);
+      cursor: pointer; position: relative; transition: all 0.3s;
+    }
+    .theme-toggle::after {
+      content: ''; position: absolute; width: 16px; height: 16px;
+      background: var(--green); border-radius: 50%; top: 2px; left: 2px;
+      transition: transform 0.3s var(--ease-bounce);
+    }
+    [data-theme="dark"] .theme-toggle::after { transform: translateX(20px); }
+    .theme-toggle-wrap { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--muted); }
+
+    /* ========== NAVEGACIÓN ========== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem; background: var(--nav-bg); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border); transition: all 0.3s var(--ease);
+    }
+    nav.scrolled { box-shadow: var(--shadow-lg); padding: 0.7rem 2.5rem; }
+    .logo {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.5rem;
+      text-decoration: none; background: linear-gradient(135deg, var(--heading), var(--green));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .logo span { background: linear-gradient(135deg, var(--green), var(--green-dark)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+    .nav-links a {
+      color: var(--body); text-decoration: none; font-weight: 500; font-size: 0.88rem;
+      transition: all 0.3s; position: relative;
+    }
+    .nav-links a::after { content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:var(--green); transition:width 0.3s; }
+    .nav-links a:hover::after { width:100%; }
+    .nav-links a:hover { color:var(--green); transform:translateY(-2px); }
+    .btn-nav {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: white; font-weight: 700; padding: 0.6rem 1.4rem;
+      border-radius: 100px; text-decoration: none; font-size: 0.88rem;
+      transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.4rem;
+      animation: glowPulse 2s infinite;
+    }
+    .btn-nav:hover { transform: translateY(-2px) scale(1.05); box-shadow: var(--shadow-green); }
+    .btn-nav-ai {
+      background: linear-gradient(135deg, var(--green), #00a0e0, var(--green));
+      background-size: 200% 200%; animation: gradientShift 3s ease infinite;
+      color: white; font-weight: 700; padding: 0.6rem 1.4rem;
+      border-radius: 100px; text-decoration: none;
+    }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; }
+    .hamburger span { width:24px; height:2px; background:var(--heading); border-radius:2px; }
+
+    /* ========== LIVE BAR ========== */
+    .live-bar {
+      position: sticky; top: 70px; z-index: 199;
+      background: linear-gradient(135deg, var(--dark) 0%, #1a2a1c 100%);
+      color: white; padding: 0.7rem 1rem; overflow: hidden; border-bottom: 2px solid var(--green);
+    }
+    .live-bar::before {
+      content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
+      background:linear-gradient(90deg,transparent,rgba(0,198,94,0.1),transparent);
+      animation:shine 3s infinite;
+    }
+    .live-bar-content { display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap; font-size:0.85rem; }
+    .live-indicator { display:flex; align-items:center; gap:0.5rem; background:rgba(239,68,68,0.2); padding:0.3rem 1rem; border-radius:100px; }
+    .live-dot { width:10px; height:10px; background:var(--red); border-radius:50%; animation:livePulse 1s infinite; }
+    .live-metric strong { color:var(--green); font-size:1.1rem; }
+    .live-timestamp { color:rgba(255,255,255,0.5); font-size:0.75rem; }
+
+    /* ========== HERO CON DOS IMÁGENES DE FONDO (RUTAS RELATIVAS Y OPACIDAD MEJORADA) ========== */
+    .hero {
+      padding: 10rem 1.5rem 6rem; text-align: center;
+      position: relative; overflow: hidden; min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      background-color: #0a0e13;
+    }
+    .hero-bg-img {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('img/imag2.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.35;
+      z-index: 0;
+    }
+    .hero-bg-img2 {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('img/img3.png');
+      background-size: contain;
+      background-position: bottom right;
+      background-repeat: no-repeat;
+      opacity: 0.25;
+      z-index: 0;
+    }
+    [data-theme="dark"] .hero-bg-img,
+    [data-theme="dark"] .hero-bg-img2 {
+      opacity: 0.2;
+    }
+    #particles-canvas { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events: none; z-index: 1; }
+    .hero > * { position: relative; z-index: 2; }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      background:rgba(0,198,94,0.15); backdrop-filter:blur(10px);
+      border:1px solid var(--border-green); padding:0.5rem 1.3rem;
+      border-radius:100px; font-size:0.85rem; font-weight:700; color:var(--green-dark);
+      margin-bottom:1.8rem;
+    }
+    .pulse { width:10px; height:10px; background:var(--green); border-radius:50%; animation:pulse 1.5s infinite; flex-shrink:0; }
+    .typewriter-text {
+      display:inline-block; border-right:3px solid var(--green);
+      animation:blink 0.7s infinite; white-space:nowrap; overflow:hidden;
+      color:var(--green); font-weight: 700;
+    }
+    h1 {
+      font-family:'Sora',sans-serif; font-weight:800;
+      font-size:clamp(2.2rem,6vw,4rem); line-height:1.12;
+      color: var(--heading);
+      max-width:880px; margin:0 auto 1.2rem;
+      letter-spacing:-0.02em;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+    [data-theme="light"] h1 {
+      color: #111111;
+      text-shadow: 0 1px 3px rgba(255,255,255,0.2);
+    }
+    h1 .accent {
+      background:linear-gradient(135deg,#00C65E,#10b981,#00C65E);
+      background-size:200% 200%; -webkit-background-clip:text; background-clip:text;
+      color:transparent; animation:gradientShift 3s ease infinite;
+    }
+    .hero-sub {
+      color: var(--muted);
+      font-size:1.1rem;
+      max-width:580px;
+      margin:0 auto 2rem;
+      line-height:1.7;
+    }
+    [data-theme="light"] .hero-sub {
+      color: #2c3e50;
+    }
+    .hero-social-proof { display:flex; align-items:center; justify-content:center; gap:2.5rem; flex-wrap:wrap; margin:1.8rem 0; }
+    .avatar-stack { display:flex; align-items:center; }
+    .avatar {
+      width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      border:3px solid var(--bg); margin-left:-10px; overflow:hidden; background:var(--green-light);
+    }
+    .avatar img { width:100%; height:100%; object-fit:cover; }
+    .avatar:first-child { margin-left:0; }
+    .avatar-count { background:var(--green); color:white; font-size:0.75rem; font-weight:700; padding:0.25rem 0.8rem; border-radius:100px; margin-left:0.8rem; animation:glowPulse 2s infinite; }
+    .rating-stars { display:flex; align-items:center; gap:0.5rem; }
+    .stars { color:#f59e0b; letter-spacing:3px; font-size:1.1rem; }
+    .rating-text { font-size:0.85rem; color:var(--muted); font-weight:500; }
+    .hero-btns { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; margin-bottom:2.5rem; }
+    .btn-primary {
+      display:inline-flex; align-items:center; gap:0.8rem;
+      background:linear-gradient(135deg,var(--green),var(--green-dark));
+      color:white; font-weight:700; padding:1rem 2.2rem;
+      border-radius:100px; text-decoration:none; font-size:1rem;
+      transition:all 0.3s var(--ease); box-shadow:var(--shadow-green);
+      border:none; cursor:pointer;
+    }
+    .btn-primary:hover { transform:translateY(-3px) scale(1.04); box-shadow:0 14px 40px rgba(0,198,94,0.5); }
+    .btn-secondary {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      background:var(--card-bg); color:var(--green); font-weight:700;
+      padding:1rem 2.2rem; border-radius:100px; text-decoration:none; font-size:1rem;
+      border:2px solid var(--green);
+    }
+    .btn-secondary:hover { background:var(--green-light); transform:translateY(-3px); box-shadow:var(--shadow-md); }
+    .hero-stats {
+      display:flex; gap:0; justify-content:center;
+      background:var(--card-bg); backdrop-filter:blur(10px);
+      border:1px solid var(--border); border-radius:var(--radius-lg);
+      padding:1.3rem 2rem; box-shadow:var(--shadow-lg);
+      max-width:650px; margin:0 auto;
+    }
+    .stat-item { flex:1; text-align:center; padding:0 1.5rem; transition:transform 0.3s; }
+    .stat-item:not(:last-child) { border-right:1px solid var(--border); }
+    .stat-item strong { font-family:'Sora',sans-serif; font-size:2rem; font-weight:800; color:var(--green); display:block; line-height:1; margin-bottom:0.3rem; }
+    .stat-item span { color:var(--muted); font-size:0.8rem; font-weight:500; }
+
+    /* ========== TRUST BAR ========== */
+    .trust-bar { background:var(--dark); padding:1rem 1.5rem; overflow:hidden; position:relative; }
+    .trust-bar::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(0,198,94,0.1),transparent); animation:shine 3s infinite; }
+    .trust-scroll { display:flex; gap:3rem; animation:scroll 25s linear infinite; width:max-content; }
+    .trust-item { display:flex; align-items:center; gap:0.6rem; white-space:nowrap; color:rgba(255,255,255,0.8); font-size:0.85rem; font-weight:500; }
+    .trust-item .tick { color:var(--green); font-weight:700; }
+
+    /* ========== PROBLEM ========== */
+    .problem-section { background:var(--bg2); }
+    .problem-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; margin-top:2.5rem; }
+    .problem-card {
+      background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius);
+      padding:1.8rem; transition:all 0.4s var(--ease);
+    }
+    .problem-card:hover { transform:translateY(-8px) scale(1.02); box-shadow:var(--shadow-lg); border-color:var(--border-green); }
+    .problem-icon { font-size:2.2rem; margin-bottom:1rem; }
+    .problem-card h3 { font-size:1rem; font-weight:700; color:var(--heading); margin-bottom:0.5rem; }
+    .problem-card p { font-size:0.88rem; color:var(--muted); }
+
+    /* ========== PASOS ========== */
+    .steps-section { background:var(--bg); }
+    .steps-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; margin-top:3rem; }
+    .step-card {
+      background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius-lg);
+      padding:1.8rem 1.5rem; text-align:center; position:relative;
+    }
+    .step-card:hover { transform:translateY(-10px); box-shadow:var(--shadow-lg); border-color:var(--green); }
+    .step-number {
+      position:absolute; top:-18px; left:50%; transform:translateX(-50%);
+      width:36px; height:36px; background:linear-gradient(135deg,var(--green),var(--green-dark));
+      color:white; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-weight:800; font-size:0.9rem;
+    }
+    .step-img { width:100%; height:160px; object-fit:cover; border-radius:12px; margin-bottom:1rem; }
+    .step-card h3 { font-size:1rem; font-weight:700; color:var(--heading); margin-bottom:0.5rem; }
+    .step-card p { font-size:0.85rem; color:var(--muted); }
+
+    /* ========== FOMO ========== */
+    .fomo-section { background:linear-gradient(135deg,var(--bg2),var(--bg)); border-top:1px solid var(--border-green); border-bottom:1px solid var(--border-green); }
+    .fomo-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem; }
+    .fomo-map, .fomo-activities { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.5rem; }
+    .region-badges { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1rem; }
+    .region-badge { background:var(--bg3); padding:0.3rem 0.8rem; border-radius:100px; font-size:0.75rem; font-weight:500; cursor:pointer; color:var(--body); }
+    .region-badge.active { background:var(--green-light); color:var(--green-dark); border:1px solid var(--green); }
+    .heat-bar { flex:1; background:linear-gradient(180deg,var(--green-light),var(--green)); border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; padding-bottom:0.3rem; font-size:0.7rem; font-weight:700; color:white; }
+    .activity-list li { display:flex; align-items:center; gap:0.8rem; padding:0.7rem 0; border-bottom:1px solid var(--border); font-size:0.85rem; }
+    .activity-time { color:var(--green); font-weight:600; font-size:0.7rem; min-width:70px; }
+    .fomo-warning { background:rgba(239,68,68,0.1); border-left:3px solid var(--red); padding:0.8rem; font-size:0.8rem; font-weight:600; color:var(--red); margin-top:1rem; }
+
+    /* ========== DASHBOARD ========== */
+    .dashboard-section { background:var(--bg2); }
+    .dashboard-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1.2rem; margin-top:2rem; }
+    .dashboard-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:1.3rem; text-align:center; transition:all 0.3s; cursor:pointer; }
+    .dashboard-card:hover { transform:translateY(-5px) scale(1.03); box-shadow:var(--shadow-lg); border-color:var(--green); }
+    .dashboard-icon { font-size:2rem; margin-bottom:0.5rem; }
+    .dashboard-value { font-family:'Sora',sans-serif; font-size:2rem; font-weight:800; color:var(--green); line-height:1; }
+    .dashboard-label { font-size:0.75rem; color:var(--muted); margin-top:0.3rem; }
+
+    /* ========== CASOS DE ÉXITO ========== */
+    .casos-section { background:var(--bg); }
+    .casos-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:3rem; }
+    .caso-card {
+      background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius-xl);
+      overflow:hidden; transition:all 0.4s var(--ease);
+    }
+    .caso-img {
+      width: 100%; height: 220px; object-fit: cover;
+      transition: transform 0.5s var(--ease);
+    }
+    .caso-card:hover .caso-img { transform: scale(1.05); }
+    .caso-body { padding: 1.5rem; }
+    .caso-name { font-weight: 700; color: var(--heading); margin-bottom: 0.3rem; font-size: 1rem; }
+    .caso-trade { font-size: 0.8rem; color: var(--green); font-weight: 600; margin-bottom: 0.8rem; }
+    .caso-stat { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--green-light); color: var(--green-dark); font-weight: 800; font-size: 0.85rem; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 0.8rem; }
+    .caso-quote { font-size: 0.82rem; color: var(--muted); line-height: 1.6; font-style: italic; }
+    .caso-stars { color: #f59e0b; font-size: 0.9rem; margin-top: 0.5rem; }
+
+    /* ========== PRICING ========== */
+    .pricing-section { background:var(--bg2); }
+    .pricing-scarcity { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); color:var(--red); padding:0.5rem 1.3rem; border-radius:100px; font-size:0.85rem; font-weight:700; margin-bottom:1.5rem; animation:glowPulse 2s infinite; }
+    .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.8rem; margin-top:2.5rem; align-items:stretch; }
+    .plan-card {
+      background:var(--card-bg); border:2px solid var(--border); border-radius:var(--radius-xl);
+      padding:2rem; transition:all 0.4s var(--ease); position:relative; display:flex; flex-direction:column;
+    }
+    .plan-card:hover { transform:translateY(-10px) scale(1.02); box-shadow:var(--shadow-lg); border-color:var(--green); }
+    .plan-card.popular { border-color:var(--green); box-shadow:0 0 0 4px rgba(0,198,94,0.15),var(--shadow-lg); }
+    .plan-badge { position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,var(--green),var(--green-dark)); color:white; font-size:0.75rem; font-weight:800; text-transform:uppercase; padding:0.35rem 1.2rem; border-radius:100px; white-space:nowrap; }
+    .plan-name { font-weight:700; color:var(--muted); font-size:0.9rem; text-transform:uppercase; margin-bottom:0.3rem; }
+    .plan-price-setup { font-family:'Sora',sans-serif; font-size:2rem; font-weight:800; color:var(--heading); line-height:1; margin:0.5rem 0 0.2rem; }
+    .plan-price-setup span { font-size:0.9rem; color:var(--muted); font-weight:500; }
+    .plan-price-monthly { font-size:1rem; color:var(--green); font-weight:700; margin-bottom:0.5rem; }
+    .plan-note { font-size:0.78rem; color:var(--muted); margin-bottom:0.8rem; }
+    .plan-delivery { display:inline-flex; align-items:center; gap:0.3rem; background:var(--green-light); color:var(--green-dark); font-size:0.8rem; font-weight:700; padding:0.3rem 1rem; border-radius:100px; margin-bottom:1.2rem; }
+    .plan-divider { height:1px; background:var(--border); margin:1rem 0; }
+    .plan-features { list-style:none; flex:1; }
+    .plan-features li { display:flex; align-items:flex-start; gap:0.6rem; font-size:0.85rem; color:var(--body); padding:0.35rem 0; }
+    .chk { color:var(--green); font-weight:700; flex-shrink:0; }
+    .plan-cta { margin-top:1.5rem; width:100%; justify-content:center; display:inline-flex; }
+    .btn-red { background:linear-gradient(135deg,var(--red),var(--red-dark)) !important; }
+
+    /* ========== FAQ ========== */
+    .faq-section {
+      background: var(--bg);
+      padding: 5rem 1.5rem;
+    }
+    .faq-list {
+      max-width: 800px;
+      margin: 2.5rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .faq-item:hover {
+      border-color: var(--green);
+    }
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--heading);
+      font-size: 1rem;
+      gap: 1rem;
+      user-select: none;
+      background: var(--card-bg);
+    }
+    .faq-q .faq-icon {
+      color: var(--green);
+      font-size: 1.2rem;
+      font-weight: 700;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      width: 28px;
+      text-align: center;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.3s;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      padding: 0 1.5rem;
+    }
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding: 0 1.5rem 1.2rem;
+    }
+    @media (max-width: 640px) {
+      .faq-q { font-size: 0.9rem; padding: 1rem; }
+      .faq-item.open .faq-a { padding: 0 1rem 1rem; }
+    }
+
+    /* ========== FORMULARIO PREMIUM ========== */
+    .premium-form-section {
+      padding: 5rem 1.5rem;
+      background: linear-gradient(135deg, #0b0f14 0%, #0a0e13 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .premium-form-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(0, 255, 136, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .premium-form-container {
+      max-width: 880px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .premium-form-card {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 255, 136, 0.2);
+      border-radius: 2rem;
+      padding: 2.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s var(--ease);
+    }
+    .premium-form-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(0, 255, 136, 0.3);
+    }
+    .premium-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      padding: 0.35rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #00ff88;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .premium-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .premium-highlight {
+      background: linear-gradient(135deg, #00ff88, #00d26a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+    .premium-subtitle {
+      color: #cbd5e1;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .premium-lead-magnet {
+      background: rgba(0, 255, 136, 0.08);
+      border-left: 3px solid #00ff88;
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      margin-bottom: 1.8rem;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .premium-lead-magnet i {
+      color: #00ff88;
+      font-size: 1.2rem;
+    }
+    .premium-lead-magnet strong {
+      color: #00ff88;
+    }
+    .premium-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .premium-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .premium-full-width { grid-column: span 2; }
+    .premium-half-width { grid-column: span 1; }
+    .premium-form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .premium-form-group input,
+    .premium-form-group textarea {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      border-radius: 1rem;
+      padding: 0.9rem 1rem;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: all 0.25s ease;
+      outline: none;
+      width: 100%;
+    }
+    .premium-form-group select {
+      cursor: pointer;
+      appearance: none;
+      background-color: #0b0f14;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%2300ff88' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1.2rem;
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      border-radius: 1rem;
+      padding: 0.9rem 1rem;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: all 0.25s ease;
+      outline: none;
+      width: 100%;
+    }
+    .premium-form-group select option {
+      background-color: #1a1a2e;
+      color: #ffffff;
+    }
+    [data-theme="light"] .premium-form-group select {
+      background-color: #ffffff;
+      color: #111111;
+      border-color: #00C65E;
+    }
+    [data-theme="light"] .premium-form-group select option {
+      background-color: #ffffff;
+      color: #111111;
+    }
+    .premium-form-group input:focus,
+    .premium-form-group select:focus,
+    .premium-form-group textarea:focus {
+      border-color: #00ff88;
+      box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.01);
+    }
+    .premium-form-group input::placeholder,
+    .premium-form-group textarea::placeholder {
+      color: #94a3b8;
+    }
+    .premium-submit-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      width: 100%;
+      background: linear-gradient(135deg, #00ff88, #00b35f);
+      color: #0b0f14;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 1rem 1.8rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
+      box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+      margin-top: 0.8rem;
+    }
+    .premium-submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 255, 136, 0.7);
+      background: linear-gradient(135deg, #22c55e, #00d26a);
+    }
+    .premium-security-text {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+    @media (max-width: 640px) {
+      .premium-form-card { padding: 1.5rem; }
+      .premium-form-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .premium-full-width, .premium-half-width { grid-column: span 1; }
+      .premium-lead-magnet { font-size: 0.75rem; }
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: linear-gradient(135deg, #0a0d0b, #0f1117);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 3rem 1.5rem 2rem;
+    }
+    .footer-cities {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .footer-city {
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.5);
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-trust-badges {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .footer-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-badge i { color: var(--green); }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-col h4 {
+      color: white;
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .footer-col p, .footer-col a {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+      text-decoration: none;
+      line-height: 1.8;
+      transition: all 0.3s;
+    }
+    .footer-col a:hover { color: var(--green); transform: translateX(5px); display: inline-block; }
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .social-icons a {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      color: rgba(255,255,255,0.7);
+    }
+    .social-icons a:hover {
+      background: var(--green);
+      transform: translateY(-3px) scale(1.1);
+      color: white;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.3);
+      font-size: 0.75rem;
+    }
+    .footer-logo {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, white, var(--green));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: block;
+    }
+
+    /* ========== WHATSAPP FLOAT ========== */
+    .wa-float {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: linear-gradient(145deg,#25D366,#128C7E);
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+      z-index: 300;
+      animation: float 2.5s ease-in-out infinite;
+      text-decoration: none;
+    }
+    .wa-float:hover { transform: scale(1.15); box-shadow: 0 10px 40px rgba(37,211,102,0.6); animation: none; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1100px) {
+      .pricing-grid, .dashboard-grid, .problem-grid, .steps-grid, .casos-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-content { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .pricing-grid, .dashboard-grid, .problem-grid, .fomo-grid, .steps-grid, .casos-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-content { grid-template-columns: 1fr; text-align: center; }
+      nav { padding: 1rem; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--nav-bg);
+        flex-direction: column;
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-md);
+        z-index: 100;
+        gap: 1rem;
+      }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .hero-stats { flex-direction: column; }
+      .stat-item:not(:last-child) { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="readProgress"></div>
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<nav id="navbar">
+  <a href="#" class="logo">Go<span>Clientes</span></a>
+  <div class="nav-links" id="navLinks">
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#planes">Planes</a>
+    <a href="#casos">Casos</a>
+    <a href="#faq">FAQ</a>
+    <div class="theme-toggle-wrap"><span>🌙</span><div class="theme-toggle" id="themeToggle"></div></div>
+    <a href="ia/automatizaciones.html" class="btn-nav-ai">🤖 GO Automatizaciones IA</a>
+    <a href="https://wa.me/56987685450?text=Hola,%20quiero%20reservar%20mi%20cupo" class="btn-nav" target="_blank">💬 Reservar cupo</a>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="live-bar">
+  <div class="live-bar-content">
+    <div class="live-indicator"><span class="live-dot"></span><span>🔴 EN VIVO</span></div>
+    <div class="live-metric">➕ <strong id="liveClients">0</strong> clientes nuevos hoy</div>
+    <div class="live-metric">📈 <strong id="liveSearch">0</strong>% más búsquedas</div>
+    <div class="live-metric">🎫 <strong id="liveSpots">0</strong> cupos restantes</div>
+    <div class="live-timestamp" id="liveTimestamp">Actualizado hace 0 min</div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-bg-img2"></div>
+  <canvas id="particles-canvas"></canvas>
+  <div class="hero-badge"><span class="pulse"></span> 🔴 <span id="watchersCount">47</span> personas viendo esta oferta ahora</div>
+  <div style="margin-bottom:0.5rem;">
+    <span style="font-size:1rem;color:var(--muted);font-weight:500;">El servicio perfecto para </span>
+    <span class="typewriter-text" id="typewriterEl">Fontaneros</span>
+  </div>
+  <h1>Como <span class="accent">Carlos (fontanero)</span> pasó de atender 3 clientes a <span class="accent">23 al mes</span></h1>
+  <p class="hero-sub"><strong>+667% más consultas en 30 días</strong> — Tu WhatsApp lleno de clientes todos los días, desde <strong>$597 USD setup + $47/mes</strong></p>
+  <div class="hero-social-proof">
+    <div class="avatar-stack">
+      <div class="avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Cliente" loading="lazy" /></div>
+      <div class="avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Cliente" loading="lazy" /></div>
+      <div class="avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Cliente" loading="lazy" /></div>
+      <div class="avatar"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Cliente" loading="lazy" /></div>
+      <div class="avatar"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop" alt="Cliente" loading="lazy" /></div>
+      <div class="avatar-count">+187</div>
+    </div>
+    <div class="rating-stars"><div class="stars">★★★★★</div><span class="rating-text">4.98/5 · 312 reseñas verificadas</span></div>
+  </div>
+  <div class="hero-btns">
+    <a href="https://wa.me/56987685450?text=Hola,%20quiero%20resultados%20como%20Carlos" class="btn-primary" target="_blank">📈 Quiero +667% clientes como Carlos</a>
+    <a href="#planes" class="btn-secondary">Ver planes ↓</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item"><strong>48h</strong><span>Entrega garantizada</span></div>
+    <div class="stat-item"><strong>+667%</strong><span>Clientes promedio</span></div>
+    <div class="stat-item"><strong>$597</strong><span>Setup + $47/mes</span></div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-scroll">
+    <div class="trust-item"><span class="tick">✓</span> 🏆 +187 clientes satisfechos</div>
+    <div class="trust-item"><span class="tick">✓</span> ⭐ 4.98 Google Rating</div>
+    <div class="trust-item"><span class="tick">✓</span> 🏅 Certificados Google Partner</div>
+    <div class="trust-item"><span class="tick">✓</span> 📰 Aparecimos en Emol</div>
+    <div class="trust-item"><span class="tick">✓</span> 🚀 1,247+ proyectos completados</div>
+    <div class="trust-item"><span class="tick">✓</span> 🌎 42+ ciudades en Chile</div>
+  </div>
+</div>
+
+<section class="problem-section">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center"><div class="section-tag">El problema real</div><h2 class="section-title">¿Te identificas con esto?</h2><p class="section-sub" style="margin:0 auto 2rem">Millones de personas buscan servicios locales cada día. Si no apareces, le das el negocio a tu competencia.</p></div>
+    <div class="problem-grid">
+      <div class="problem-card reveal"><div class="problem-icon">📁</div><h3>Datos viejos, sin clientes nuevos</h3><p>Los directorios ya no funcionan. Tus contactos de hace años no te llaman más.</p></div>
+      <div class="problem-card reveal"><div class="problem-icon">🔍</div><h3>Tu competencia aparece primero</h3><p>Mientras tú no tienes presencia online, ellos reciben consultas por WhatsApp hoy.</p></div>
+      <div class="problem-card reveal"><div class="problem-icon">📞</div><h3>Solo llegan recomendaciones esporádicas</h3><p>Dependes de que alguien te pase el dato. Eso no escala.</p></div>
+      <div class="problem-card reveal"><div class="problem-icon">⏳</div><h3>Sin tiempo para aprender tecnología</h3><p>Tienes trabajo, familia y un negocio que atender.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="steps-section" id="como-funciona">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center"><div class="section-tag">🚀 Proceso</div><h2 class="section-title">En <span style="color:var(--green)">4 pasos simples</span> tienes clientes</h2><p class="section-sub" style="margin:0 auto 2rem">Nosotros hacemos todo el trabajo. Tú solo atiendes los mensajes que llegan.</p></div>
+    <div class="steps-grid">
+      <div class="step-card reveal"><div class="step-number">1</div><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=200&fit=crop" class="step-img" loading="lazy" /><h3>📱 Nos contactas por WhatsApp</h3><p>Cuéntanos qué servicio ofreces y en qué ciudad. Te respondemos en menos de 2 horas.</p></div>
+      <div class="step-card reveal"><div class="step-number">2</div><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=400&h=200&fit=crop" class="step-img" loading="lazy" /><h3>🎨 Diseñamos tu automatización</h3><p>Creamos tu infraestructura con Chatwoot, n8n y CRM adaptada a tu negocio.</p></div>
+      <div class="step-card reveal"><div class="step-number">3</div><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=200&fit=crop" class="step-img" loading="lazy" /><h3>🚀 Lanzamos campañas de ads</h3><p>Activamos campañas en Facebook y Google para atraer clientes calificados.</p></div>
+      <div class="step-card reveal"><div class="step-number">4</div><img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&h=200&fit=crop" class="step-img" loading="lazy" /><h3>💬 Los clientes son atendidos al instante</h3><p>El sistema responde y organiza todo automáticamente. Tú solo hablas con los realmente interesados, el resto queda gestionado.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="fomo-section">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center"><div class="section-tag">⚡ Actividad en vivo</div><h2 class="section-title">Lo que está pasando <span style="color:var(--green)">ahora mismo</span> en Chile</h2><p class="section-sub" style="margin:0 auto 2rem">Mientras lees esto, negocios locales ya están captando clientes</p></div>
+    <div class="fomo-grid">
+      <div class="fomo-map reveal"><h3>📍 Actividad por región</h3><div class="region-badges"><span class="region-badge active">Santiago 🔥</span><span class="region-badge">Valparaíso 🔥</span><span class="region-badge">Concepción 🔥</span><span class="region-badge">La Serena</span><span class="region-badge">Antofagasta</span></div><div style="display:flex;gap:0.5rem;margin-top:1rem;align-items:flex-end;height:100px"><div class="heat-bar" style="height:80%">78</div><div class="heat-bar" style="height:45%">43</div><div class="heat-bar" style="height:62%">59</div><div class="heat-bar" style="height:28%">24</div><div class="heat-bar" style="height:31%">27</div></div><p style="font-size:0.7rem;margin-top:0.8rem;color:var(--muted)">Clientes activos por región en las últimas 24h</p></div>
+      <div class="fomo-activities reveal"><h3>🟢 Clientes activos en este momento</h3><ul class="activity-list" id="activityList"><li><span class="activity-time">Hace 2 min</span><span>María G. de Santiago contrató Plan Media</span></li><li><span class="activity-time">Hace 5 min</span><span>Carlos R. de Viña del Mar solicitó cotización</span></li><li><span class="activity-time">Hace 12 min</span><span>Patricia L. de Concepción recibió su web</span></li><li><span class="activity-time">Hace 18 min</span><span>Francisco M. de La Florida pidió info</span></li></ul><div class="fomo-warning">⚠️ Tu competencia YA está usando esto — No te quedes atrás</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="dashboard-section">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center"><div class="section-tag">📊 Métricas en vivo</div><h2 class="section-title">Lo que está <span style="color:var(--green)">logrando GoClientes</span> ahora mismo</h2><p class="section-sub" style="margin:0 auto 2rem">Datos actualizados en tiempo real</p></div>
+    <div class="dashboard-grid">
+      <div class="dashboard-card"><div class="dashboard-icon">📞</div><div class="dashboard-value" id="dashLeads">47</div><div class="dashboard-label">Leads captados hoy</div></div>
+      <div class="dashboard-card"><div class="dashboard-icon">📊</div><div class="dashboard-value" id="dashConv">32.8</div><div class="dashboard-label">% Tasa conversión</div></div>
+      <div class="dashboard-card"><div class="dashboard-icon">🟢</div><div class="dashboard-value" id="dashActive">129</div><div class="dashboard-label">Clientes activos ahora</div></div>
+      <div class="dashboard-card"><div class="dashboard-icon">⏱️</div><div class="dashboard-value" id="dashResponse">8.2</div><div class="dashboard-label">Tiempo respuesta (min)</div></div>
+      <div class="dashboard-card"><div class="dashboard-icon">⭐</div><div class="dashboard-value" id="dashRating">4.98</div><div class="dashboard-label">Satisfacción /5</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="casos-section" id="casos">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center"><div class="section-tag">🏆 Casos de éxito</div><h2 class="section-title">Resultados <span style="color:var(--green)">reales de clientes</span> reales</h2><p class="section-sub" style="margin:0 auto 2rem">Antes y después de usar GoClientes. Nombres reales, resultados verificados.</p></div>
+    <div class="casos-grid">
+      <div class="caso-card reveal"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&h=400&fit=crop" alt="Fontanero" class="caso-img" loading="lazy" /><div class="caso-body"><div class="caso-name">Carlos Riquelme</div><div class="caso-trade">🔧 Fontanero — Santiago, Macul</div><div class="caso-stat">📈 De 3 a 23 clientes/mes</div><p class="caso-quote">"Antes me llamaban 3 personas al mes si tenía suerte. Ahora mi WhatsApp no para."</p><div class="caso-stars">★★★★★</div></div></div>
+      <div class="caso-card reveal"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=400&fit=crop" alt="Peluquería" class="caso-img" loading="lazy" /><div class="caso-body"><div class="caso-name">Andrea Salazar</div><div class="caso-trade">💇 Peluquería — Valparaíso</div><div class="caso-stat">📈 De 8 a 23 citas/semana</div><p class="caso-quote">"Con GoClientes mis citas se triplicaron en el primer mes."</p><div class="caso-stars">★★★★★</div></div></div>
+      <div class="caso-card reveal"><img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&h=400&fit=crop" alt="Electricista" class="caso-img" loading="lazy" /><div class="caso-body"><div class="caso-name">Francisco Muñoz</div><div class="caso-trade">⚡ Electricista — Concepción</div><div class="caso-stat">📈 Duplicó sus ingresos en 45 días</div><p class="caso-quote">"Ahora tengo que rechazar clientes porque no me da el tiempo."</p><div class="caso-stars">★★★★★</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-section" id="planes">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal" style="text-align:center">
+      <div class="pricing-scarcity">⚠️ Precios de lanzamiento — Solo <span id="cuposRestantes">7</span> cupos disponibles</div>
+      <div class="section-tag">Planes y precios</div>
+      <h2 class="section-title">📦 Elige el nivel que <span style="color:var(--green)">automatizará tu negocio</span></h2>
+      <p class="section-sub" style="margin:0 auto 2rem">Setup único + mensualidad baja. Sin permanencia. Cancela cuando quieras.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="plan-card reveal"><div class="plan-name">Plan Básico</div><div class="plan-price-setup">$597 <span>USD setup</span></div><div class="plan-price-monthly">+ $47 / mes</div><div class="plan-note">Pago único de instalación + mensualidad</div><div class="plan-delivery">⏱️ Entrega en 48 horas</div><div class="plan-divider"></div><ul class="plan-features"><li><span class="chk">✓</span> Chatwoot instalado y configurado</li><li><span class="chk">✓</span> Conexión WhatsApp Business API a Chatwoot</li><li><span class="chk">✓</span> n8n workflow básico (WhatsApp → Google Sheets)</li><li><span class="chk">✓</span> CRM open source con usuario básico</li><li><span class="chk">✓</span> Campaña inicial de ads (Meta Pixel + 1 campaña leads)</li><li><span class="chk">✓</span> Soporte 30 días</li></ul><a href="https://wa.me/56987685450?text=Hola,%20quiero%20el%20Plan%20Básico%20($597%20setup)" class="btn-primary plan-cta" style="width:100%">Lo quiero →</a></div>
+      <div class="plan-card popular reveal"><div class="plan-badge">⭐ Más vendido</div><div class="plan-name">Plan Media</div><div class="plan-price-setup">$1,197 <span>USD setup</span></div><div class="plan-price-monthly">+ $97 / mes</div><div class="plan-note">Pago único de instalación + mensualidad</div><div class="plan-delivery">⏱️ Entrega en 5 días</div><div class="plan-divider"></div><ul class="plan-features"><li><span class="chk">✓</span> Todo lo del Plan Básico</li><li><span class="chk">✓</span> Chatwoot avanzado (etiquetas, respuestas predefinidas)</li><li><span class="chk">✓</span> n8n flujos complejos + respuestas automáticas fuera de horario</li><li><span class="chk">✓</span> Integración bidireccional WhatsApp ↔ CRM</li><li><span class="chk">✓</span> Conversions API (Facebook y Google)</li><li><span class="chk">✓</span> 2 campañas ads Facebook + 1 campaña Google Ads</li><li><span class="chk">✓</span> Dashboard Looker Studio básico</li><li><span class="chk">✓</span> Soporte 60 días</li></ul><a href="https://wa.me/56987685450?text=Hola,%20quiero%20el%20Plan%20Media%20($1,197%20setup)" class="btn-primary plan-cta" style="width:100%">Seleccionar plan →</a></div>
+      <div class="plan-card reveal"><div class="plan-badge" style="background:var(--red)">🔥 Solución completa</div><div class="plan-name">Full Service</div><div class="plan-price-setup">$1,997 <span>USD setup</span></div><div class="plan-price-monthly">+ $147 / mes</div><div class="plan-note">Pago único de instalación + mensualidad</div><div class="plan-delivery">⏱️ Entrega en 10 días</div><div class="plan-divider"></div><ul class="plan-features"><li><span class="chk">✓</span> Todo lo del Plan Media</li><li><span class="chk">✓</span> Chatbot con IA (OpenAI) dentro de Chatwoot</li><li><span class="chk">✓</span> n8n + IA: enriquecimiento de contactos, calificación de leads</li><li><span class="chk">✓</span> 5 campañas activas de ads (Facebook + Google) con optimización</li><li><span class="chk">✓</span> Audiencias personalizadas sincronizadas con CRM</li><li><span class="chk">✓</span> Pipeline de ventas completo + email automático</li><li><span class="chk">✓</span> Dashboard ejecutivo Looker Studio (ROI, leads, costos)</li><li><span class="chk">✓</span> Garantía: 30% más leads en 60 días o devolución 50% setup</li><li><span class="chk">✓</span> Soporte 90 días + consultoría semanal</li></ul><a href="https://wa.me/56987685450?text=Hola,%20quiero%20el%20Plan%20Full%20Service%20($1,997%20setup)" class="btn-primary plan-cta btn-red" style="width:100%">Solicitar Full →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section" id="faq">
+  <div style="max-width:800px;margin:0 auto">
+    <div class="reveal" style="text-align:center"><div class="section-tag">❓ FAQ</div><h2 class="section-title">Preguntas <span style="color:var(--green)">frecuentes</span></h2><p class="section-sub" style="margin:0 auto 2rem">Todo lo que necesitas saber antes de empezar</p></div>
+    <div class="faq-list reveal">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>¿Cuánto tiempo tarda en verse resultados?</span><span class="faq-icon">+</span></div><div class="faq-a">Los primeros leads suelen llegar en las primeras 48-72 horas tras activar las campañas. Resultados consistentes entre 2 y 4 semanas.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>¿Necesito conocimientos técnicos?</span><span class="faq-icon">+</span></div><div class="faq-a">Cero. Nosotros instalamos y configuramos todo (Chatwoot, n8n, CRM). Tú solo respondes los mensajes que llegan a tu WhatsApp.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>¿Qué pasa si cancelo la mensualidad?</span><span class="faq-icon">+</span></div><div class="faq-a">Si cancelas, el sistema deja de funcionar al final del mes pagado. El setup no es reembolsable, pero los flujos básicos (Chatwoot, CRM) quedan instalados, solo se detiene el mantenimiento.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>¿Funciona para cualquier tipo de negocio?</span><span class="faq-icon">+</span></div><div class="faq-a">Sí. Está pensado para servicios locales: fontaneros, electricistas, peluquerías, talleres, clínicas, etc. Adaptamos los flujos a tu rubro.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>¿Puedo usar mi propio número de WhatsApp?</span><span class="faq-icon">+</span></div><div class="faq-a">Sí, conectamos tu número real a través de WhatsApp Business API. Sigue siendo tu número, pero ahora automatizado y multicanal.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="premium-form-section" id="contacto-premium">
+  <div class="premium-form-container">
+    <div class="premium-form-card">
+      <div class="premium-badge">🎁 BONUS EXCLUSIVO</div>
+      <h2 class="premium-title">Descarga tu <span class="premium-highlight">Guía Gratis</span></h2>
+      <div class="premium-subtitle">"Cómo Automatizar WhatsApp + Ads + CRM para tu Negocio Local (sin ser experto)"</div>
+      <div class="premium-lead-magnet"><i class="fas fa-download"></i><span><strong>✅ Al enviar este formulario recibirás:</strong> Plantillas de mensajes, checklist de automatización y ejemplos reales de campañas que generan +667% de leads.</span></div>
+      <form id="premiumLeadForm" class="premium-form">
+        <div class="premium-form-grid">
+          <div class="premium-form-group"><label>Nombre completo *</label><input type="text" id="premium-name" required placeholder="Ej: Carlos Riquelme"></div>
+          <div class="premium-form-group"><label>Email *</label><input type="email" id="premium-email" required placeholder="tu@negocio.cl"></div>
+          <div class="premium-form-group"><label>Teléfono / WhatsApp</label><input type="tel" id="premium-phone" placeholder="+56 9 1234 5678"></div>
+          <div class="premium-form-group"><label>¿Qué solución te interesa?</label><select id="premium-solution"><option value="">Selecciona una opción</option><option>Agente IA para WhatsApp</option><option>Automatización de ventas</option><option>Chatbot IA</option><option>CRM + WhatsApp</option><option>Automatización con n8n</option><option>Atención al cliente IA</option><option>Otro</option></select></div>
+          <div class="premium-form-group premium-full-width"><label>¿Qué hace tu negocio y qué proceso quieres automatizar?</label><textarea id="premium-message" rows="3" placeholder="Ej: Tengo una peluquería y quiero que un bot responda preguntas frecuentes..."></textarea></div>
+          <div class="premium-form-group premium-half-width"><label>Código de descuento (opcional)</label><input type="text" id="premium-discount" placeholder="Ej: GOCLIENTES20"></div>
+        </div>
+        <button type="submit" class="premium-submit-btn">📥 Descargar Guía Gratis → y solicitar asesoría</button>
+        <p class="premium-security-text">🔒 Tus datos están protegidos. Respondemos en menos de 2 horas.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-cities"><span class="footer-city">Santiago</span><span class="footer-city">Valparaíso</span><span class="footer-city">Concepción</span><span class="footer-city">La Serena</span><span class="footer-city">Antofagasta</span><span class="footer-city">Viña del Mar</span><span class="footer-city">Rancagua</span><span class="footer-city">Temuco</span><span class="footer-city">Puerto Montt</span><span class="footer-city">Iquique</span></div>
+  <div class="footer-trust-badges"><div class="footer-badge"><i class="fas fa-lock"></i> SSL Seguro</div><div class="footer-badge"><i class="fas fa-shield-alt"></i> Garantía 30 días</div><div class="footer-badge"><i class="fab fa-google"></i> Google Partner</div><div class="footer-badge"><i class="fas fa-award"></i> 312 reseñas ★4.98</div></div>
+  <div class="footer-content">
+    <div class="footer-col"><span class="footer-logo">Go<span style="color:var(--green)">Clientes</span></span><p>Automatizamos WhatsApp, Chatwoot, n8n y CRM para negocios locales. Más de 187 clientes confían en nosotros.</p><div class="social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="https://wa.me/56987685450"><i class="fab fa-whatsapp"></i></a></div></div>
+    <div class="footer-col"><h4>Enlaces rápidos</h4><p><a href="#como-funciona">▶ Cómo funciona</a></p><p><a href="#planes">▶ Planes y precios</a></p><p><a href="#casos">▶ Casos de éxito</a></p><p><a href="#faq">▶ Preguntas frecuentes</a></p></div>
+    <div class="footer-col"><h4>Contacto</h4><p><i class="fas fa-envelope"></i> <a href="mailto:equipo@goclientes.com">equipo@goclientes.com</a></p><p><i class="fas fa-envelope"></i> <a href="mailto:soporte@goclientes.com">soporte@goclientes.com</a></p><p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/56987685450">+56 9 8768 5450</a></p></div>
+    <div class="footer-col"><h4>Medios de pago</h4><p>💳 WebPay</p><p>🏦 Transferencia bancaria</p><p>💵 Mercado Pago</p><p>🔵 Visa / Mastercard</p><p>₿ USDC / BTC</p></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 GoClientes — Automatización con IA para negocios locales de Chile 🇨🇱</p></div>
+</footer>
+
+<a href="https://wa.me/56987685450?text=Hola,%20quiero%20info%20sobre%20GoClientes" class="wa-float" target="_blank"><i class="fab fa-whatsapp" style="font-size:32px;color:white"></i></a>
+
+<script>
+  // ========== BARRA DE PROGRESO ==========
+  window.addEventListener('scroll', () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = total > 0 ? (window.scrollY / total) * 100 : 0;
+    document.getElementById('readProgress').style.width = pct + '%';
+  });
+
+  // ========== CURSOR ==========
+  const cursor = document.querySelector('.cursor'), follower = document.querySelector('.cursor-follower');
+  if (cursor && follower) {
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      follower.style.left = e.clientX + 'px';
+      follower.style.top = e.clientY + 'px';
+    });
+  }
+
+  // ========== TEMA OSCURO ==========
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  });
+  const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
+  // ========== NAVEGACIÓN ==========
+  window.addEventListener('scroll', () => document.getElementById('navbar')?.classList.toggle('scrolled', window.scrollY > 20));
+  function toggleMenu() { document.getElementById('navLinks')?.classList.toggle('open'); }
+  document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => document.getElementById('navLinks')?.classList.remove('open')));
+
+  // ========== SCROLL REVEAL ==========
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ========== CONTADORES ==========
+  function animateCounter(el, target) {
+    let start = null;
+    const step = (ts) => {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / 1800, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(ease * target);
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    };
+    requestAnimationFrame(step);
+  }
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(e.target, parseInt(e.target.dataset.target));
+        counterObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+  // ========== PARTÍCULAS ==========
+  (function initParticles() {
+    const canvas = document.getElementById('particles-canvas'); if (!canvas) return;
+    const ctx = canvas.getContext('2d'); let particles = [], W, H;
+    function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+    resize(); window.addEventListener('resize', resize);
+    function Particle() { this.x = Math.random() * W; this.y = Math.random() * H; this.size = Math.random() * 3 + 1; this.speedX = (Math.random() - 0.5) * 0.4; this.speedY = (Math.random() - 0.5) * 0.4; this.opacity = Math.random() * 0.4 + 0.1; }
+    Particle.prototype.update = function() { this.x += this.speedX; this.y += this.speedY; if (this.x < 0 || this.x > W) this.speedX *= -1; if (this.y < 0 || this.y > H) this.speedY *= -1; };
+    Particle.prototype.draw = function() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fillStyle = `rgba(0, 198, 94, ${this.opacity})`; ctx.fill(); };
+    for (let i = 0; i < 50; i++) particles.push(new Particle());
+    function animate() { ctx.clearRect(0, 0, W, H); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
+    animate();
+  })();
+
+  // ========== TYPEWRITER ==========
+  const typeEl = document.getElementById('typewriterEl');
+  if (typeEl) {
+    const words = ['Fontaneros', 'Electricistas', 'Peluquerías', 'Talleres', 'Delivery', 'Pintores', 'Maestros'];
+    let w = 0, ch = 0, del = false, speed = 110;
+    function type() {
+      const word = words[w];
+      if (!del) {
+        typeEl.textContent = word.slice(0, ch + 1);
+        ch++;
+        if (ch === word.length) { del = true; speed = 2200; } else speed = 110;
+      } else {
+        typeEl.textContent = word.slice(0, ch - 1);
+        ch--;
+        speed = 60;
+        if (ch === 0) { del = false; w = (w + 1) % words.length; speed = 300; }
+      }
+      setTimeout(type, speed);
+    }
+    setTimeout(type, 1000);
+  }
+
+  // ========== LIVE METRICS ==========
+  function updateLiveMetrics() {
+    document.getElementById('liveClients').innerText = Math.floor(Math.random() * (47 - 12 + 1) + 12);
+    document.getElementById('liveSearch').innerText = Math.floor(Math.random() * (89 - 15 + 1) + 15);
+    const spots = Math.floor(Math.random() * (9 - 3 + 1) + 3);
+    document.getElementById('liveSpots').innerText = spots;
+    document.getElementById('cuposRestantes') && (document.getElementById('cuposRestantes').innerText = spots);
+    document.getElementById('liveTimestamp').innerHTML = `Actualizado hace ${Math.floor(Math.random() * 5)} min`;
+  }
+  setInterval(updateLiveMetrics, 5000);
+  updateLiveMetrics();
+
+  // ========== DASHBOARD ==========
+  function updateDashboard() {
+    if (document.getElementById('dashLeads')) document.getElementById('dashLeads').innerText = Math.floor(Math.random() * (89 - 30 + 1) + 30);
+    if (document.getElementById('dashConv')) document.getElementById('dashConv').innerText = (Math.random() * (45 - 18) + 18).toFixed(1);
+    if (document.getElementById('dashActive')) document.getElementById('dashActive').innerText = Math.floor(Math.random() * (200 - 80 + 1) + 80);
+    if (document.getElementById('dashResponse')) document.getElementById('dashResponse').innerText = (Math.random() * (15 - 3) + 3).toFixed(1);
+    if (document.getElementById('dashRating')) document.getElementById('dashRating').innerText = (4.7 + Math.random() * 0.3).toFixed(2);
+  }
+  setInterval(updateDashboard, 10000);
+  updateDashboard();
+
+  // ========== ACTIVIDADES FOMO ==========
+  const acts = [{ time: "Hace 2 min", text: "María G. de Santiago contrató Plan Media" },{ time: "Hace 5 min", text: "Carlos R. de Viña del Mar solicitó cotización" },{ time: "Hace 8 min", text: "Patricia L. de Concepción recibió su web" },{ time: "Hace 12 min", text: "Francisco M. de La Florida pidió info" },{ time: "Hace 15 min", text: "Andrea S. de Valparaíso contrató Full Service" }];
+  let actIdx = 0;
+  function rotateActivities() {
+    const list = document.getElementById('activityList'); if (!list) return;
+    actIdx = (actIdx + 1) % acts.length;
+    const cities = ['Santiago', 'Viña', 'Concepción', 'La Serena', 'Antofagasta'];
+    const trades = ['Fontanero', 'Electricista', 'Peluquería', 'Delivery', 'Maestro'];
+    list.innerHTML = `<li><span class="activity-time">${acts[actIdx].time}</span><span>${acts[actIdx].text}</span></li>
+      <li><span class="activity-time">Hace ${Math.floor(Math.random() * 10 + 5)} min</span><span>Nuevo cliente en ${cities[Math.floor(Math.random()*cities.length)]}</span></li>
+      <li><span class="activity-time">Hace ${Math.floor(Math.random() * 20 + 10)} min</span><span>${trades[Math.floor(Math.random()*trades.length)]} solicitó cotización</span></li>`;
+  }
+  setInterval(rotateActivities, 8000);
+  rotateActivities();
+
+  // ========== FAQ ==========
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ========== CONTADOR ESPECTADORES ==========
+  function updateWatchers() { const el = document.getElementById('watchersCount'); if (el) el.textContent = Math.floor(Math.random() * (62 - 35 + 1) + 35); }
+  setInterval(updateWatchers, 12000);
+
+  // ========== FORMULARIO PREMIUM ==========
+  const premiumForm = document.getElementById('premiumLeadForm');
+  if (premiumForm) {
+    premiumForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('premium-name')?.value.trim();
+      const email = document.getElementById('premium-email')?.value.trim();
+      if (!name || !email) {
+        alert('Por favor, completa tu nombre y correo electrónico.');
+        return;
+      }
+      const phone = document.getElementById('premium-phone')?.value.trim();
+      const solution = document.getElementById('premium-solution')?.value || 'No especificada';
+      const message = document.getElementById('premium-message')?.value.trim();
+      const discount = document.getElementById('premium-discount')?.value.trim();
+
+      let waText = `Hola! Me interesa GO Automatizaciones IA.%0A%0A`;
+      waText += `📌 Datos de contacto:%0A`;
+      waText += `Nombre: ${encodeURIComponent(name)}%0A`;
+      waText += `Email: ${encodeURIComponent(email)}%0A`;
+      if (phone) waText += `Teléfono: ${encodeURIComponent(phone)}%0A`;
+      waText += `%0A🤖 Solución de interés:%0A${encodeURIComponent(solution)}%0A`;
+      if (message) waText += `%0A📝 Detalles del negocio:%0A${encodeURIComponent(message)}%0A`;
+      if (discount) waText += `%0A🎟️ Código descuento: ${encodeURIComponent(discount)}%0A`;
+
+      window.open(`https://wa.me/56987685450?text=${waText}`, '_blank');
+
+      // LEAD MAGNET: cambiar URL por la real de Google Drive
+      const leadMagnetUrl = 'https://drive.google.com/your-guide-link-here';
+      window.open(leadMagnetUrl, '_blank');
+
+      alert('✅ ¡Solicitud enviada! Revisa tu WhatsApp y tu correo. La guía se descargará automáticamente.');
+      premiumForm.reset();
+    });
+  }
+</script>
+</body>
+</html>
 
