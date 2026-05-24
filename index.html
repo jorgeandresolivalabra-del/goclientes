@@ -141,7 +141,7 @@
     [data-theme="dark"] .theme-toggle::after { transform: translateX(20px); }
     .theme-toggle-wrap { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--muted); }
 
-    /* ========== NAVEGACIÓN ========== */
+    /* ========== NAVEGACIÓN (MEJORADA) ========== */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
@@ -149,12 +149,42 @@
       border-bottom: 1px solid var(--border); transition: all 0.3s var(--ease);
     }
     nav.scrolled { box-shadow: var(--shadow-lg); padding: 0.7rem 2.5rem; }
-    .logo {
-      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.5rem;
-      text-decoration: none; background: linear-gradient(135deg, var(--heading), var(--green));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
+
+    /* LOGO ESTILOS NUEVOS + EXISTENTES */
+    .logo-wrap{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
     }
-    .logo span { background: linear-gradient(135deg, var(--green), var(--green-dark)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .logo-img{
+      width:52px;
+      height:52px;
+      object-fit:contain;
+      filter:
+        drop-shadow(0 0 10px rgba(0,198,94,0.35))
+        drop-shadow(0 0 20px rgba(0,150,255,0.20));
+      transition:all .3s ease;
+    }
+    .logo-wrap:hover .logo-img{
+      transform:scale(1.08) rotate(-3deg);
+    }
+    .logo-text{
+      font-family:'Sora',sans-serif;
+      font-size:1.5rem;
+      font-weight:800;
+      letter-spacing:-0.03em;
+    }
+    .logo-text .go{
+      color:#0ea5e9;
+    }
+    .logo-text .clientes{
+      color:#00C65E;
+    }
+    [data-theme="dark"] .logo-text .go {
+      color:#38bdf8;
+    }
+
     .nav-links { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
     .nav-links a {
       color: var(--body); text-decoration: none; font-weight: 500; font-size: 0.88rem;
@@ -199,9 +229,15 @@
 
     /* ========== HERO CON DOS IMÁGENES DE FONDO ========== */
     .hero {
-      padding: 10rem 1.5rem 6rem; text-align: center;
-      position: relative; overflow: hidden; min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      padding: 9rem 1.5rem 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       background-color: #0a0e13;
     }
     .hero-bg-img {
@@ -228,6 +264,18 @@
     }
     #particles-canvas { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events: none; z-index: 1; }
     .hero > * { position: relative; z-index: 2; }
+
+    /* LOGO GRANDE HERO */
+    .hero-logo{
+      width:140px;
+      margin-bottom:1.5rem;
+      animation:float 4s ease-in-out infinite;
+      filter:
+        drop-shadow(0 0 25px rgba(0,198,94,0.45))
+        drop-shadow(0 0 35px rgba(0,150,255,0.25));
+      opacity:0.98;
+    }
+
     .hero-badge {
       display:inline-flex; align-items:center; gap:0.5rem;
       background:rgba(0,198,94,0.15); backdrop-filter:blur(10px);
@@ -838,6 +886,7 @@
       .hamburger { display: flex; }
       .hero-stats { flex-direction: column; }
       .stat-item:not(:last-child) { border-right: none; border-bottom: 1px solid var(--border); }
+      .hero-logo { width: 100px; }
     }
   </style>
 </head>
@@ -848,7 +897,13 @@
 <div class="cursor-follower"></div>
 
 <nav id="navbar">
-  <a href="#" class="logo">Go<span>Clientes</span></a>
+  <!-- LOGO MODIFICADO: Reemplazo por estructura con imagen -->
+  <a href="#" class="logo-wrap">
+    <img src="/img/logotipo.png" alt="GoClientes" class="logo-img">
+    <div class="logo-text">
+      <span class="go">Go</span><span class="clientes">Clientes</span>
+    </div>
+  </a>
   <div class="nav-links" id="navLinks">
     <a href="#como-funciona">Cómo funciona</a>
     <a href="#planes">Planes</a>
@@ -876,6 +931,8 @@
   <div class="hero-bg-img"></div>
   <div class="hero-bg-img2"></div>
   <canvas id="particles-canvas"></canvas>
+  <!-- LOGO GRANDE EN HERO AGREGADO -->
+  <img src="/img/logotipo.png" alt="GoClientes" class="hero-logo">
   <div class="hero-badge"><span class="pulse"></span> 🔴 <span id="watchersCount">47</span> personas viendo esta oferta ahora</div>
   <div style="margin-bottom:0.5rem;">
     <span style="font-size:1rem;color:var(--muted);font-weight:500;">El servicio perfecto para </span>
@@ -897,7 +954,6 @@
   <div class="hero-btns">
     <a href="https://wa.me/56987685450?text=Hola,%20quiero%20resultados%20como%20Carlos" class="btn-primary" target="_blank">📈 Quiero +667% clientes como Carlos</a>
     <a href="#planes" class="btn-secondary">Ver planes ↓</a>
-    <!-- BOTÓN EXTRA EN HERO: FORMULARIO DE CONTACTO -->
     <a href="formulario.html" class="btn-secondary" style="border-color: #1e3a5f; color: #1e3a5f;">📋 Ir al formulario de contacto →</a>
   </div>
   <div class="hero-stats">
@@ -918,8 +974,8 @@
   </div>
 </div>
 
-<!-- El resto del contenido del index (problem, steps, fomo, dashboard, casos, pricing, faq, premium-form, footer) permanece exactamente igual que en tu código original -->
-<!-- Como es muy extenso, aquí pongo un resumen para que sepas que todo lo demás se mantiene, pero en el archivo final debe ir completo. Por brevedad en esta respuesta, incluiré el resto tal cual lo tenías. -->
+<!-- Resto del contenido ORIGINAL (Problem, Steps, FOMO, Dashboard, Casos, Pricing, FAQ, Formulario, Footer) se mantiene exactamente igual -->
+<!-- Esto asegura que NO se rompe ninguna funcionalidad existente -->
 
 <section class="problem-section">
   <div style="max-width:1200px;margin:0 auto">
