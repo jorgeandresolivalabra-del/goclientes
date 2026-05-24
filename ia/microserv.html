@@ -3,920 +3,341 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>GoClientes.cl | Llena tu WhatsApp de clientes</title>
-  <!-- Tailwind CSS + Font Awesome + AOS -->
+  <title>GoClientes.com | Soluciones Digitales para Negocios</title>
+  <!-- Tailwind CSS + Font Awesome + AOS + Swiper (diapositivas) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
-    /* CSS Premium 2026 - Glassmorphism + Neones + Microinteracciones */
+    /* ===== WHATSAPP STYLE COLORS: VERDE + BLANCO + MOVIMIENTOS POWERPOINT ===== */
     @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap');
-    * { font-family: 'Inter', sans-serif; }
+    * { font-family: 'Inter', sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
     
     :root {
-      --primary-dark: #0f2b5e;
-      --primary: #1e40af;
-      --accent: #10b981;
-      --glass-bg: rgba(255, 255, 255, 0.08);
-      --glass-border: rgba(255, 255, 255, 0.12);
-      --transition-smooth: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      --wa-green: #25D366;
+      --wa-green-dark: #128C7E;
+      --wa-light: #DCF8C6;
+      --white: #FFFFFF;
+      --soft-gray: #F0F2F4;
+      --shadow-premium: 0 20px 35px -12px rgba(37, 211, 102, 0.25);
     }
-    .dark {
-      --bg-primary: #0a0f1a;
-      --bg-secondary: #111827;
-      --text-primary: #f3f4f6;
-      --text-secondary: #9ca3af;
-      --card-bg: rgba(17, 24, 39, 0.75);
-      --border-glow: rgba(16, 185, 129, 0.4);
-    }
-    body {
-      transition: background-color 0.3s, color 0.2s;
-      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-      background-attachment: fixed;
-    }
-    .dark body {
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      background: linear-gradient(135deg, #0a0f1a 0%, #0f1419 100%);
-    }
-
-    /* ===== EFECTOS AVANZADOS ===== */
     
-    /* Brillo de fondo dinámico */
-    .glow-blur {
-      position: fixed;
-      pointer-events: none;
-      z-index: -1;
+    body {
+      background: var(--white);
+      color: #1E2A32;
+      overflow-x: hidden;
     }
-    .glow-1 {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
-      filter: blur(100px);
-      animation: floatGlow1 20s ease-in-out infinite;
-      top: -200px;
-      right: -100px;
+    
+    /* Efecto slide / PowerPoint transitions */
+    .slide-up {
+      animation: slideUpFade 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
     }
-    .glow-2 {
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(30, 64, 175, 0.2) 0%, transparent 70%);
-      filter: blur(80px);
-      animation: floatGlow2 25s ease-in-out infinite;
-      bottom: 100px;
-      left: -150px;
+    @keyframes slideUpFade {
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
-    .glow-3 {
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
-      filter: blur(70px);
-      animation: floatGlow1 30s ease-in-out infinite reverse;
-      top: 50%;
-      right: 10%;
+    .slide-right {
+      animation: slideRightFade 0.6s ease-out forwards;
     }
-    @keyframes floatGlow1 {
-      0%, 100% { transform: translate(0, 0); }
-      25% { transform: translate(50px, 50px); }
-      50% { transform: translate(-30px, 100px); }
-      75% { transform: translate(80px, -50px); }
+    @keyframes slideRightFade {
+      0% { opacity: 0; transform: translateX(-40px); }
+      100% { opacity: 1; transform: translateX(0); }
     }
-    @keyframes floatGlow2 {
-      0%, 100% { transform: translate(0, 0); }
-      33% { transform: translate(-60px, 40px); }
-      66% { transform: translate(40px, -60px); }
+    .slide-left {
+      animation: slideLeftFade 0.6s ease-out forwards;
     }
-
-    /* Glass card mejorada */
-    .glass-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--glass-border);
-      border-radius: 1.5rem;
+    @keyframes slideLeftFade {
+      0% { opacity: 0; transform: translateX(40px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+    .zoom-in {
+      animation: zoomInPop 0.5s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+    }
+    @keyframes zoomInPop {
+      0% { opacity: 0; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    
+    /* Glassmorph cards con verde/white */
+    .card-wa {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      transition: all 0.35s ease;
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+    }
+    .card-wa:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: var(--shadow-premium);
+      border-color: #25D366;
+    }
+    
+    /* Botón principal WhatsApp */
+    .btn-wa-green {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+    }
+    .btn-wa-green:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 20px 30px rgba(37, 211, 102, 0.4);
+    }
+    
+    /* Hero con degradado verde & blanco */
+    .hero-wa {
+      background: linear-gradient(125deg, #FFFFFF 0%, #E8F5E9 100%);
       position: relative;
-      overflow: hidden;
     }
-    .glass-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      transition: left 0.6s ease;
-      z-index: 1;
-    }
-    .glass-card:hover::before {
-      left: 100%;
-    }
-    .dark .glass-card {
-      background: var(--card-bg);
-      border-color: var(--border-glow);
-      box-shadow: 0 8px 32px rgba(16, 185, 129, 0.1);
-    }
-
-    /* Hero background mejorado */
-    .hero-bg-2026 {
-      background: linear-gradient(135deg, #0a2540 0%, #1e3a8a 50%, #0f766e 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-bg-2026::before {
+    .hero-wa::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 20%, rgba(16, 185, 129, 0.2) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 80%, rgba(30, 64, 175, 0.2) 0%, transparent 50%);
-      animation: subtleMove 25s ease infinite;
-    }
-    .hero-bg-2026::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="1200" height="600" fill="url(%23grid)" opacity="0.3"/></svg>');
-      animation: slide 20s linear infinite;
-    }
-    @keyframes subtleMove {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(30px, 20px); }
-    }
-    @keyframes slide {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(40px); }
-    }
-
-    /* Service card mejorada con 3D */
-    .service-card {
-      transition: var(--transition-smooth);
-      transform-style: preserve-3d;
-      perspective: 1000px;
-      position: relative;
-      overflow: hidden;
-      border-radius: 1.5rem;
-      cursor: pointer;
-      height: 300px;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 2;
-      border-radius: 1.5rem;
-    }
-    .service-card:hover::before {
-      opacity: 1;
-    }
-    .service-card:hover {
-      transform: translateY(-12px) scale(1.02) rotateY(2deg) rotateX(1deg);
-      box-shadow: 0 40px 50px -20px rgba(16, 185, 129, 0.3);
-    }
-    .service-card-content {
-      position: relative;
-      z-index: 3;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
-      padding: 2rem;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
-
-    /* Botón WhatsApp mejorado */
-    .btn-wa {
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
-    }
-    .btn-wa::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-      transition: left 0.6s ease;
-    }
-    .btn-wa:hover::before {
-      left: 100%;
-    }
-    .btn-wa:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 20px 40px rgba(16, 185, 129, 0.5);
-    }
-    .btn-wa:active { 
-      transform: scale(0.95);
-    }
-
-    /* Contadores con efecto de luz */
-    .counter-number {
-      font-feature-settings: "tnum";
-      font-variant-numeric: tabular-nums;
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: countPulse 0.8s ease;
-    }
-    @keyframes countPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-
-    /* Theme toggle mejorado */
-    .theme-toggle {
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(8px);
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      z-index: 100;
-      border: 1px solid rgba(255,255,255,0.2);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-    }
-    .theme-toggle:hover { 
-      transform: scale(1.15) rotate(20deg);
-      box-shadow: 0 12px 40px rgba(16, 185, 129, 0.4);
-    }
-
-    /* Trust logo mejorada */
-    .trust-logo {
-      background: rgba(255,255,255,0.05);
-      border-radius: 1rem;
-      padding: 0.75rem 1.25rem;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-      text-align: center;
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255,255,255,0.1);
-      position: relative;
-      overflow: hidden;
-    }
-    .trust-logo::after {
-      content: '';
-      position: absolute;
-      inset: -50%;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: -1;
-    }
-    .trust-logo:hover::after {
-      opacity: 1;
-    }
-    .dark .trust-logo {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(16,185,129,0.3);
-    }
-    .trust-logo:hover {
-      transform: translateY(-6px) scale(1.05);
-      background: rgba(16,185,129,0.1);
-      box-shadow: 0 12px 24px rgba(16, 185, 129, 0.2);
-    }
-
-    /* Video section mejorada */
-    .video-section {
-      position: relative;
-      overflow: hidden;
-      background-color: #000;
-    }
-    .video-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(37, 211, 102, 0.08), transparent 70%);
       pointer-events: none;
-      filter: blur(2px) brightness(0.6);
     }
-    .video-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(10,37,64,0.85) 0%, rgba(15,43,94,0.8) 100%);
-      z-index: 1;
-      animation: overlayPulse 15s ease-in-out infinite;
+    
+    /* Efecto diapositiva en Swiper (testimonios tipo carrusel) */
+    .swiper-slide {
+      transition: transform 0.5s ease;
     }
-    @keyframes overlayPulse {
-      0%, 100% { opacity: 0.85; }
-      50% { opacity: 0.75; }
+    .testimonial-swiper .swiper-slide-active {
+      transform: scale(1.02);
     }
-    .video-content {
+    
+    /* Servicios grid con entrada secuencial tipo slide */
+    .service-item {
+      opacity: 0;
+      animation: slideUpFade 0.6s forwards;
+    }
+    
+    /* Borde verde animado */
+    .neon-green {
       position: relative;
-      z-index: 2;
     }
-
-    /* Card combo mejorada */
-    .combo-card {
-      position: relative;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-      border: 2px solid rgba(255,255,255,0.1);
-    }
-    .combo-card::before {
+    .neon-green::after {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(16, 185, 129, 0.1), transparent);
-      transition: all 0.6s ease;
+      bottom: -2px;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: #25D366;
+      transition: width 0.4s ease;
+    }
+    .neon-green:hover::after {
+      width: 100%;
+    }
+    
+    /* Footer verde elegante */
+    .footer-green {
+      background: #0C2D1E;
+      color: white;
+    }
+    
+    /* Efecto PowerPoint en secciones: al hacer scroll aparecen con slide */
+    .section-slide {
       opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
-    .combo-card:hover::before {
+    .section-slide.visible {
       opacity: 1;
-      animation: shine 0.6s ease;
+      transform: translateY(0);
     }
-    @keyframes shine {
-      0% { transform: translate(-50%, -50%) rotate(0deg); }
-      100% { transform: translate(50%, 50%) rotate(0deg); }
+    
+    /* timeline animado */
+    .step-card {
+      transition: all 0.4s;
     }
-    .combo-card:hover {
-      transform: translateY(-15px) scale(1.03);
-      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
-      box-shadow: 0 30px 60px rgba(16, 185, 129, 0.25);
-      border-color: rgba(16, 185, 129, 0.5);
-    }
-
-    /* Testimonials con efecto */
-    .testimonial-card {
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    .testimonial-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
-    }
-
-    /* Animación de stars */
-    .star-float {
-      animation: starFloat 3s ease-in-out infinite;
-    }
-    @keyframes starFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    /* Text glow effect */
-    .text-glow {
-      background: linear-gradient(135deg, #10b981, #059669, #10b981);
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: glowShift 3s ease infinite;
-    }
-    @keyframes glowShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    /* Badge pulse */
-    .badge-pulse {
-      animation: badgePulse 2s ease-in-out infinite;
-    }
-    @keyframes badgePulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-      50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-    }
-
-    /* Floating elements */
-    .float-slow {
-      animation: floatSlow 6s ease-in-out infinite;
-    }
-    .float-medium {
-      animation: floatMedium 4s ease-in-out infinite;
-    }
-    .float-fast {
-      animation: floatFast 3s ease-in-out infinite;
-    }
-    @keyframes floatSlow {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-    }
-    @keyframes floatMedium {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-    }
-    @keyframes floatFast {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+    .step-card:hover {
+      transform: scale(1.05) translateY(-8px);
+      background: #ffffff;
+      box-shadow: 0 20px 35px rgba(37, 211, 102, 0.2);
     }
   </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
+<body>
 
-  <!-- Glowing background elements -->
-  <div class="glow-blur glow-1"></div>
-  <div class="glow-blur glow-2"></div>
-  <div class="glow-blur glow-3"></div>
+  <!-- Botón flotante WhatsApp (actualizado) -->
+  <a href="https://wa.me/56963571251?text=Hola%20GoClientes!%20Quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios%20digitales"
+     target="_blank"
+     class="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-green-500 to-emerald-600 p-4 rounded-full shadow-2xl hover:scale-110 transition duration-300"
+     aria-label="WhatsApp">
+    <i class="fab fa-whatsapp text-3xl text-white"></i>
+  </a>
 
-  <!-- Botón Modo Oscuro flotante -->
-  <button id="darkModeToggle" class="theme-toggle fixed bottom-5 right-5 z-50 bg-gray-800/80 dark:bg-white/10 text-white p-3 rounded-full shadow-xl backdrop-blur-md border border-white/20">
-    <i class="fas fa-moon dark:hidden text-lg"></i>
-    <i class="fas fa-sun hidden dark:inline-block text-lg"></i>
-  </button>
-
-  <!-- ================= HERO SECTION 2026 MEJORADA ================= -->
-  <section class="hero-bg-2026 text-white relative min-h-[90vh] flex items-center overflow-hidden">
-    <div class="absolute inset-0 opacity-40"></div>
-    
-    <div class="container mx-auto px-5 md:px-8 py-16 relative z-10">
-      <div class="max-w-4xl mx-auto text-center">
-        <div class="inline-block glass-card px-5 py-2 rounded-full text-sm font-semibold mb-6 backdrop-blur-md float-slow" data-aos="fade-down">
-          <i class="fas fa-chart-line mr-2 text-green-400"></i> 
-          <span class="text-glow">+52 negocios chilenos confían</span>
-        </div>
-        
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 bg-gradient-to-r from-white via-green-200 to-blue-300 bg-clip-text text-transparent drop-shadow-lg" data-aos="fade-up">
-          Llena tu WhatsApp de clientes <span class="text-green-400 underline decoration-2 text-glow">desde $25.000</span>
-        </h1>
-        
-        <p class="text-xl text-blue-100 max-w-2xl mx-auto mb-8 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-          Servicios digitales express que conectan tu negocio con más consultas reales en <strong class="text-white text-glow">24 a 72 horas</strong>. Precios pensados para Pymes chilenas, resultados garantizados.
-        </p>
-        
-        <div class="flex flex-col sm:flex-row gap-5 justify-center" data-aos="fade-up" data-aos-delay="200">
-          <a href="https://wa.me/56912345678?text=Hola%21%20Quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="btn-wa bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition inline-flex items-center gap-2 justify-center shadow-lg">
-            <i class="fab fa-whatsapp text-2xl"></i> ¡QUIERO CLIENTES AHORA!
-          </a>
-          <a href="#servicios" class="glass-card text-white font-semibold py-4 px-7 rounded-xl text-lg transition hover:bg-white/20 border border-white/30 inline-flex items-center gap-2 justify-center">
-            <i class="fas fa-arrow-down"></i> Ver Servicios Express
-          </a>
-        </div>
-        
-        <p class="text-blue-100 text-sm mt-8 flex justify-center gap-4 flex-wrap" data-aos="fade-up" data-aos-delay="300">
-          <span class="badge-pulse inline-block"><i class="fas fa-clock mr-1"></i> Implementación rápida</span>
-          <span><i class="fas fa-comments mr-1"></i> Soporte vía WhatsApp</span>
-          <span><i class="fas fa-certificate mr-1"></i> Certificación HubSpot</span>
-        </p>
-      </div>
+  <!-- ========== HERO SECTION - VERDE & BLANCO, MOVIMIENTO SLIDE ========== -->
+  <section class="hero-wa min-h-screen flex items-center justify-center relative overflow-hidden px-5">
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute top-20 left-10 w-80 h-80 bg-green-300 rounded-full blur-[100px]"></div>
     </div>
-    
-    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-10 md:h-14 fill-white dark:fill-gray-900">
-        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28 70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08 36.15-6,69.85-17.84,104.45-29.34C989.49,12,1042.7,9,1200,0v120Z"></path>
-      </svg>
-    </div>
-  </section>
-
-  <!-- ========== PRUEBA SOCIAL (CONTADORES ANIMADOS) ========== -->
-  <section class="bg-white dark:bg-gray-900 py-16 border-b border-gray-100 dark:border-gray-800 relative">
-    <div class="container mx-auto px-5 md:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-        <div class="flex flex-col items-center" data-aos="fade-up">
-          <div class="text-6xl font-black text-transparent bg-gradient-to-r from-green-500 to-emerald-500 bg-clip-text counter-number" id="counter-business">0</div>
-          <p class="text-gray-600 dark:text-gray-300 font-semibold mt-2"><i class="fas fa-building text-green-500 mr-2"></i>Negocios activos</p>
-        </div>
-        <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="100">
-          <div class="text-6xl font-black text-transparent bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text counter-number" id="counter-repeat">0</div>
-          <p class="text-gray-600 dark:text-gray-300 font-semibold mt-2"><i class="fas fa-redo text-blue-500 mr-2"></i>Clientes recurrentes</p>
-        </div>
-        <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="200">
-          <div class="text-6xl font-black text-yellow-400">
-            <span class="star-float">4.9</span><span class="text-3xl">/5</span>
-          </div>
-          <div class="flex text-yellow-400 text-xl mt-1 justify-center">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-          </div>
-          <p class="text-gray-600 dark:text-gray-300 font-semibold mt-2"><i class="fas fa-heart text-red-500 mr-2"></i>Satisfacción cliente</p>
-        </div>
-        <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="300">
-          <div class="text-6xl font-black text-transparent bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text counter-number" id="counter-leads">0</div>
-          <p class="text-gray-600 dark:text-gray-300 font-semibold mt-2"><i class="fas fa-fire text-orange-500 mr-2"></i>Leads generados</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== MARCAS QUE CONFÍAN (EMPRESAS HISPANOAMERICANAS) ========== -->
-  <section class="py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800/20 dark:to-gray-900">
-    <div class="container mx-auto px-5 md:px-8 text-center">
-      <p class="text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 font-semibold mb-8" data-aos="fade-up">Empresas que confían en GoClientes</p>
-      <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6">
-        <div class="trust-logo float-slow" data-aos="zoom-in"><i class="fas fa-store mr-2 text-green-500"></i> Distribuidora Andes</div>
-        <div class="trust-logo float-medium" data-aos="zoom-in" data-aos-delay="50"><i class="fas fa-tshirt mr-2 text-green-500"></i> Moda Vita</div>
-        <div class="trust-logo float-fast" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-laptop-code mr-2 text-green-500"></i> TechSoluciones CL</div>
-        <div class="trust-logo float-slow" data-aos="zoom-in" data-aos-delay="150"><i class="fas fa-utensils mr-2 text-green-500"></i> Sabores del Sur</div>
-        <div class="trust-logo float-medium" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-dumbbell mr-2 text-green-500"></i> FitEnergy</div>
-        <div class="trust-logo float-fast" data-aos="zoom-in" data-aos-delay="250"><i class="fas fa-hand-holding-heart mr-2 text-green-500"></i> EmprendeMujer</div>
-        <div class="trust-logo float-slow" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-tools mr-2 text-green-500"></i> Mecánica Rápida</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= SERVICIOS EXPRESS (COMPLETOS) ================= -->
-  <section id="servicios" class="py-24 md:py-32 bg-white dark:bg-gray-900">
-    <div class="container mx-auto px-5 md:px-8">
-      <div class="text-center mb-16">
-        <span class="text-green-600 dark:text-green-400 font-semibold tracking-wide uppercase text-sm inline-block mb-3 badge-pulse" data-aos="fade-up">
-          <i class="fas fa-bolt mr-1"></i> Resultados en 24-72h
+    <div class="container mx-auto max-w-6xl relative z-10 py-20 md:py-28">
+      <div class="slide-right" data-aos="fade-right">
+        <span class="inline-block px-5 py-2 rounded-full bg-green-100 text-green-700 text-sm font-bold mb-6 shadow-sm">
+          <i class="fab fa-whatsapp mr-2"></i> +500 negocios chilenos confían
         </span>
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mt-3 text-glow" data-aos="fade-up" data-aos-delay="100">Servicios Express</h2>
-        <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mt-4" data-aos="fade-up" data-aos-delay="200">Soluciones enfocadas, precios accesibles para Pymes chilenas.</p>
       </div>
-      
+      <h1 class="text-5xl md:text-7xl font-extrabold leading-tight slide-up" style="animation-delay: 0.1s;">
+        Soluciones Digitales <br>
+        para <span class="text-green-600">Negocios</span>
+      </h1>
+      <p class="text-xl text-gray-700 max-w-2xl mt-6 leading-relaxed slide-up" style="animation-delay: 0.2s;">
+        Ayudamos a empresas y emprendedores a ordenar su atención, automatizar WhatsApp y verse más profesionales.  
+        Tecnología simple, resultados reales.
+      </p>
+      <div class="flex flex-wrap gap-5 mt-10 slide-up" style="animation-delay: 0.3s;">
+        <a href="https://wa.me/56963571251?text=Quiero%20cotizar%20con%20GoClientes" target="_blank" class="btn-wa-green px-8 py-4 rounded-xl font-bold text-lg inline-flex items-center gap-3 shadow-xl text-white">
+          <i class="fab fa-whatsapp text-2xl"></i> Hablar por WhatsApp
+        </a>
+        <a href="#servicios" class="border-2 border-green-500 bg-white text-green-600 px-8 py-4 rounded-xl font-bold text-lg inline-flex items-center gap-2 hover:bg-green-50 transition-all">
+          <i class="fas fa-arrow-down"></i> Ver Servicios
+        </a>
+      </div>
+      <div class="mt-12 flex flex-wrap gap-6 text-sm text-gray-500 slide-up" style="animation-delay: 0.4s;">
+        <span><i class="fas fa-check-circle text-green-500 mr-1"></i> Sin contratos</span>
+        <span><i class="fas fa-check-circle text-green-500 mr-1"></i> Soporte 24/7</span>
+        <span><i class="fas fa-check-circle text-green-500 mr-1"></i> Resultados en 72h</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICIOS (8 TARJETAS CON EFECTO SLIDE POWERPOINT) ========== -->
+  <section id="servicios" class="py-24 px-5 bg-white">
+    <div class="container mx-auto max-w-6xl">
+      <div class="text-center mb-16 slide-right">
+        <i class="fab fa-whatsapp text-5xl text-green-500 mb-4"></i>
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-800">Nuestros <span class="text-green-600">Servicios Express</span></h2>
+        <p class="text-gray-500 mt-4 max-w-2xl mx-auto">Soluciones tecnológicas pensadas para Pymes chilenas con resultados rápidos.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
+        <!-- cada servicio con animación de zoom / slide individual -->
+        <div class="card-wa p-6 service-item zoom-in" style="animation-delay: 0s;"><div class="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-5"><i class="fab fa-whatsapp text-3xl text-green-600"></i></div><h3 class="text-xl font-bold">WhatsApp Profesional</h3><p class="text-gray-500 text-sm mt-2">Configuración Business, respuestas rápidas, catálogo y QR.</p><div class="mt-4 pt-3 border-t border-gray-100 flex justify-between"><span class="text-2xl font-bold text-green-600">$29.990</span><span class="text-xs text-gray-400">+ IVA</span></div></div>
+        <div class="card-wa p-6 service-item zoom-in" style="animation-delay: 0.1s;"><div class="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-5"><i class="fas fa-users text-3xl text-green-600"></i></div><h3 class="text-xl font-bold">WhatsApp Multiagente</h3><p class="text-gray-500 text-sm mt-2">Varios trabajadores, panel profesional y atención por sectores.</p><div class="mt-4 pt-3 border-t border-gray-100 flex justify-between"><span class="text-2xl font-bold text-green-600">$79.990</span><span class="text-xs text-gray-400">+ IVA</span></div></div>
+        <div class="card-wa p-6 service-item zoom-in" style="animation-delay: 0.2s;"><div class="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-5"><i class="fas fa-robot text-3xl text-green-600"></i></div><h3 class="text-xl font-bold">Automatización WhatsApp</h3><p class="text-gray-500 text-sm mt-2">Bot de menú, captura de clientes, derivación automática.</p><div class="mt-4 pt-3 border-t border-gray-100 flex justify-between"><span class="text-2xl font-bold text-green-600">$49.990</span><span class="text-xs text-gray-400">+ IVA</span></div></div>
+        <div class="card-wa p-6 service-item zoom-in" style="animation-delay: 0.3s;"><div class="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-5"><i class="fas fa-map-marker-alt text-3xl text-green-600"></i></div><h3 class="text-xl font-bold">Google Maps Negocios</h3><p class="text-gray-500 text-sm mt-2">Optimización ficha Google, fotos + WhatsApp conectado.</p><div class="mt-4 pt-3 border-t border-gray-100 flex justify-between"><span class="text-2xl font-bold text-green-600">$25.000</span><span class="text-xs text-gray-400">+ IVA</span></div></div>
+        <div class="card-wa p-6 service-item zoom-in" style="animation-delay: 0.4s;"><div class="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-5"><i class="fas fa-hashtag text-3xl text-green-600"></i></div><h3 class="text-xl font-bold">Pack Redes Sociales</h3><p class="text-gray-500 text-sm mt-2">Facebook empresa, Instagram, botón WhatsApp y diseño.</p><div class="mt-4 pt-3 border-t border-gray-100 flex justify-between"><span class="text-2xl font-bold text-green-600">$35.000</span><span class="text-xs text-gray-400">+ IVA</span></div></div>
+        <div class="card-wa p-6 service-item zoom-in" style="animation-delay: 0.5s;"><div class="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-5"><i class="fas fa-tachometer-alt text-3xl text-green-600"></i></div><h3 class="text-xl font-bold">Optimización PC</h3><p class="text-gray-500 text-sm mt-2">Limpieza, antivirus, mejora de rendimiento profesional.</p><div class="mt-4 pt-3 border-t border-gray-100 flex justify-between"><span class="text-2xl font-bold text-green-600">$20.000</span><span class="text-xs text-gray-400">+ IVA</span></div></div>
+        <div class="card-wa p-6 service-item zoom-in" style="animation-delay: 0.6s;"><div class="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-5"><i class="fas fa-wifi text-3xl text-green-600"></i></div><h3 class="text-xl font-bold">Mejora WiFi y Redes</h3><p class="text-gray-500 text-sm mt-2">Optimización router, revisión de señal y orden de red.</p><div class="mt-4 pt-3 border-t border-gray-100 flex justify-between"><span class="text-2xl font-bold text-green-600">$30.000</span><span class="text-xs text-gray-400">+ IVA</span></div></div>
+        <div class="card-wa p-6 service-item zoom-in" style="animation-delay: 0.7s;"><div class="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-5"><i class="fas fa-chalkboard-user text-3xl text-green-600"></i></div><h3 class="text-xl font-bold">Automatización Empresas</h3><p class="text-gray-500 text-sm mt-2">Formularios automáticos, recordatorios + captura de leads.</p><div class="mt-4 pt-3 border-t border-gray-100 flex justify-between"><span class="text-2xl font-bold text-green-600">$59.990</span><span class="text-xs text-gray-400">+ IVA</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BENEFICIOS VERDE/BLANCO con animaciones PowerPoint ========== -->
+  <section class="py-20 px-5 bg-gray-50">
+    <div class="container mx-auto max-w-6xl">
+      <div class="text-center mb-14 slide-left"><h2 class="text-4xl font-bold text-gray-800">¿Por qué <span class="text-green-600">GoClientes</span>?</h2><p class="text-gray-500 mt-3">Beneficios que transforman tu negocio</p></div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Tarjeta 1: Auditoría Inbound -->
-        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60')" data-aos="zoom-in">
-          <div class="service-card-content">
-            <h3 class="text-2xl font-bold mb-2"><i class="fas fa-search mr-2 text-green-400"></i>Auditoría Inbound</h3>
-            <p class="text-sm text-gray-200">Análisis completo de tu presencia digital</p>
-            <p class="text-green-400 font-bold mt-3">$49.000</p>
-          </div>
-        </div>
-
-        <!-- Tarjeta 2: Chatwoot + IA -->
-        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1531746790731-6c087fecd65a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60')" data-aos="zoom-in" data-aos-delay="100">
-          <div class="service-card-content">
-            <h3 class="text-2xl font-bold mb-2"><i class="fas fa-robot mr-2 text-green-400"></i>Chatwoot + IA</h3>
-            <p class="text-sm text-gray-200">Gestión automática de mensajes inteligentes</p>
-            <p class="text-green-400 font-bold mt-3">$59.000</p>
-          </div>
-        </div>
-
-        <!-- Tarjeta 3: Sitio Web Estático -->
-        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60')" data-aos="zoom-in" data-aos-delay="200">
-          <div class="service-card-content">
-            <h3 class="text-2xl font-bold mb-2"><i class="fas fa-globe mr-2 text-green-400"></i>Sitio Web Estático</h3>
-            <p class="text-sm text-gray-200">Presencia profesional en internet</p>
-            <p class="text-green-400 font-bold mt-3">$39.000</p>
-          </div>
-        </div>
-
-        <!-- Tarjeta 4: Landing Page + Lead Magnet -->
-        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60')" data-aos="zoom-in" data-aos-delay="300">
-          <div class="service-card-content">
-            <h3 class="text-2xl font-bold mb-2"><i class="fas fa-rocket mr-2 text-green-400"></i>Landing Page</h3>
-            <p class="text-sm text-gray-200">Captura leads de forma inteligente</p>
-            <p class="text-green-400 font-bold mt-3">$45.000</p>
-          </div>
-        </div>
-
-        <!-- Tarjeta 5: Config Meta Ads -->
-        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1611162618475-46b635cb6868?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60')" data-aos="zoom-in" data-aos-delay="400">
-          <div class="service-card-content">
-            <h3 class="text-2xl font-bold mb-2"><i class="fas fa-ad mr-2 text-green-400"></i>Config Meta Ads</h3>
-            <p class="text-sm text-gray-200">Campañas optimizadas para conversión</p>
-            <p class="text-green-400 font-bold mt-3">$55.000</p>
-          </div>
-        </div>
-
-        <!-- Tarjeta 6: Plantillas WhatsApp -->
-        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b135?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60')" data-aos="zoom-in" data-aos-delay="500">
-          <div class="service-card-content">
-            <h3 class="text-2xl font-bold mb-2"><i class="fab fa-whatsapp mr-2 text-green-400"></i>Plantillas WhatsApp</h3>
-            <p class="text-sm text-gray-200">Respuestas automatizadas profesionales</p>
-            <p class="text-green-400 font-bold mt-3">$29.000</p>
-          </div>
-        </div>
-
-        <!-- Tarjeta 7: Config Meta Business -->
-        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1553531088-98a4ca3b5edb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60')" data-aos="zoom-in" data-aos-delay="200">
-          <div class="service-card-content">
-            <h3 class="text-2xl font-bold mb-2"><i class="fas fa-cogs mr-2 text-green-400"></i>Meta Business Setup</h3>
-            <p class="text-sm text-gray-200">Configuración profesional completa</p>
-            <p class="text-green-400 font-bold mt-3">$35.000</p>
-          </div>
-        </div>
-
-        <!-- Tarjeta 8: Entorno Facebook Ads -->
-        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60')" data-aos="zoom-in" data-aos-delay="300">
-          <div class="service-card-content">
-            <h3 class="text-2xl font-bold mb-2"><i class="fas fa-chart-bar mr-2 text-green-400"></i>Facebook Ads Setup</h3>
-            <p class="text-sm text-gray-200">Entorno optimizado para tu negocio</p>
-            <p class="text-green-400 font-bold mt-3">$42.000</p>
-          </div>
-        </div>
-
-        <!-- Tarjeta 9: Documentos PDF -->
-        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60')" data-aos="zoom-in" data-aos-delay="400">
-          <div class="service-card-content">
-            <h3 class="text-2xl font-bold mb-2"><i class="fas fa-file-pdf mr-2 text-green-400"></i>Documentos Profesionales</h3>
-            <p class="text-sm text-gray-200">Catálogos, manuales y presupuestos</p>
-            <p class="text-green-400 font-bold mt-3">$25.000</p>
-          </div>
-        </div>
-
-        <!-- Tarjeta 10: Mini Pack WhatsApp (Destacada) -->
-        <div class="service-card rounded-2xl overflow-hidden relative bg-cover bg-center ring-3 ring-green-500 shadow-2xl shadow-green-500/50" style="background-image: url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b135?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60')" data-aos="zoom-in" data-aos-delay="500">
-          <div class="absolute top-0 left-0 right-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-2 text-center font-bold text-sm">⭐ MÁS POPULAR</div>
-          <div class="service-card-content pt-8">
-            <h3 class="text-2xl font-bold mb-2"><i class="fas fa-crown mr-2 text-yellow-400"></i>Mini Pack Premium</h3>
-            <p class="text-sm text-gray-200">Paquete completo con garantía</p>
-            <p class="text-green-400 font-bold mt-3 text-lg">$89.000</p>
-          </div>
-        </div>
+        <div class="card-wa p-6 text-center zoom-in" style="animation-delay: 0s;"><i class="fas fa-clock text-5xl text-green-500 mb-4"></i><h3 class="text-xl font-bold">Atención más rápida</h3><p class="text-gray-500">Respuestas inmediatas a tus clientes.</p></div>
+        <div class="card-wa p-6 text-center zoom-in" style="animation-delay: 0.1s;"><i class="fas fa-layer-group text-5xl text-green-500 mb-4"></i><h3 class="text-xl font-bold">Más orden en mensajes</h3><p class="text-gray-500">Chats organizados y etiquetados.</p></div>
+        <div class="card-wa p-6 text-center zoom-in" style="animation-delay: 0.2s;"><i class="fas fa-shield-alt text-5xl text-green-500 mb-4"></i><h3 class="text-xl font-bold">Imagen profesional</h3><p class="text-gray-500">Proyecta confianza y seriedad.</p></div>
+        <div class="card-wa p-6 text-center zoom-in" style="animation-delay: 0.3s;"><i class="fas fa-chart-line text-5xl text-green-500 mb-4"></i><h3 class="text-xl font-bold">Más clientes</h3><p class="text-gray-500">Optimiza la captación de leads.</p></div>
+        <div class="card-wa p-6 text-center zoom-in" style="animation-delay: 0.4s;"><i class="fas fa-microchip text-5xl text-green-500 mb-4"></i><h3 class="text-xl font-bold">Automatización simple</h3><p class="text-gray-500">Sin complicaciones técnicas.</p></div>
+        <div class="card-wa p-6 text-center zoom-in" style="animation-delay: 0.5s;"><i class="fas fa-headset text-5xl text-green-500 mb-4"></i><h3 class="text-xl font-bold">Soporte personalizado</h3><p class="text-gray-500">Asesoría humana siempre disponible.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ========== CASOS DE ÉXITO EXPRESS ========== -->
-  <section class="py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800/20 dark:to-gray-900">
-    <div class="container mx-auto px-5 md:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold text-gray-800 dark:text-white" data-aos="fade-up">
-          <i class="fas fa-star text-yellow-400 mr-2"></i>Casos de éxito express<i class="fas fa-star text-yellow-400 ml-2"></i>
-        </h2>
-        <p class="text-gray-500 dark:text-gray-400 mt-3" data-aos="fade-up" data-aos-delay="100">Resultados reales en menos de 3 meses</p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="glass-card p-8 text-center testimonial-card hover:shadow-2xl transition-all" data-aos="fade-up">
-          <div class="text-6xl mb-4">📈</div>
-          <p class="font-bold text-xl text-gray-800 dark:text-white mb-2">+80% consultas por WhatsApp</p>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Panadería Don Jorge triplicó sus ventas en 6 semanas</p>
-          <div class="mt-4 pt-4 border-t border-gray-300 dark:border-gray-600">
-            <p class="text-xs text-gray-500 dark:text-gray-400">Cliente: Panadería Don Jorge · Santiago</p>
-          </div>
-        </div>
-
-        <div class="glass-card p-8 text-center testimonial-card hover:shadow-2xl transition-all" data-aos="fade-up" data-aos-delay="100">
-          <div class="text-6xl mb-4">📅</div>
-          <p class="font-bold text-xl text-gray-800 dark:text-white mb-2">120 leads en 2 semanas</p>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Estudio Jurídico capturó clientes de forma automática</p>
-          <div class="mt-4 pt-4 border-t border-gray-300 dark:border-gray-600">
-            <p class="text-xs text-gray-500 dark:text-gray-400">Cliente: Estudio Jurídico S.A. · Valparaíso</p>
-          </div>
-        </div>
-
-        <div class="glass-card p-8 text-center testimonial-card hover:shadow-2xl transition-all" data-aos="fade-up" data-aos-delay="200">
-          <div class="text-6xl mb-4">⏱️</div>
-          <p class="font-bold text-xl text-gray-800 dark:text-white mb-2">Ahorro de 15h/semana</p>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Clínica Dental Smile automatizó toda su gestión</p>
-          <div class="mt-4 pt-4 border-t border-gray-300 dark:border-gray-600">
-            <p class="text-xs text-gray-500 dark:text-gray-400">Cliente: Clínica Smile · Concepción</p>
-          </div>
-        </div>
+  <!-- ========== CÓMO FUNCIONA (TIMELINE) - SLIDE ========== -->
+  <section class="py-24 px-5 bg-white">
+    <div class="container mx-auto max-w-6xl">
+      <div class="text-center mb-16 slide-up"><h2 class="text-4xl font-bold">¿Cómo <span class="text-green-600">funciona</span>?</h2><p class="text-gray-500">4 pasos para digitalizar tu negocio</p></div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="step-card card-wa p-6 text-center slide-right" style="animation-delay: 0s;"><div class="w-16 h-16 rounded-full bg-green-100 text-green-600 text-2xl font-black flex items-center justify-center mx-auto mb-4">1</div><h3 class="text-xl font-bold">Nos contactas</h3><p class="text-gray-500">Vía WhatsApp o web.</p></div>
+        <div class="step-card card-wa p-6 text-center slide-up" style="animation-delay: 0.1s;"><div class="w-16 h-16 rounded-full bg-green-100 text-green-600 text-2xl font-black flex items-center justify-center mx-auto mb-4">2</div><h3 class="text-xl font-bold">Analizamos tu negocio</h3><p class="text-gray-500">Diagnóstico gratuito.</p></div>
+        <div class="step-card card-wa p-6 text-center slide-up" style="animation-delay: 0.2s;"><div class="w-16 h-16 rounded-full bg-green-100 text-green-600 text-2xl font-black flex items-center justify-center mx-auto mb-4">3</div><h3 class="text-xl font-bold">Implementamos sistema</h3><p class="text-gray-500">Rápido y sin errores.</p></div>
+        <div class="step-card card-wa p-6 text-center slide-left" style="animation-delay: 0.3s;"><div class="w-16 h-16 rounded-full bg-green-100 text-green-600 text-2xl font-black flex items-center justify-center mx-auto mb-4">4</div><h3 class="text-xl font-bold">Clientes organizados</h3><p class="text-gray-500">Recibe consultas gestionadas.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ================= PAQUETES COMBO DESTACADOS CON VIDEO DE FONDO ================= -->
-  <section class="video-section relative py-24 md:py-32 overflow-hidden">
-    <!-- Video de fondo -->
-    <video class="video-background" autoplay loop muted playsinline>
-      <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-network-animation-of-internet-connections-1241-large.mp4" type="video/mp4">
-      <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="absolute inset-0 w-full h-full object-cover">
-    </video>
-    
-    <div class="video-overlay"></div>
-    
-    <div class="video-content container mx-auto px-5 md:px-8 relative z-10">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-white drop-shadow-lg" data-aos="fade-down">Paquetes Combo Destacados</h2>
-        <p class="text-blue-100 text-lg mt-3" data-aos="fade-up" data-aos-delay="100">Ahorra y multiplica tus resultados con nuestras soluciones integradas</p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Mini Pack WhatsApp -->
-        <div class="combo-card p-8 text-center rounded-2xl hover:shadow-2xl transition-all duration-300 backdrop-blur-md" data-aos="zoom-in">
-          <div class="text-7xl mb-4 float-medium">💎</div>
-          <h3 class="text-2xl font-bold text-white mb-2">Mini Pack WhatsApp</h3>
-          <p class="text-gray-200 text-sm my-4">Plantillas + secuencias automatizadas + asesoría exprés</p>
-          <div class="text-5xl font-extrabold text-green-400 my-4">$89.000</div>
-          <a href="https://wa.me/56912345678?text=Quiero%20el%20Mini%20Pack%20WhatsApp" target="_blank" class="btn-wa bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg inline-flex items-center gap-2 w-full justify-center">
-            <i class="fab fa-whatsapp"></i> Contratar ahora
-          </a>
+  <!-- ========== TESTIMONIOS CARRUSEL (Diapositivas estilo PowerPoint) ========== -->
+  <section class="py-20 px-5 bg-gradient-to-b from-gray-50 to-white">
+    <div class="container mx-auto max-w-5xl">
+      <div class="text-center mb-12"><i class="fas fa-quote-left text-5xl text-green-500"></i><h2 class="text-4xl font-bold mt-3">Clientes <span class="text-green-600">reales</span></h2></div>
+      <div class="swiper testimonial-swiper overflow-hidden px-4 pb-12">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><div class="card-wa p-8 text-center"><div class="flex justify-center text-green-500 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-600 italic">“GoClientes transformó nuestra atención, ahora respondemos al instante y duplicamos las ventas.”</p><h4 class="font-bold mt-4">Juan Pérez</h4><p class="text-sm text-green-600">Taller Mecánico RapMec</p></div></div>
+          <div class="swiper-slide"><div class="card-wa p-8 text-center"><div class="flex justify-center text-green-500 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-600 italic">“Automatizamos WhatsApp y aumentamos leads en 150% en solo 2 semanas. Excelente servicio.”</p><h4 class="font-bold mt-4">Claudia Rojas</h4><p class="text-sm text-green-600">Ferretería El Constructor</p></div></div>
+          <div class="swiper-slide"><div class="card-wa p-8 text-center"><div class="flex justify-center text-green-500 mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><p class="text-gray-600 italic">“Configuraron Google Maps y llegaron decenas de clientes nuevos. Recomendados 100%.”</p><h4 class="font-bold mt-4">Marcos Díaz</h4><p class="text-sm text-green-600">Emprendedor Pyme</p></div></div>
         </div>
-
-        <!-- Pack Arranca Ya (Recomendado) -->
-        <div class="combo-card p-8 text-center rounded-2xl ring-3 ring-green-400 shadow-2xl shadow-green-500/50 relative hover:scale-105 transition-transform duration-300 backdrop-blur-md" data-aos="zoom-in" data-aos-delay="100">
-          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-bold px-6 py-2 rounded-full shadow-lg">
-            <i class="fas fa-fire mr-1"></i> RECOMENDADO
-          </div>
-          <div class="text-7xl mb-4 float-fast animate-bounce">⚡</div>
-          <h3 class="text-2xl font-bold text-white mb-2">Pack Arranca Ya</h3>
-          <p class="text-gray-200 text-sm my-4">Sitio Web + Landing Page + Lead Magnet. <span class="font-bold text-green-400">TODO EN UNO</span></p>
-          <div class="text-5xl font-extrabold text-green-400 my-4">$129.000</div>
-          <p class="text-xs text-green-300 mb-4 font-semibold">Ahorra $45.000 vs comprar por separado</p>
-          <a href="https://wa.me/56912345678?text=Quiero%20el%20Pack%20Arranca%20Ya" target="_blank" class="btn-wa bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg inline-flex items-center gap-2 w-full justify-center shadow-lg">
-            <i class="fab fa-whatsapp"></i> Contratar ahora
-          </a>
-        </div>
-
-        <!-- Pack Ads Inicial -->
-        <div class="combo-card p-8 text-center rounded-2xl hover:shadow-2xl transition-all duration-300 backdrop-blur-md" data-aos="zoom-in" data-aos-delay="200">
-          <div class="text-7xl mb-4 float-slow">📢</div>
-          <h3 class="text-2xl font-bold text-white mb-2">Pack Ads Inicial</h3>
-          <p class="text-gray-200 text-sm my-4">Meta Business + Pixel + Catálogo + Configuración completa</p>
-          <div class="text-5xl font-extrabold text-green-400 my-4">$149.000</div>
-          <a href="https://wa.me/56912345678?text=Quiero%20el%20Pack%20Ads%20Inicial" target="_blank" class="btn-wa bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg inline-flex items-center gap-2 w-full justify-center">
-            <i class="fab fa-whatsapp"></i> Contratar ahora
-          </a>
-        </div>
+        <div class="swiper-pagination mt-6"></div>
       </div>
     </div>
   </section>
 
-  <!-- ========== TESTIMONIOS ========== -->
-  <section class="py-20 bg-white dark:bg-gray-900">
-    <div class="container mx-auto px-5 md:px-8">
-      <div class="text-center mb-12">
-        <i class="fas fa-comment-dots text-5xl text-green-600" data-aos="zoom-in"></i>
-        <h2 class="text-4xl font-bold mt-4 text-gray-800 dark:text-white" data-aos="fade-up">Lo que dicen nuestros clientes</h2>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="glass-card p-7 testimonial-card" data-aos="fade-up">
-          <div class="flex text-yellow-400 mb-4 text-lg">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-          </div>
-          <p class="text-gray-700 dark:text-gray-300 mb-4 italic">"Excelente servicio, los chicos son muy profesionales y rápidos. En menos de 48 horas tuve mi WhatsApp automático funcionando perfectamente."</p>
-          <p class="font-bold text-gray-800 dark:text-white">Carlos Mendoza</p>
-          <p class="text-sm text-gray-500 dark:text-gray-400">CEO Distribuidora Andes</p>
-        </div>
-
-        <div class="glass-card p-7 testimonial-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="flex text-yellow-400 mb-4 text-lg">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="text-gray-700 dark:text-gray-300 mb-4 italic">"Multiplicaron mis leads en 3 meses. Realmente cumplieron lo que prometen. Lo mejor es que el soporte sigue siendo excelente después de la venta."</p>
-          <p class="font-bold text-gray-800 dark:text-white">María García</p>
-          <p class="text-sm text-gray-500 dark:text-gray-400">Gerente TechSoluciones CL</p>
-        </div>
-
-        <div class="glass-card p-7 testimonial-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="flex text-yellow-400 mb-4 text-lg">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-          </div>
-          <p class="text-gray-700 dark:text-gray-300 mb-4 italic">"Perfecto para Pymes. Precios accesibles y servicios de calidad. Definitivamente volveré a contratar para mi próximo proyecto."</p>
-          <p class="font-bold text-gray-800 dark:text-white">Roberto Flores</p>
-          <p class="text-sm text-gray-500 dark:text-gray-400">Dueño Mecánica Rápida</p>
-        </div>
-      </div>
-
-      <div class="max-w-sm mx-auto mt-10 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 shadow-lg flex items-center justify-between gap-4 border border-green-200 dark:border-green-900" data-aos="zoom-in">
-        <div>
-          <i class="fab fa-google text-2xl text-red-500"></i>
-        </div>
-        <div class="flex-1">
-          <p class="text-sm font-bold text-gray-800 dark:text-white">Calificación Google</p>
-          <div class="flex items-center gap-1 mt-1">
-            <span class="text-xl font-bold text-gray-800 dark:text-white">4.9</span>
-            <div class="flex text-yellow-400 text-sm">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-            </div>
-            <span class="text-xs text-gray-600 dark:text-gray-400">(127 reseñas)</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== GARANTÍAS Y CONFIANZA ========== -->
-  <section class="py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-    <div class="container mx-auto px-5 md:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-        <div class="glass-card p-6 hover:scale-105 transition-transform duration-300" data-aos="zoom-in">
-          <i class="fas fa-certificate text-5xl text-green-600 mb-3"></i>
-          <h3 class="font-bold text-lg text-gray-800 dark:text-white">Certificación HubSpot</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Inbound Marketing oficial</p>
-        </div>
-
-        <div class="glass-card p-6 hover:scale-105 transition-transform duration-300" data-aos="zoom-in" data-aos-delay="100">
-          <i class="fas fa-rocket text-5xl text-green-600 mb-3"></i>
-          <h3 class="font-bold text-lg text-gray-800 dark:text-white">Entrega Rápida</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">24 a 72 horas garantizado</p>
-        </div>
-
-        <div class="glass-card p-6 hover:scale-105 transition-transform duration-300" data-aos="zoom-in" data-aos-delay="200">
-          <i class="fas fa-lock text-5xl text-green-600 mb-3"></i>
-          <h3 class="font-bold text-lg text-gray-800 dark:text-white">Pago Seguro</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Transferencia, Mercado Pago</p>
-        </div>
-
-        <div class="glass-card p-6 hover:scale-105 transition-transform duration-300" data-aos="zoom-in" data-aos-delay="300">
-          <i class="fas fa-headset text-5xl text-green-600 mb-3"></i>
-          <h3 class="font-bold text-lg text-gray-800 dark:text-white">Soporte Activo</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Post-venta vía WhatsApp</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= FOOTER ================= -->
-  <footer class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white pt-16 pb-8 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10">
-      <div class="absolute top-0 left-1/4 w-96 h-96 bg-green-500 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-500 rounded-full blur-3xl"></div>
-    </div>
-
-    <div class="container mx-auto px-5 md:px-8 text-center relative z-10">
-      <h3 class="text-4xl font-bold mb-4">¿Listo para llenar tu WhatsApp de clientes?</h3>
-      <p class="text-gray-300 mb-8 text-lg">Empieza hoy con uno de nuestros Servicios Express o paquetes combinados.</p>
-      
-      <a href="https://wa.me/56912345678?text=Hola%20quiero%20consultar" target="_blank" class="btn-wa bg-green-600 hover:bg-green-700 px-12 py-5 rounded-xl text-2xl inline-flex gap-3 items-center font-bold shadow-2xl">
-        <i class="fab fa-whatsapp text-3xl"></i> CONSULTA GRATIS AHORA
+  <!-- ========== CTA FINAL (VERDE IMPACTANTE) ========== -->
+  <section class="py-28 px-5 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-green-100 to-white blur-2xl opacity-60"></div>
+    <div class="container mx-auto max-w-4xl text-center relative z-10 card-wa p-12 md:p-16 shadow-xl" data-aos="zoom-in">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800">Haz crecer tu negocio con tecnología</h2>
+      <p class="text-gray-600 text-lg mt-5 max-w-2xl mx-auto">Implementamos soluciones rápidas y económicas para negocios pequeños y medianos. Atención personalizada en Chile.</p>
+      <a href="https://wa.me/56963571251?text=Quiero%20impulsar%20mi%20negocio%20con%20GoClientes" target="_blank" class="btn-wa-green inline-flex items-center gap-3 px-10 py-5 rounded-xl text-xl font-bold mt-10 shadow-2xl text-white">
+        <i class="fab fa-whatsapp text-2xl"></i> Contactar por WhatsApp
       </a>
+      <p class="text-sm text-gray-500 mt-6"><i class="fas fa-shield-alt text-green-500"></i> Sin compromiso · Respuesta en minutos</p>
+    </div>
+  </section>
 
-      <hr class="border-gray-700 my-12">
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-        <div class="text-left md:text-center">
-          <h4 class="font-bold mb-3"><i class="fab fa-whatsapp text-green-400 mr-2"></i>Contacto</h4>
-          <p>+56 9 1234 5678</p>
-          <p>contacto@goclientes.cl</p>
-        </div>
-        <div class="text-left md:text-center">
-          <h4 class="font-bold mb-3"><i class="fas fa-map-marker-alt text-green-400 mr-2"></i>Ubicación</h4>
-          <p>Santiago, Chile</p>
-          <p>Atención nacional</p>
-        </div>
-        <div class="text-left md:text-center">
-          <h4 class="font-bold mb-3"><i class="fas fa-clock text-green-400 mr-2"></i>Horarios</h4>
-          <p>Lunes a Viernes: 9am - 6pm</p>
-          <p>Sábado: 10am - 2pm</p>
-        </div>
+  <!-- ========== FOOTER CON DATOS ACTUALIZADOS: TELÉFONO 963571251, CORREOS, NOMBRE GOCLIENTES ========== -->
+  <footer class="footer-green py-12 px-5">
+    <div class="container mx-auto max-w-6xl">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
+        <div><i class="fab fa-whatsapp text-4xl text-green-400 mb-4"></i><h3 class="font-bold text-xl">GoClientes.cl</h3><p class="text-gray-300 text-sm">Llena tu WhatsApp de clientes.</p></div>
+        <div><i class="fab fa-whatsapp text-green-400 mr-2"></i><p class="text-white">+56 9 6357 1251</p><p class="text-gray-300 text-sm">equipo@goclientes.com</p><p class="text-gray-300 text-sm">soporte@goclientes.com</p></div>
+        <div><i class="fas fa-map-marker-alt text-green-400 mr-2"></i><p class="text-white">Santiago de Chile</p><p class="text-gray-300 text-sm">Atención nacional</p></div>
+        <div class="flex justify-center md:justify-end gap-5"><a href="#" class="text-gray-300 hover:text-green-400 text-2xl transition"><i class="fab fa-instagram"></i></a><a href="#" class="text-gray-300 hover:text-green-400 text-2xl transition"><i class="fab fa-linkedin"></i></a><a href="#" class="text-gray-300 hover:text-green-400 text-2xl transition"><i class="fab fa-facebook"></i></a></div>
       </div>
-
-      <div class="flex justify-center gap-6 mb-8">
-        <a href="#" class="hover:text-green-400 transition"><i class="fab fa-facebook text-2xl"></i></a>
-        <a href="#" class="hover:text-green-400 transition"><i class="fab fa-instagram text-2xl"></i></a>
-        <a href="#" class="hover:text-green-400 transition"><i class="fab fa-linkedin text-2xl"></i></a>
-        <a href="#" class="hover:text-green-400 transition"><i class="fab fa-youtube text-2xl"></i></a>
-      </div>
-
-      <p class="text-gray-400 text-sm">© 2026 GoClientes.cl - Agencia especializada en servicios digitales express para Pymes chilenas</p>
+      <div class="border-t border-green-800 mt-10 pt-8 text-center text-gray-400 text-sm">© 2026 GoClientes.cl · Agencia especializada en automatización y servicios digitales para Pymes chilenas. ¡Potencia tu negocio!</div>
     </div>
   </footer>
 
+  <!-- Scripts: AOS, Swiper, Intersection Observer para slides al hacer scroll -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
-    // Inicializar AOS
-    AOS.init({
-      duration: 800,
-      easing: 'ease-in-out-cubic',
-      once: true,
-      mirror: false
+    AOS.init({ duration: 800, once: true, easing: 'ease-out' });
+    
+    // Swiper carousel estilo diapositivas power point
+    const swiper = new Swiper('.testimonial-swiper', {
+      loop: true,
+      autoplay: { delay: 4500, disableOnInteraction: false },
+      effect: 'slide',
+      slidesPerView: 1,
+      spaceBetween: 30,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      breakpoints: { 768: { slidesPerView: 2 } }
     });
-
-    // Contadores animados
-    function animateCounter(el, start, end, suffix = '') {
-      let current = start;
-      const step = Math.ceil((end - start) / 50);
-      const timer = setInterval(() => {
-        current += step;
-        if (current >= end) { 
-          el.innerText = end + suffix; 
-          clearInterval(timer); 
-        }
-        else { 
-          el.innerText = (suffix === '%' ? current : '+' + current) + suffix; 
-        }
-      }, 30);
-    }
-
+    
+    // Efecto secciones al hacer scroll (PowerPoint appear)
+    const slideElements = document.querySelectorAll('.section-slide');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const business = document.getElementById('counter-business');
-          const repeat = document.getElementById('counter-repeat');
-          const leads = document.getElementById('counter-leads');
-          if (business && business.innerText === '0') animateCounter(business, 0, 52, '');
-          if (repeat && repeat.innerText === '0') animateCounter(repeat, 0, 89, '%');
-          if (leads && leads.innerText === '0') animateCounter(leads, 0, 1250, '');
-          observer.disconnect();
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
-    }, { threshold: 0.5 });
-
-    const statsSection = document.querySelector('section:nth-of-type(2)');
-    if (statsSection) observer.observe(statsSection);
-
-    // Dark mode toggle
-    const toggle = document.getElementById('darkModeToggle');
-    if (toggle) {
-      toggle.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
-        localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.card-wa, .step-card, .service-item, .testimonial-swiper, .hero-wa div').forEach(el => {
+      el.classList.add('section-slide');
+      observer.observe(el);
+    });
+    // Forzar visibilidad en elementos que ya están visibles
+    setTimeout(() => {
+      document.querySelectorAll('.section-slide').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) el.classList.add('visible');
       });
-      if (localStorage.getItem('darkMode') === 'true') {
-        document.documentElement.classList.add('dark');
-      }
-    }
-
-    // Smooth scroll
+    }, 200);
+    
+    // Smooth scroll a secciones
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+      anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          const target = document.querySelector(targetId);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
         }
       });
     });
