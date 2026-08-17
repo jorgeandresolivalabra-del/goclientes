@@ -161,10 +161,10 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2.5rem; background: var(--nav-bg); backdrop-filter: blur(20px);
+      gap: 1rem; padding: 0.8rem 1.4rem; background: var(--nav-bg); backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border); transition: all 0.3s var(--ease);
     }
-    nav.scrolled { box-shadow: var(--shadow-lg); padding: 0.7rem 2.5rem; }
+    nav.scrolled { box-shadow: var(--shadow-lg); padding: 0.7rem 1.4rem; }
 
     /* LOGO ESTILOS NUEVOS + EXISTENTES */
     .logo-wrap{
@@ -201,42 +201,51 @@
       color:#38bdf8;
     }
 
-    .nav-links { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+    .nav-links {
+      display: flex; align-items: center; justify-content: center; gap: 0.8rem 1.1rem;
+      flex: 1; flex-wrap: wrap; min-width: 0;
+    }
     .nav-phones {
-      display: flex; align-items: center; gap: 1.1rem;
-      padding-right: 1.1rem; margin-right: 0.3rem;
-      border-right: 1px solid var(--border);
-      font-size: 0.82rem; font-weight: 600;
+      display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap;
+      padding: 0.35rem 0.8rem; border: 1px solid var(--border);
+      border-radius: 999px; background: rgba(255,255,255,0.25);
+      font-size: 0.75rem; font-weight: 600;
     }
     .nav-phone-link {
-      display: inline-flex; align-items: center; gap: 0.4rem;
+      display: inline-flex; align-items: center; gap: 0.35rem;
       color: var(--body) !important; white-space: nowrap;
     }
-    .nav-phone-link i { color: var(--green); font-size: 0.95rem; }
+    .nav-phone-link i { color: var(--green); font-size: 0.9rem; }
     .nav-phone-link:hover { color: var(--green) !important; }
-    @media (max-width: 900px) {
-      .nav-phones { border-right: none; padding-right: 0; margin-right: 0; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-    }
     .nav-links a {
-      color: var(--body); text-decoration: none; font-weight: 500; font-size: 0.88rem;
-      transition: all 0.3s; position: relative;
+      color: var(--body); text-decoration: none; font-weight: 500; font-size: 0.84rem;
+      transition: all 0.3s; position: relative; white-space: nowrap;
     }
     .nav-links a::after { content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:var(--green); transition:width 0.3s; }
     .nav-links a:hover::after { width:100%; }
     .nav-links a:hover { color:var(--green); transform:translateY(-2px); }
     .btn-nav {
       background: linear-gradient(135deg, var(--green), var(--green-dark));
-      color: white; font-weight: 700; padding: 0.6rem 1.4rem;
-      border-radius: 100px; text-decoration: none; font-size: 0.88rem;
+      color: white; font-weight: 700; padding: 0.55rem 1rem;
+      border-radius: 100px; text-decoration: none; font-size: 0.77rem;
       transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.4rem;
-      animation: glowPulse 2s infinite;
+      animation: glowPulse 2s infinite; white-space: nowrap;
     }
-    .btn-nav:hover { transform: translateY(-2px) scale(1.05); box-shadow: var(--shadow-green); }
+    .btn-nav:hover { transform: translateY(-2px) scale(1.03); box-shadow: var(--shadow-green); }
     .btn-nav-ai {
       background: linear-gradient(135deg, var(--green), #00a0e0, var(--green));
       background-size: 200% 200%; animation: gradientShift 3s ease infinite;
-      color: white; font-weight: 700; padding: 0.6rem 1.4rem;
-      border-radius: 100px; text-decoration: none;
+      color: white; font-weight: 700; padding: 0.55rem 1rem;
+      border-radius: 100px; text-decoration: none; white-space: nowrap;
+      font-size: 0.77rem;
+    }
+    @media (max-width: 900px) {
+      nav { flex-wrap: wrap; }
+      .nav-links {
+        width: 100%; justify-content: space-between; margin-top: 0.3rem;
+      }
+      .nav-phones { width: 100%; justify-content: center; border: none; background: transparent; padding: 0; }
+      .nav-links a, .btn-nav, .btn-nav-ai { font-size: 0.8rem; }
     }
     .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; }
     .hamburger span { width:24px; height:2px; background:var(--heading); border-radius:2px; }
@@ -359,23 +368,51 @@
     .rating-stars { display:flex; align-items:center; gap:0.5rem; }
     .stars { color:#f59e0b; letter-spacing:3px; font-size:1.1rem; }
     .rating-text { font-size:0.85rem; color:var(--muted); font-weight:500; }
+    .hero-proof-strip {
+      display:flex; justify-content:center; align-items:stretch; gap:0.75rem;
+      flex-wrap:wrap; margin:0 auto 2rem; max-width:760px;
+    }
+    .proof-item {
+      flex:1 1 180px; min-width:160px; display:flex; align-items:center; justify-content:center; gap:0.55rem;
+      background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:16px;
+      padding:0.8rem 1rem; box-shadow:var(--shadow-sm); backdrop-filter:blur(8px);
+    }
+    .proof-icon { font-size:1.1rem; display:inline-flex; align-items:center; justify-content:center; }
+    .proof-item strong { color:var(--heading); font-family:'Sora',sans-serif; font-size:1.1rem; }
+    .proof-item span:last-child { color:var(--muted); font-size:0.75rem; }
     .hero-btns { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; margin-bottom:2.5rem; }
     .btn-primary {
       display:inline-flex; align-items:center; gap:0.8rem;
       background:linear-gradient(135deg,var(--green),var(--green-dark));
       color:white; font-weight:700; padding:1rem 2.2rem;
       border-radius:100px; text-decoration:none; font-size:1rem;
-      transition:all 0.3s var(--ease); box-shadow:var(--shadow-green);
-      border:none; cursor:pointer;
+      transition:all 0.25s var(--ease); box-shadow:var(--shadow-green);
+      border:none; cursor:pointer; letter-spacing:0.01em;
     }
-    .btn-primary:hover { transform:translateY(-3px) scale(1.04); box-shadow:0 14px 40px rgba(0,198,94,0.5); }
+    .btn-primary:hover {
+      transform:translateY(-3px) scale(1.02);
+      box-shadow:0 14px 40px rgba(0,198,94,0.45);
+      filter:saturate(1.05);
+    }
     .btn-secondary {
       display:inline-flex; align-items:center; gap:0.5rem;
       background:var(--card-bg); color:var(--green); font-weight:700;
       padding:1rem 2.2rem; border-radius:100px; text-decoration:none; font-size:1rem;
-      border:2px solid var(--green);
+      border:2px solid rgba(0,198,94,0.35); transition:all 0.25s var(--ease);
     }
-    .btn-secondary:hover { background:var(--green-light); transform:translateY(-3px); box-shadow:var(--shadow-md); }
+    .btn-secondary:hover {
+      background:var(--green-light); transform:translateY(-3px); box-shadow:var(--shadow-md);
+      border-color:var(--green);
+    }
+    .btn-link {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      color:var(--body); font-weight:600; padding:0.9rem 0.2rem;
+      background:transparent; border:none; text-decoration:none;
+      transition:color 0.2s ease, transform 0.2s ease;
+    }
+    .btn-link:hover {
+      color:var(--green); transform:translateY(-2px);
+    }
     .hero-stats {
       display:flex; gap:0; justify-content:center;
       background:var(--card-bg); backdrop-filter:blur(10px);
@@ -932,7 +969,7 @@
 <nav id="navbar">
   <!-- LOGO MODIFICADO: Reemplazo por estructura con imagen -->
   <a href="#" class="logo-wrap">
-    <img src="/img/logotipo.png" alt="GoClientes" class="logo-img">
+    <img src="img/logotipo.png" alt="GoClientes" class="logo-img">
     <div class="logo-text">
       <span class="go">Go</span><span class="clientes">Clientes</span>
     </div>
@@ -969,7 +1006,7 @@
   <div class="hero-bg-img2"></div>
   <canvas id="particles-canvas"></canvas>
   <!-- LOGO GRANDE EN HERO AGREGADO -->
-  <img src="/img/logotipo.png" alt="GoClientes" class="hero-logo">
+  <img src="img/logotipo.png" alt="GoClientes" class="hero-logo">
   <div class="hero-badge"><span class="pulse"></span> 🔴 <span id="watchersCount">47</span> personas viendo esta oferta ahora</div>
   <div style="margin-bottom:0.5rem;">
     <span style="font-size:1rem;color:var(--muted);font-weight:500;">El servicio perfecto para </span>
@@ -988,10 +1025,15 @@
     </div>
     <div class="rating-stars"><div class="stars">★★★★★</div><span class="rating-text">4.98/5 · 312 reseñas verificadas</span></div>
   </div>
+  <div class="hero-proof-strip" aria-label="Prueba social de GoClientes">
+    <div class="proof-item"><span class="proof-icon">👥</span><strong>+187</strong><span>empresas activadas</span></div>
+    <div class="proof-item"><span class="proof-icon">⚡</span><strong>48h</strong><span>entrega de setup</span></div>
+    <div class="proof-item"><span class="proof-icon">⭐</span><strong>4.98/5</strong><span>valoración media</span></div>
+  </div>
   <div class="hero-btns">
-    <a href="https://wa.me/56987685450?text=Hola,%20quiero%20resultados%20como%20Carlos" class="btn-primary" target="_blank">📈 Quiero +667% clientes como Carlos</a>
+    <a href="https://wa.me/56987685450?text=Hola,%20quiero%20resultados%20como%20Carlos" class="btn-primary" target="_blank">📈 Agendar demo gratis</a>
     <a href="#planes" class="btn-secondary">Ver planes ↓</a>
-    <a href="formulario.html" class="btn-secondary" style="border-color: #1e3a5f; color: #1e3a5f;">📋 Ir al formulario de contacto →</a>
+    <a href="formulario.html" class="btn-link">📋 Quiero hablar con un asesor →</a>
   </div>
   <div class="hero-stats">
     <div class="stat-item"><strong>48h</strong><span>Entrega garantizada</span></div>
